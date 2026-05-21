@@ -1417,11 +1417,13 @@
           class="nav-logo-img"
           id="nav-logo-img"
         />
-        <span class="nav-logo-text">TWODOT<span class="dot">.</span>MEDIA</span>
+        <span class="nav-logo-text"
+          >TWO<span class="dot">..</span>DOT MEDIA</span
+        >
       </a>
       <ul class="nav-links">
         <li><a href="#about">About</a></li>
-        <li><a href="#introduction">Introduction</a></li>
+        <li><a href="#reel">Reel</a></li>
         <li><a href="#services">Services</a></li>
         <li><a href="#team">Team</a></li>
         <li><a href="#testimonials">Clients</a></li>
@@ -1434,7 +1436,7 @@
     <!-- MOBILE MENU DRAWER -->
     <div class="mobile-menu" id="mobileMenu">
       <a href="#about" onclick="closeMenu()">About</a>
-      <a href="#introduction" onclick="closeMenu()">Introduction</a>
+      <a href="#reel" onclick="closeMenu()">Reel</a>
       <a href="#services" onclick="closeMenu()">Services</a>
       <a href="#team" onclick="closeMenu()">Team</a>
       <a href="#testimonials" onclick="closeMenu()">Clients</a>
@@ -1447,7 +1449,7 @@
       <div class="hero-bg"></div>
       <div class="hero-grid"></div>
       <div class="hero-content">
-        <div class="hero-eyebrow">Visual Storytelling that Inspires Action</div>
+        <div class="hero-eyebrow">We Tell Stories That Move People</div>
         <h1 class="hero-title">TWODOT<span class="dot">.</span>MEDIA</h1>
         <p class="hero-subtitle">
           Film &nbsp;·&nbsp; Brand &nbsp;·&nbsp; Story &nbsp;·&nbsp;
@@ -1490,7 +1492,7 @@
             brand identity, and compelling narratives that captivate audiences.
           </p>
           <p class="reveal reveal-delay-3">
-            From concept to screen we don't just create content. We architect
+            From concept to screen — we don't just create content. We architect
             experiences that leave marks.
           </p>
           <div class="about-stats reveal reveal-delay-4">
@@ -1512,13 +1514,11 @@
     </section>
 
     <!-- REEL / PORTFOLIO -->
-    <div id="introduction">
+    <div id="reel">
       <div class="reel-header">
         <div class="reel-title-block">
           <div class="section-label reveal">Work</div>
-          <h2 class="section-title reveal reveal-delay-1">
-            Introduction Video
-          </h2>
+          <h2 class="section-title reveal reveal-delay-1">Our Showreel</h2>
         </div>
         <p
           class="reveal"
@@ -1536,16 +1536,18 @@
       </div>
 
       <div class="video-stage reveal" id="videoStage">
-        <div class="video-drop-zone" id="dropZone">
-          <svg viewBox="0 0 24 24" fill="none" stroke-width="1">
-            <path
-              d="M14.5 4h-5L7 7H4a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2h-3l-2.5-3z"
-            />
-            <circle cx="12" cy="13" r="3" />
-          </svg>
-          <p>Upload your showreel video</p>
-          <label for="video-input">Browse Files</label>
-          <input type="file" id="video-input" accept="video/*" />
+        <video
+          src="Introduction.mp4"
+          autoplay
+          loop
+          muted
+          playsinline
+          id="mainVideo"
+        ></video>
+        <div class="video-overlay" id="videoOverlay">
+          <button class="play-btn" id="playBtn" onclick="togglePlay()">
+            <svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21" /></svg>
+          </button>
         </div>
       </div>
     </div>
@@ -2439,69 +2441,44 @@
       reveals.forEach((el) => observer.observe(el));
 
       // Video upload
-      document
-        .getElementById("video-input")
-        .addEventListener("change", function (e) {
-          const file = e.target.files[0];
-          if (!file) return;
-          const url = URL.createObjectURL(file);
-          const stage = document.getElementById("videoStage");
-          stage.innerHTML = `
-      <video src="${url}" loop muted playsinline id="mainVideo"></video>
-      <div class="video-overlay" id="videoOverlay">
-        <button class="play-btn" id="playBtn" onclick="togglePlay()">
-          <svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg>
-        </button>
-      </div>
-      <div class="video-caption">
-        <div>
-          <h3>TWODOT MEDIA</h3>
-          <p>Showreel · 2025</p>
-        </div>
-        <div class="video-type">Video Production</div>
-      </div>
-    `;
-        });
+      // Video is embedded directly as Introduction.mp4
 
       function togglePlay() {
         const vid = document.getElementById("mainVideo");
         const overlay = document.getElementById("videoOverlay");
-        const btn = document.getElementById("playBtn");
+        if (!vid) return;
         if (vid.paused) {
           vid.play();
           overlay.style.opacity = "0";
           setTimeout(() => {
-            if (!vid.paused) overlay.style.display = "none";
+            overlay.style.display = "none";
           }, 400);
         } else {
           vid.pause();
           overlay.style.display = "flex";
-          setTimeout(() => (overlay.style.opacity = "1"), 10);
-          btn.innerHTML = `<svg viewBox="0 0 24 24" fill="#c9a84c"><polygon points="5,3 19,12 5,21"/></svg>`;
+          setTimeout(() => {
+            overlay.style.opacity = "1";
+          }, 10);
         }
       }
 
-      document
-        .getElementById("videoStage")
-        .addEventListener("mouseenter", () => {
-          const overlay = document.getElementById("videoOverlay");
-          if (overlay) {
-            overlay.style.display = "flex";
-            setTimeout(() => (overlay.style.opacity = "1"), 10);
-          }
+      // Auto-hide overlay after video starts playing
+      const mainVid = document.getElementById("mainVideo");
+      const mainOverlay = document.getElementById("videoOverlay");
+      if (mainVid && mainOverlay) {
+        mainVid.addEventListener("playing", () => {
+          mainOverlay.style.opacity = "0";
+          setTimeout(() => {
+            mainOverlay.style.display = "none";
+          }, 400);
         });
-      document
-        .getElementById("videoStage")
-        .addEventListener("mouseleave", () => {
-          const vid = document.getElementById("mainVideo");
-          const overlay = document.getElementById("videoOverlay");
-          if (overlay && vid && !vid.paused) {
-            overlay.style.opacity = "0";
-            setTimeout(() => {
-              if (!vid.paused) overlay.style.display = "none";
-            }, 400);
-          }
+        mainVid.addEventListener("pause", () => {
+          mainOverlay.style.display = "flex";
+          setTimeout(() => {
+            mainOverlay.style.opacity = "1";
+          }, 10);
         });
+      }
 
       // Countdown — set your target date here
       const target = new Date("2025-12-31T23:59:59");
