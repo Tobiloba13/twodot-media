@@ -1,0 +1,2623 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>TWODOT MEDIA</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=DM+Sans:wght@300;400;500&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      *,
+      *::before,
+      *::after {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      :root {
+        --black: #080808;
+        --white: #f5f0e8;
+        --gold: #c9a84c;
+        --gold-light: #e8d08a;
+        --red: #b91c1c;
+        --gray: #a0998e;
+        --dark-gray: #1a1a1a;
+        --mid-gray: #2e2e2e;
+      }
+
+      html {
+        scroll-behavior: smooth;
+      }
+
+      body {
+        background: var(--black);
+        color: var(--white);
+        font-family: "DM Sans", sans-serif;
+        font-weight: 300;
+        overflow-x: hidden;
+        cursor: none;
+      }
+
+      /* Custom cursor */
+      .cursor {
+        width: 12px;
+        height: 12px;
+        background: var(--gold);
+        border-radius: 50%;
+        position: fixed;
+        top: 0;
+        left: 0;
+        pointer-events: none;
+        z-index: 9999;
+        transition: transform 0.15s ease;
+        mix-blend-mode: difference;
+      }
+      .cursor-follower {
+        width: 36px;
+        height: 36px;
+        border: 1px solid var(--gold);
+        border-radius: 50%;
+        position: fixed;
+        top: 0;
+        left: 0;
+        pointer-events: none;
+        z-index: 9998;
+        transition: all 0.35s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        opacity: 0.5;
+      }
+
+      /* NAV */
+      nav {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        z-index: 100;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 1.2rem 4rem;
+        background: rgba(8, 8, 8, 0.96);
+        border-bottom: 1px solid rgba(201, 168, 76, 0.08);
+        animation: fadeDown 1s ease 0.5s both;
+      }
+
+      .nav-logo {
+        display: flex;
+        align-items: center;
+        text-decoration: none;
+        height: 48px;
+      }
+      .nav-logo-img {
+        height: 52px;
+        width: auto;
+        max-width: 160px;
+        object-fit: contain;
+        display: block;
+        mix-blend-mode: screen;
+      }
+      .nav-logo-text {
+        font-family: "Bebas Neue", sans-serif;
+        font-size: 1.5rem;
+        letter-spacing: 0.15em;
+        color: var(--white);
+        line-height: 1;
+        display: none; /* hidden by default — only shows if logo fails to load */
+      }
+      .nav-logo-text .dot {
+        color: var(--gold);
+      }
+
+      .nav-links {
+        display: flex;
+        gap: 2.5rem;
+        list-style: none;
+      }
+      .nav-links a {
+        font-size: 0.75rem;
+        letter-spacing: 0.2em;
+        text-transform: uppercase;
+        color: var(--gray);
+        text-decoration: none;
+        transition: color 0.3s;
+        position: relative;
+      }
+      .nav-links a::after {
+        content: "";
+        position: absolute;
+        bottom: -4px;
+        left: 0;
+        width: 0;
+        height: 1px;
+        background: var(--gold);
+        transition: width 0.3s ease;
+      }
+      .nav-links a:hover {
+        color: var(--white);
+      }
+      .nav-links a:hover::after {
+        width: 100%;
+      }
+
+      /* HAMBURGER */
+      .hamburger {
+        display: none;
+        flex-direction: column;
+        justify-content: center;
+        gap: 5px;
+        width: 36px;
+        height: 36px;
+        background: none;
+        border: none;
+        cursor: pointer;
+        padding: 4px;
+      }
+      .hamburger span {
+        display: block;
+        width: 100%;
+        height: 1.5px;
+        background: var(--white);
+        transition: all 0.3s ease;
+        transform-origin: center;
+      }
+      .hamburger.open span:nth-child(1) {
+        transform: translateY(6.5px) rotate(45deg);
+      }
+      .hamburger.open span:nth-child(2) {
+        opacity: 0;
+        transform: scaleX(0);
+      }
+      .hamburger.open span:nth-child(3) {
+        transform: translateY(-6.5px) rotate(-45deg);
+      }
+
+      /* MOBILE DRAWER */
+      .mobile-menu {
+        display: none;
+        position: fixed;
+        top: 73px;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: rgba(8, 8, 8, 0.98);
+        z-index: 99;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 2.5rem;
+        opacity: 0;
+        transform: translateY(-10px);
+        transition:
+          opacity 0.3s ease,
+          transform 0.3s ease;
+        pointer-events: none;
+      }
+      .mobile-menu.open {
+        opacity: 1;
+        transform: translateY(0);
+        pointer-events: all;
+      }
+      .mobile-menu a {
+        font-family: "Bebas Neue", sans-serif;
+        font-size: 2.2rem;
+        letter-spacing: 0.12em;
+        color: var(--gray);
+        text-decoration: none;
+        transition: color 0.3s;
+      }
+      .mobile-menu a:hover,
+      .mobile-menu a:active {
+        color: var(--gold);
+      }
+
+      /* HERO */
+      #hero {
+        position: relative;
+        height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        overflow: hidden;
+        text-align: center;
+      }
+
+      .hero-bg {
+        position: absolute;
+        inset: 0;
+        background:
+          radial-gradient(
+            ellipse at 20% 50%,
+            rgba(201, 168, 76, 0.08) 0%,
+            transparent 60%
+          ),
+          radial-gradient(
+            ellipse at 80% 20%,
+            rgba(185, 28, 28, 0.06) 0%,
+            transparent 50%
+          ),
+          var(--black);
+      }
+
+      .hero-grid {
+        position: absolute;
+        inset: 0;
+        background-image:
+          linear-gradient(rgba(201, 168, 76, 0.04) 1px, transparent 1px),
+          linear-gradient(90deg, rgba(201, 168, 76, 0.04) 1px, transparent 1px);
+        background-size: 80px 80px;
+        animation: gridFloat 20s linear infinite;
+      }
+
+      @keyframes gridFloat {
+        0% {
+          transform: translateY(0);
+        }
+        100% {
+          transform: translateY(80px);
+        }
+      }
+
+      .hero-content {
+        position: relative;
+        z-index: 2;
+        max-width: 900px;
+        padding: 0 2rem;
+      }
+
+      .hero-eyebrow {
+        font-size: 0.72rem;
+        letter-spacing: 0.4em;
+        text-transform: uppercase;
+        color: var(--gold);
+        margin-bottom: 1.5rem;
+        animation: fadeUp 0.8s ease 0.8s both;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 1rem;
+      }
+      .hero-eyebrow::before,
+      .hero-eyebrow::after {
+        content: "";
+        width: 40px;
+        height: 1px;
+        background: var(--gold);
+        opacity: 0.5;
+      }
+
+      .hero-title {
+        font-family: "Bebas Neue", sans-serif;
+        font-size: clamp(5rem, 14vw, 11rem);
+        line-height: 0.9;
+        letter-spacing: 0.04em;
+        color: var(--white);
+        animation: fadeUp 0.9s ease 1s both;
+      }
+      .hero-title .dot {
+        color: var(--gold);
+      }
+
+      .hero-subtitle {
+        font-family: "Playfair Display", serif;
+        font-style: italic;
+        font-size: clamp(1rem, 2.5vw, 1.4rem);
+        color: var(--gray);
+        margin-top: 1.5rem;
+        animation: fadeUp 0.9s ease 1.2s both;
+      }
+
+      .hero-cta {
+        margin-top: 3rem;
+        display: flex;
+        gap: 1.5rem;
+        justify-content: center;
+        flex-wrap: wrap;
+        animation: fadeUp 0.9s ease 1.4s both;
+      }
+
+      .btn-primary {
+        background: var(--gold);
+        color: var(--black);
+        padding: 1rem 2.5rem;
+        font-size: 0.78rem;
+        letter-spacing: 0.2em;
+        text-transform: uppercase;
+        font-weight: 500;
+        text-decoration: none;
+        transition: all 0.3s ease;
+        position: relative;
+        overflow: hidden;
+      }
+      .btn-primary::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: var(--white);
+        transform: scaleX(0);
+        transform-origin: left;
+        transition: transform 0.3s ease;
+      }
+      .btn-primary:hover::after {
+        transform: scaleX(1);
+      }
+      .btn-primary span {
+        position: relative;
+        z-index: 1;
+      }
+      .btn-primary:hover span {
+        color: var(--black);
+      }
+
+      .btn-outline {
+        border: 1px solid rgba(201, 168, 76, 0.4);
+        color: var(--white);
+        padding: 1rem 2.5rem;
+        font-size: 0.78rem;
+        letter-spacing: 0.2em;
+        text-transform: uppercase;
+        font-weight: 400;
+        text-decoration: none;
+        transition: all 0.3s ease;
+      }
+      .btn-outline:hover {
+        border-color: var(--gold);
+        color: var(--gold);
+      }
+
+      .hero-scroll {
+        position: absolute;
+        bottom: 2.5rem;
+        left: 50%;
+        transform: translateX(-50%);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 0.5rem;
+        animation: fadeUp 1s ease 1.8s both;
+      }
+      .hero-scroll span {
+        font-size: 0.65rem;
+        letter-spacing: 0.3em;
+        text-transform: uppercase;
+        color: var(--gray);
+      }
+      .scroll-line {
+        width: 1px;
+        height: 50px;
+        background: linear-gradient(to bottom, var(--gold), transparent);
+        animation: scrollPulse 2s ease infinite;
+      }
+
+      @keyframes scrollPulse {
+        0%,
+        100% {
+          opacity: 0.3;
+          transform: scaleY(1);
+        }
+        50% {
+          opacity: 1;
+          transform: scaleY(1.2);
+        }
+      }
+
+      /* SECTION BASE */
+      section {
+        padding: 8rem 4rem;
+      }
+
+      .section-label {
+        font-size: 0.68rem;
+        letter-spacing: 0.4em;
+        text-transform: uppercase;
+        color: var(--gold);
+        margin-bottom: 1rem;
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+      }
+      .section-label::before {
+        content: "..";
+        font-family: "Bebas Neue", sans-serif;
+        font-size: 1.1rem;
+        letter-spacing: 0;
+        color: var(--gold);
+      }
+
+      .section-title {
+        font-family: "Bebas Neue", sans-serif;
+        font-size: clamp(2.5rem, 6vw, 5rem);
+        letter-spacing: 0.06em;
+        line-height: 1;
+        color: var(--white);
+      }
+
+      /* ABOUT */
+      #about {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 6rem;
+        align-items: center;
+        max-width: 1300px;
+        margin: 0 auto;
+      }
+
+      .about-visual {
+        position: relative;
+        aspect-ratio: 4/5;
+      }
+
+      .about-frame {
+        position: absolute;
+        inset: 0;
+        border: 1px solid rgba(201, 168, 76, 0.2);
+      }
+      .about-frame-offset {
+        position: absolute;
+        top: -16px;
+        left: -16px;
+        right: 16px;
+        bottom: 16px;
+        border: 1px solid rgba(201, 168, 76, 0.08);
+      }
+      .about-inner {
+        position: absolute;
+        inset: 0;
+        background: var(--dark-gray);
+        overflow: hidden;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .about-monogram {
+        font-family: "Bebas Neue", sans-serif;
+        font-size: 12rem;
+        color: rgba(201, 168, 76, 0.06);
+        letter-spacing: -0.02em;
+        user-select: none;
+      }
+
+      .about-badge {
+        position: absolute;
+        bottom: -1.5rem;
+        right: -1.5rem;
+        background: var(--gold);
+        color: var(--black);
+        width: 100px;
+        height: 100px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        font-family: "Bebas Neue", sans-serif;
+      }
+      .about-badge .year {
+        font-size: 2rem;
+        line-height: 1;
+      }
+      .about-badge .since {
+        font-size: 0.6rem;
+        letter-spacing: 0.15em;
+      }
+
+      .about-text p {
+        color: var(--gray);
+        font-size: 1.05rem;
+        line-height: 1.9;
+        margin-top: 1.5rem;
+      }
+
+      .about-stats {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 1px;
+        margin-top: 3rem;
+        background: rgba(201, 168, 76, 0.1);
+      }
+      .stat {
+        background: var(--black);
+        padding: 1.5rem 1rem;
+        text-align: center;
+      }
+      .stat-num {
+        font-family: "Bebas Neue", sans-serif;
+        font-size: 2.8rem;
+        color: var(--gold);
+        line-height: 1;
+      }
+      .stat-label {
+        font-size: 0.68rem;
+        letter-spacing: 0.2em;
+        text-transform: uppercase;
+        color: var(--gray);
+        margin-top: 0.3rem;
+      }
+
+      /* REEL / PORTFOLIO */
+      #reel {
+        background: var(--dark-gray);
+        padding: 8rem 4rem;
+      }
+      .reel-header {
+        max-width: 1300px;
+        margin: 0 auto;
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-end;
+        margin-bottom: 4rem;
+        flex-wrap: wrap;
+        gap: 2rem;
+      }
+      .reel-title-block {
+      }
+
+      .video-stage {
+        max-width: 400px;
+        margin: 0 auto;
+        position: relative;
+        aspect-ratio: 9/16;
+        background: #000;
+        overflow: hidden;
+        cursor: none;
+      }
+
+      .video-stage video {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: transform 0.6s ease;
+      }
+      .video-stage:hover video {
+        transform: scale(1.03);
+      }
+
+      .video-overlay {
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(
+          to top,
+          rgba(8, 8, 8, 0.7) 0%,
+          transparent 50%
+        );
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: opacity 0.4s;
+      }
+
+      .play-btn {
+        width: 80px;
+        height: 80px;
+        border: 1.5px solid var(--gold);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: all 0.3s ease;
+        background: rgba(8, 8, 8, 0.4);
+        backdrop-filter: blur(4px);
+      }
+      .play-btn svg {
+        width: 28px;
+        height: 28px;
+        fill: var(--gold);
+        margin-left: 4px;
+      }
+      .play-btn:hover {
+        background: var(--gold);
+        transform: scale(1.1);
+      }
+      .play-btn:hover svg {
+        fill: var(--black);
+      }
+
+      .video-caption {
+        position: absolute;
+        bottom: 2rem;
+        left: 2.5rem;
+        right: 2.5rem;
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-end;
+      }
+      .video-caption h3 {
+        font-family: "Bebas Neue", sans-serif;
+        font-size: 1.8rem;
+        letter-spacing: 0.06em;
+        color: var(--white);
+      }
+      .video-caption p {
+        font-size: 0.8rem;
+        color: var(--gray);
+        letter-spacing: 0.15em;
+        text-transform: uppercase;
+      }
+      .video-type {
+        font-size: 0.68rem;
+        letter-spacing: 0.2em;
+        text-transform: uppercase;
+        border: 1px solid rgba(201, 168, 76, 0.4);
+        color: var(--gold);
+        padding: 0.4rem 1rem;
+      }
+
+      .video-drop-zone {
+        position: absolute;
+        inset: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        gap: 1rem;
+        background: #0d0d0d;
+        border: 1px dashed rgba(201, 168, 76, 0.3);
+      }
+      .video-drop-zone svg {
+        width: 48px;
+        height: 48px;
+        stroke: rgba(201, 168, 76, 0.4);
+      }
+      .video-drop-zone p {
+        font-size: 0.8rem;
+        letter-spacing: 0.15em;
+        text-transform: uppercase;
+        color: var(--gray);
+      }
+      .video-drop-zone label {
+        font-size: 0.72rem;
+        letter-spacing: 0.2em;
+        text-transform: uppercase;
+        color: var(--gold);
+        border: 1px solid rgba(201, 168, 76, 0.4);
+        padding: 0.6rem 1.5rem;
+        cursor: pointer;
+        transition: all 0.3s;
+      }
+      .video-drop-zone label:hover {
+        background: var(--gold);
+        color: var(--black);
+      }
+      #video-input {
+        display: none;
+      }
+
+      /* SERVICES */
+      #services {
+        max-width: 1300px;
+        margin: 0 auto;
+        padding: 8rem 4rem;
+      }
+
+      .services-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+        gap: 1px;
+        margin-top: 4rem;
+        background: rgba(201, 168, 76, 0.08);
+      }
+
+      .service-card {
+        background: var(--black);
+        padding: 2.5rem 2rem;
+        position: relative;
+        overflow: hidden;
+        transition: background 0.4s ease;
+      }
+      .service-card::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 0;
+        height: 2px;
+        background: var(--gold);
+        transition: width 0.5s ease;
+      }
+      .service-card:hover {
+        background: var(--dark-gray);
+      }
+      .service-card:hover::before {
+        width: 100%;
+      }
+
+      .service-num {
+        font-family: "Bebas Neue", sans-serif;
+        font-size: 3.5rem;
+        color: rgba(201, 168, 76, 0.1);
+        line-height: 1;
+        margin-bottom: 1rem;
+        transition: color 0.4s;
+      }
+      .service-card:hover .service-num {
+        color: rgba(201, 168, 76, 0.25);
+      }
+
+      .service-icon {
+        width: 40px;
+        height: 40px;
+        border: 1px solid rgba(201, 168, 76, 0.3);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-bottom: 1.5rem;
+      }
+      .service-icon svg {
+        width: 20px;
+        height: 20px;
+        stroke: var(--gold);
+      }
+
+      .service-title {
+        font-family: "Bebas Neue", sans-serif;
+        font-size: 1.5rem;
+        letter-spacing: 0.06em;
+        color: var(--white);
+        margin-bottom: 0.8rem;
+      }
+      .service-desc {
+        font-size: 0.9rem;
+        color: var(--gray);
+        line-height: 1.7;
+      }
+
+      /* TEAM */
+      #team {
+        background: var(--dark-gray);
+        padding: 8rem 4rem;
+      }
+      .team-inner {
+        max-width: 1300px;
+        margin: 0 auto;
+      }
+      .team-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+        gap: 2px;
+        margin-top: 4rem;
+        background: rgba(201, 168, 76, 0.05);
+      }
+      .team-card {
+        background: var(--dark-gray);
+        position: relative;
+        overflow: hidden;
+        aspect-ratio: 3/4;
+        cursor: none;
+      }
+      .team-photo {
+        position: absolute;
+        inset: 0;
+        background: #111;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        overflow: hidden;
+      }
+      .team-photo-placeholder {
+        font-family: "Bebas Neue", sans-serif;
+        font-size: 5rem;
+        color: rgba(201, 168, 76, 0.12);
+      }
+      .team-info {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        padding: 1.5rem;
+        background: linear-gradient(to top, rgba(8, 8, 8, 0.95), transparent);
+        transform: translateY(40%);
+        transition: transform 0.4s cubic-bezier(0.19, 1, 0.22, 1);
+      }
+      .team-card:hover .team-info {
+        transform: translateY(0);
+      }
+      .team-name {
+        font-family: "Bebas Neue", sans-serif;
+        font-size: 1.4rem;
+        letter-spacing: 0.06em;
+        color: var(--white);
+      }
+      .team-role {
+        font-size: 0.72rem;
+        letter-spacing: 0.2em;
+        text-transform: uppercase;
+        color: var(--gold);
+        margin-top: 0.2rem;
+      }
+      .team-bio {
+        font-size: 0.82rem;
+        color: var(--gray);
+        line-height: 1.6;
+        margin-top: 0.8rem;
+        opacity: 0;
+        transform: translateY(8px);
+        transition: all 0.4s ease 0.1s;
+      }
+      .team-card:hover .team-bio {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      /* TESTIMONIALS */
+      #testimonials {
+        max-width: 1300px;
+        margin: 0 auto;
+        padding: 8rem 4rem;
+      }
+
+      .testimonials-track {
+        margin-top: 4rem;
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+        gap: 1px;
+        background: rgba(201, 168, 76, 0.08);
+      }
+
+      .testimonial-card {
+        background: var(--black);
+        padding: 2.5rem;
+        position: relative;
+        transition: background 0.3s;
+      }
+      .testimonial-card:hover {
+        background: var(--dark-gray);
+      }
+
+      .quote-mark {
+        font-family: "Playfair Display", serif;
+        font-size: 5rem;
+        line-height: 1;
+        color: rgba(201, 168, 76, 0.15);
+        margin-bottom: -1rem;
+      }
+
+      .testimonial-text {
+        font-family: "Playfair Display", serif;
+        font-style: italic;
+        font-size: 1rem;
+        color: var(--gray);
+        line-height: 1.8;
+        margin-bottom: 1.5rem;
+      }
+
+      .testimonial-author {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        border-top: 1px solid rgba(201, 168, 76, 0.1);
+        padding-top: 1.2rem;
+      }
+      .author-avatar {
+        width: 44px;
+        height: 44px;
+        background: var(--mid-gray);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-family: "Bebas Neue", sans-serif;
+        color: var(--gold);
+        font-size: 1.1rem;
+        flex-shrink: 0;
+      }
+      .author-name {
+        font-size: 0.85rem;
+        font-weight: 500;
+        color: var(--white);
+      }
+      .author-title {
+        font-size: 0.72rem;
+        letter-spacing: 0.1em;
+        color: var(--gray);
+        margin-top: 0.1rem;
+      }
+
+      /* COMING SOON */
+      #coming-soon {
+        background: var(--dark-gray);
+        padding: 8rem 4rem;
+        text-align: center;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .coming-soon-bg {
+        position: absolute;
+        inset: 0;
+        background: radial-gradient(
+          ellipse at 50% 50%,
+          rgba(201, 168, 76, 0.06) 0%,
+          transparent 70%
+        );
+      }
+
+      #coming-soon .inner {
+        position: relative;
+        max-width: 700px;
+        margin: 0 auto;
+      }
+
+      .coming-tag {
+        display: inline-block;
+        border: 1px solid rgba(185, 28, 28, 0.5);
+        color: #ef4444;
+        font-size: 0.68rem;
+        letter-spacing: 0.3em;
+        text-transform: uppercase;
+        padding: 0.4rem 1rem;
+        margin-bottom: 2rem;
+        animation: tagPulse 2s ease infinite;
+      }
+
+      @keyframes tagPulse {
+        0%,
+        100% {
+          border-color: rgba(185, 28, 28, 0.5);
+        }
+        50% {
+          border-color: rgba(185, 28, 28, 1);
+          box-shadow: 0 0 20px rgba(185, 28, 28, 0.2);
+        }
+      }
+
+      .coming-title {
+        font-family: "Bebas Neue", sans-serif;
+        font-size: clamp(3rem, 8vw, 7rem);
+        letter-spacing: 0.06em;
+        line-height: 0.95;
+        color: var(--white);
+        margin-bottom: 1.5rem;
+      }
+      .coming-title em {
+        font-style: normal;
+        color: var(--gold);
+        display: block;
+      }
+
+      .coming-desc {
+        font-family: "Playfair Display", serif;
+        font-style: italic;
+        font-size: 1.1rem;
+        color: var(--gray);
+        line-height: 1.8;
+        margin-bottom: 3rem;
+      }
+
+      .countdown {
+        display: flex;
+        justify-content: center;
+        gap: 1px;
+        margin-bottom: 3rem;
+        background: rgba(201, 168, 76, 0.08);
+        max-width: 500px;
+        margin: 0 auto 3rem;
+      }
+      .countdown-block {
+        flex: 1;
+        background: #0d0d0d;
+        padding: 1.5rem 1rem;
+        text-align: center;
+      }
+      .countdown-num {
+        font-family: "Bebas Neue", sans-serif;
+        font-size: 3rem;
+        color: var(--gold);
+        line-height: 1;
+        display: block;
+      }
+      .countdown-lbl {
+        font-size: 0.62rem;
+        letter-spacing: 0.2em;
+        text-transform: uppercase;
+        color: var(--gray);
+        margin-top: 0.3rem;
+        display: block;
+      }
+
+      .notify-form {
+        display: flex;
+        max-width: 440px;
+        margin: 2.5rem auto 0;
+        border: 1px solid rgba(201, 168, 76, 0.2);
+      }
+      .notify-form input {
+        flex: 1;
+        background: transparent;
+        border: none;
+        padding: 1rem 1.2rem;
+        color: var(--white);
+        font-family: "DM Sans", sans-serif;
+        font-size: 0.9rem;
+        outline: none;
+      }
+      .notify-form input::placeholder {
+        color: var(--gray);
+      }
+      .notify-form button {
+        background: var(--gold);
+        color: var(--black);
+        border: none;
+        padding: 1rem 1.5rem;
+        font-size: 0.72rem;
+        letter-spacing: 0.2em;
+        text-transform: uppercase;
+        font-weight: 500;
+        cursor: pointer;
+        transition: background 0.3s;
+        font-family: "DM Sans", sans-serif;
+      }
+      .notify-form button:hover {
+        background: var(--gold-light);
+      }
+
+      /* CONTACT */
+      #contact {
+        padding: 8rem 4rem;
+        max-width: 1300px;
+        margin: 0 auto;
+      }
+
+      .contact-grid {
+        display: grid;
+        grid-template-columns: 1fr 1.2fr;
+        gap: 6rem;
+        margin-top: 4rem;
+        align-items: start;
+      }
+
+      .contact-info {
+      }
+
+      .contact-item {
+        margin-bottom: 2rem;
+        padding-bottom: 2rem;
+        border-bottom: 1px solid rgba(201, 168, 76, 0.1);
+      }
+      .contact-item:last-child {
+        border-bottom: none;
+      }
+      .contact-item-label {
+        font-size: 0.68rem;
+        letter-spacing: 0.3em;
+        text-transform: uppercase;
+        color: var(--gold);
+        margin-bottom: 0.4rem;
+      }
+      .contact-item-value {
+        font-size: 1rem;
+        color: var(--white);
+      }
+
+      .contact-form {
+      }
+      .form-row {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 1px;
+        background: rgba(201, 168, 76, 0.08);
+        margin-bottom: 1px;
+      }
+      .form-group {
+        background: var(--black);
+      }
+      .form-group.full {
+        background: var(--black);
+        margin-bottom: 1px;
+      }
+      .form-group label {
+        font-size: 0.65rem;
+        letter-spacing: 0.25em;
+        text-transform: uppercase;
+        color: var(--gold);
+        display: block;
+        padding: 1.2rem 1.5rem 0;
+      }
+      .form-group input,
+      .form-group select,
+      .form-group textarea {
+        width: 100%;
+        padding: 0.5rem 1.5rem 1.2rem;
+        background: transparent;
+        border: none;
+        outline: none;
+        color: var(--white);
+        font-family: "DM Sans", sans-serif;
+        font-size: 0.95rem;
+        resize: none;
+        -webkit-appearance: none;
+      }
+      .form-group select option {
+        background: var(--black);
+      }
+      .form-group textarea {
+        height: 120px;
+      }
+      .form-group:focus-within {
+        background: var(--dark-gray);
+      }
+
+      .form-submit {
+        margin-top: 1px;
+        width: 100%;
+        background: var(--gold);
+        color: var(--black);
+        border: none;
+        padding: 1.2rem;
+        font-size: 0.78rem;
+        letter-spacing: 0.3em;
+        text-transform: uppercase;
+        font-weight: 500;
+        cursor: pointer;
+        font-family: "DM Sans", sans-serif;
+        transition: all 0.3s;
+        position: relative;
+        overflow: hidden;
+      }
+      .form-submit:hover {
+        background: var(--gold-light);
+      }
+
+      /* FOOTER */
+      footer {
+        border-top: 1px solid rgba(201, 168, 76, 0.1);
+        padding: 3rem 4rem;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        gap: 1.5rem;
+      }
+
+      .footer-logo {
+        font-family: "Bebas Neue", sans-serif;
+        font-size: 1.4rem;
+        letter-spacing: 0.1em;
+        color: var(--white);
+      }
+      .footer-logo span {
+        color: var(--gold);
+      }
+
+      .footer-copy {
+        font-size: 0.75rem;
+        color: var(--gray);
+        letter-spacing: 0.1em;
+      }
+
+      .footer-socials {
+        display: flex;
+        gap: 1.5rem;
+      }
+      .footer-socials a {
+        width: 36px;
+        height: 36px;
+        border: 1px solid rgba(201, 168, 76, 0.2);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: var(--gray);
+        text-decoration: none;
+        font-size: 0.7rem;
+        letter-spacing: 0.1em;
+        transition: all 0.3s;
+      }
+      .footer-socials a:hover {
+        border-color: var(--gold);
+        color: var(--gold);
+      }
+
+      /* ANIMATIONS */
+      @keyframes fadeUp {
+        from {
+          opacity: 0;
+          transform: translateY(30px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+      @keyframes fadeDown {
+        from {
+          opacity: 0;
+          transform: translateY(-20px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      .reveal {
+        opacity: 0;
+        transform: translateY(40px);
+        transition:
+          opacity 0.8s ease,
+          transform 0.8s cubic-bezier(0.19, 1, 0.22, 1);
+      }
+      .reveal.visible {
+        opacity: 1;
+        transform: translateY(0);
+      }
+      .reveal-delay-1 {
+        transition-delay: 0.1s;
+      }
+      .reveal-delay-2 {
+        transition-delay: 0.2s;
+      }
+      .reveal-delay-3 {
+        transition-delay: 0.3s;
+      }
+      .reveal-delay-4 {
+        transition-delay: 0.4s;
+      }
+
+      /* ── RESPONSIVE ── */
+      @media (max-width: 900px) {
+        nav {
+          padding: 1rem 1.5rem;
+        }
+        .nav-links {
+          display: none;
+        }
+        .hamburger {
+          display: flex;
+        }
+        .mobile-menu {
+          display: flex;
+        }
+
+        section {
+          padding: 4rem 1.5rem;
+        }
+        #reel {
+          padding: 4rem 1.5rem;
+        }
+        #team {
+          padding: 4rem 1.5rem;
+        }
+        #coming-soon {
+          padding: 4rem 1.5rem;
+        }
+        #booking {
+          padding: 4rem 1.5rem !important;
+        }
+        #contact {
+          padding: 4rem 1.5rem;
+        }
+        footer {
+          padding: 2rem 1.5rem;
+          flex-direction: column;
+          text-align: center;
+          gap: 1rem;
+        }
+
+        #about {
+          grid-template-columns: 1fr;
+          gap: 2.5rem;
+        }
+        .about-visual {
+          max-width: 300px;
+          margin: 0 auto;
+        }
+
+        .services-grid {
+          grid-template-columns: 1fr;
+        }
+        .team-grid {
+          grid-template-columns: repeat(2, 1fr);
+        }
+        .testimonials-track {
+          grid-template-columns: 1fr;
+        }
+
+        .contact-grid {
+          grid-template-columns: 1fr;
+          gap: 2rem;
+        }
+        .form-row {
+          grid-template-columns: 1fr;
+          background: none;
+        }
+        .booking-grid {
+          grid-template-columns: 1fr !important;
+          gap: 2rem !important;
+        }
+
+        .hero-title {
+          font-size: clamp(3.5rem, 16vw, 5.5rem);
+        }
+        .hero-cta {
+          flex-direction: column;
+          align-items: center;
+        }
+        .btn-primary,
+        .btn-outline {
+          width: 100%;
+          max-width: 260px;
+          text-align: center;
+        }
+
+        .reel-header {
+          flex-direction: column;
+          align-items: flex-start;
+        }
+        .countdown {
+          max-width: 100% !important;
+        }
+        .notify-form {
+          max-width: 100%;
+        }
+      }
+
+      @media (max-width: 480px) {
+        .team-grid {
+          grid-template-columns: 1fr;
+        }
+        .stat-num {
+          font-size: 2rem;
+        }
+        .section-title {
+          font-size: clamp(2rem, 10vw, 3rem);
+        }
+      }
+      @media (hover: none) {
+        body {
+          cursor: auto;
+        }
+        .cursor,
+        .cursor-follower {
+          display: none;
+        }
+        .video-stage {
+          cursor: pointer;
+        }
+        .team-card {
+          cursor: pointer;
+        }
+      }
+
+      /* SOCIAL PILLS */
+      .social-pill {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.4rem;
+        border: 1px solid rgba(201, 168, 76, 0.25);
+        color: var(--gray);
+        font-size: 0.72rem;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        text-decoration: none;
+        padding: 0.45rem 0.9rem;
+        transition: all 0.3s ease;
+      }
+      .social-pill:hover {
+        border-color: var(--gold);
+        color: var(--gold);
+      }
+    </style>
+  </head>
+  <body>
+    <div class="cursor" id="cursor"></div>
+    <div class="cursor-follower" id="cursorFollower"></div>
+
+    <!-- NAV -->
+    <nav>
+      <a href="#hero" class="nav-logo" id="navLogo">
+        <!--
+      TO USE YOUR LOGO:
+      1. Place your logo file (PNG/SVG) in the same folder as this HTML file
+      2. Change the src below from "" to your filename, e.g. src="twodot-logo.png"
+      3. Save — the image will show and the text will hide automatically
+    -->
+        <img
+          src="TWODOT_WHITE_PNG.png"
+          alt="TWODOT MEDIA"
+          class="nav-logo-img"
+          id="nav-logo-img"
+        />
+        <span class="nav-logo-text">TWODOT<span class="dot">.</span>MEDIA</span>
+      </a>
+      <ul class="nav-links">
+        <li><a href="#about">About</a></li>
+        <li><a href="#introduction">Introduction</a></li>
+        <li><a href="#services">Services</a></li>
+        <li><a href="#team">Team</a></li>
+        <li><a href="#testimonials">Clients</a></li>
+        <li><a href="#booking">Booking</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </nav>
+
+    <!-- HAMBURGER BUTTON (injected into nav via JS) -->
+    <!-- MOBILE MENU DRAWER -->
+    <div class="mobile-menu" id="mobileMenu">
+      <a href="#about" onclick="closeMenu()">About</a>
+      <a href="#introduction" onclick="closeMenu()">Introduction</a>
+      <a href="#services" onclick="closeMenu()">Services</a>
+      <a href="#team" onclick="closeMenu()">Team</a>
+      <a href="#testimonials" onclick="closeMenu()">Clients</a>
+      <a href="#booking" onclick="closeMenu()">Booking</a>
+      <a href="#contact" onclick="closeMenu()">Contact</a>
+    </div>
+
+    <!-- HERO -->
+    <section id="hero">
+      <div class="hero-bg"></div>
+      <div class="hero-grid"></div>
+      <div class="hero-content">
+        <div class="hero-eyebrow">Visual Storytelling that Inspires Action</div>
+        <h1 class="hero-title">TWODOT<span class="dot">.</span>MEDIA</h1>
+        <p class="hero-subtitle">
+          Film &nbsp;·&nbsp; Brand &nbsp;·&nbsp; Story &nbsp;·&nbsp;
+          Entertainment
+        </p>
+        <div class="hero-cta">
+          <a href="#reel" class="btn-primary"><span>Watch Our Reel</span></a>
+          <a href="#contact" class="btn-outline">Start a Project</a>
+        </div>
+      </div>
+      <div class="hero-scroll">
+        <span>Scroll</span>
+        <div class="scroll-line"></div>
+      </div>
+    </section>
+
+    <!-- ABOUT -->
+    <section>
+      <div id="about">
+        <div class="about-visual reveal">
+          <div class="about-frame-offset"></div>
+          <div class="about-frame"></div>
+          <div class="about-inner">
+            <div class="about-monogram">TD</div>
+          </div>
+          <div class="about-badge">
+            <span class="since">Since</span>
+            <span class="year">2020</span>
+          </div>
+        </div>
+        <div class="about-text">
+          <div class="section-label reveal">Our Story</div>
+          <h2 class="section-title reveal reveal-delay-1">
+            Crafting Worlds.<br />Defining Brands.
+          </h2>
+          <p class="reveal reveal-delay-2">
+            TWODOT MEDIA is a full-service creative media house built for
+            entrepreneurs, brands, and storytellers who refuse to be invisible.
+            We bring ideas to life through cinematic video production, bold
+            brand identity, and compelling narratives that captivate audiences.
+          </p>
+          <p class="reveal reveal-delay-3">
+            From concept to screen we don't just create content. We architect
+            experiences that leave marks.
+          </p>
+          <div class="about-stats reveal reveal-delay-4">
+            <div class="stat">
+              <div class="stat-num">150+</div>
+              <div class="stat-label">Projects</div>
+            </div>
+            <div class="stat">
+              <div class="stat-num">80+</div>
+              <div class="stat-label">Clients</div>
+            </div>
+            <div class="stat">
+              <div class="stat-num">5+</div>
+              <div class="stat-label">Years</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- REEL / PORTFOLIO -->
+    <div id="introduction">
+      <div class="reel-header">
+        <div class="reel-title-block">
+          <div class="section-label reveal">Work</div>
+          <h2 class="section-title reveal reveal-delay-1">
+            Introduction Video
+          </h2>
+        </div>
+        <p
+          class="reveal"
+          style="
+            color: var(--gray);
+            font-size: 0.85rem;
+            letter-spacing: 0.1em;
+            max-width: 300px;
+            line-height: 1.7;
+          "
+        >
+          Upload your video below. This section will display it as your featured
+          reel.
+        </p>
+      </div>
+
+      <div class="video-stage reveal" id="videoStage">
+        <div class="video-drop-zone" id="dropZone">
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="1">
+            <path
+              d="M14.5 4h-5L7 7H4a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2h-3l-2.5-3z"
+            />
+            <circle cx="12" cy="13" r="3" />
+          </svg>
+          <p>Upload your showreel video</p>
+          <label for="video-input">Browse Files</label>
+          <input type="file" id="video-input" accept="video/*" />
+        </div>
+      </div>
+    </div>
+
+    <!-- SERVICES -->
+    <section id="services">
+      <div style="text-align: center; margin-bottom: 1rem">
+        <div class="section-label reveal" style="justify-content: center">
+          What We Do
+        </div>
+        <h2 class="section-title reveal reveal-delay-1">Our Services</h2>
+      </div>
+      <div class="services-grid">
+        <div class="service-card reveal">
+          <div class="service-num">01</div>
+          <div class="service-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="1.5">
+              <path
+                d="M15 10l4.553-2.276A1 1 0 0121 8.723v6.554a1 1 0 01-1.447.894L15 14M3 8a2 2 0 012-2h10a2 2 0 012 2v8a2 2 0 01-2 2H5a2 2 0 01-2-2V8z"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              />
+            </svg>
+          </div>
+          <div class="service-title">Video Production</div>
+          <p class="service-desc">
+            Cinematic films, commercials, documentaries, and branded content
+            that stop scrolls and start conversations.
+          </p>
+        </div>
+        <div class="service-card reveal reveal-delay-1">
+          <div class="service-num">02</div>
+          <div class="service-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="1.5">
+              <path
+                d="M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4zm0 0h12a2 2 0 002-2v-4a2 2 0 00-2-2h-2.343M11 7.343l1.657-1.657a2 2 0 012.828 0l2.829 2.829a2 2 0 010 2.828l-8.486 8.485M7 17h.01"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              />
+            </svg>
+          </div>
+          <div class="service-title">Brand Identity</div>
+          <p class="service-desc">
+            Visual systems, logos, and brand language engineered for
+            recognition, recall, and resonance.
+          </p>
+        </div>
+        <div class="service-card reveal reveal-delay-2">
+          <div class="service-num">03</div>
+          <div class="service-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="1.5">
+              <path
+                d="M12 18h.01M8 21h8a2 2 0 002-2V5a2 2 0 00-2-2H8a2 2 0 00-2 2v14a2 2 0 002 2z"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              />
+            </svg>
+          </div>
+          <div class="service-title">Digital Content</div>
+          <p class="service-desc">
+            Social media campaigns, reels, shorts, and platform-native content
+            optimised for impact and growth.
+          </p>
+        </div>
+        <div class="service-card reveal reveal-delay-3">
+          <div class="service-num">04</div>
+          <div class="service-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="1.5">
+              <path
+                d="M19 11a7 7 0 01-7 7m0 0a7 7 0 01-7-7m7 7v4m0 0H8m4 0h4m-4-8a3 3 0 01-3-3V5a3 3 0 116 0v6a3 3 0 01-3 3z"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              />
+            </svg>
+          </div>
+          <div class="service-title">Podcasts & Audio</div>
+          <p class="service-desc">
+            Full production, editing, and distribution strategy for shows that
+            build authority and loyal audiences.
+          </p>
+        </div>
+        <div class="service-card reveal reveal-delay-4">
+          <div class="service-num">05</div>
+          <div class="service-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="1.5">
+              <path
+                d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              />
+            </svg>
+          </div>
+          <div class="service-title">Entertainment</div>
+          <p class="service-desc">
+            Music videos, event coverage, live productions, and entertainment
+            content with a cinematic edge.
+          </p>
+        </div>
+        <div class="service-card reveal reveal-delay-4">
+          <div class="service-num">06</div>
+          <div class="service-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="1.5">
+              <path
+                d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              />
+            </svg>
+          </div>
+          <div class="service-title">Creative Strategy</div>
+          <p class="service-desc">
+            Narrative architecture, campaign planning, and creative direction
+            that aligns your vision with your audience.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- TEAM -->
+    <div id="team">
+      <div class="team-inner">
+        <div style="text-align: center; margin-bottom: 1rem">
+          <div class="section-label reveal" style="justify-content: center">
+            The People
+          </div>
+          <h2 class="section-title reveal reveal-delay-1">Meet the Team</h2>
+        </div>
+        <div class="team-grid">
+          <div class="team-card reveal">
+            <div class="team-photo">
+              <div class="team-photo-placeholder">CEO</div>
+            </div>
+            <div class="team-info">
+              <div class="team-name">Your Name</div>
+              <div class="team-role">Founder & Creative Director</div>
+              <div class="team-bio">
+                Visionary behind TWODOT MEDIA. Architect of stories, builder of
+                brands.
+              </div>
+            </div>
+          </div>
+          <div class="team-card reveal reveal-delay-1">
+            <div class="team-photo">
+              <div class="team-photo-placeholder">DP</div>
+            </div>
+            <div class="team-info">
+              <div class="team-name">Team Member</div>
+              <div class="team-role">Director of Photography</div>
+              <div class="team-bio">
+                Eyes behind the lens. Framing worlds with light and intention.
+              </div>
+            </div>
+          </div>
+          <div class="team-card reveal reveal-delay-2">
+            <div class="team-photo">
+              <div class="team-photo-placeholder">ED</div>
+            </div>
+            <div class="team-info">
+              <div class="team-name">Team Member</div>
+              <div class="team-role">Lead Editor</div>
+              <div class="team-bio">
+                Weaving rhythm and emotion into every frame, every cut.
+              </div>
+            </div>
+          </div>
+          <div class="team-card reveal reveal-delay-3">
+            <div class="team-photo">
+              <div class="team-photo-placeholder">BD</div>
+            </div>
+            <div class="team-info">
+              <div class="team-name">Team Member</div>
+              <div class="team-role">Brand Strategist</div>
+              <div class="team-bio">
+                Translating brand identity into visual languages audiences
+                remember.
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- TESTIMONIALS -->
+    <section id="testimonials">
+      <div style="text-align: center; margin-bottom: 1rem">
+        <div class="section-label reveal" style="justify-content: center">
+          Social Proof
+        </div>
+        <h2 class="section-title reveal reveal-delay-1">What Clients Say</h2>
+      </div>
+      <div class="testimonials-track">
+        <div class="testimonial-card reveal">
+          <div class="quote-mark">"</div>
+          <p class="testimonial-text">
+            TWODOT completely transformed our brand presence. The video they
+            produced didn't just look incredible — it tripled our engagement
+            overnight. True storytellers.
+          </p>
+          <div class="testimonial-author">
+            <div class="author-avatar">AO</div>
+            <div>
+              <div class="author-name">Adaeze Okonkwo</div>
+              <div class="author-title">CEO, Luminary Brands</div>
+            </div>
+          </div>
+        </div>
+        <div class="testimonial-card reveal reveal-delay-1">
+          <div class="quote-mark">"</div>
+          <p class="testimonial-text">
+            From concept to delivery, TWODOT's process is flawless. They
+            understood our vision better than we did and elevated it into
+            something extraordinary.
+          </p>
+          <div class="testimonial-author">
+            <div class="author-avatar">TI</div>
+            <div>
+              <div class="author-name">Tunde Ibraheem</div>
+              <div class="author-title">Founder, Apex Creative Co.</div>
+            </div>
+          </div>
+        </div>
+        <div class="testimonial-card reveal reveal-delay-2">
+          <div class="quote-mark">"</div>
+          <p class="testimonial-text">
+            Working with TWODOT was like having a Hollywood team at our
+            disposal. Professional, creative, and absolutely results-driven.
+            Couldn't recommend them more.
+          </p>
+          <div class="testimonial-author">
+            <div class="author-avatar">NK</div>
+            <div>
+              <div class="author-name">Nkechi Anyanwu</div>
+              <div class="author-title">Marketing Director, PulseTV</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- COMING SOON -->
+    <div id="coming-soon">
+      <div class="coming-soon-bg"></div>
+      <div class="inner">
+        <div class="coming-tag reveal">● Coming Soon</div>
+        <h2 class="coming-title reveal reveal-delay-1">
+          Something<br /><em>Big</em> is Coming
+        </h2>
+        <p class="coming-desc reveal reveal-delay-2">
+          A new chapter for TWODOT MEDIA. A new platform. A new kind of
+          storytelling. Stay close — you won't want to miss what's next.
+        </p>
+        <div class="countdown reveal reveal-delay-3" id="countdown">
+          <div class="countdown-block">
+            <span class="countdown-num" id="cd-days">00</span>
+            <span class="countdown-lbl">Days</span>
+          </div>
+          <div class="countdown-block">
+            <span class="countdown-num" id="cd-hours">00</span>
+            <span class="countdown-lbl">Hours</span>
+          </div>
+          <div class="countdown-block">
+            <span class="countdown-num" id="cd-mins">00</span>
+            <span class="countdown-lbl">Minutes</span>
+          </div>
+          <div class="countdown-block">
+            <span class="countdown-num" id="cd-secs">00</span>
+            <span class="countdown-lbl">Seconds</span>
+          </div>
+        </div>
+        <div class="notify-form reveal reveal-delay-4">
+          <input type="email" placeholder="Enter your email address" />
+          <button type="button">Notify Me</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- CONTACT -->
+    <section id="contact">
+      <div class="section-label reveal">Get in Touch</div>
+      <h2 class="section-title reveal reveal-delay-1">
+        Let's Create<br />Something Bold
+      </h2>
+      <div class="contact-grid">
+        <div class="contact-info reveal reveal-delay-2">
+          <div class="contact-item">
+            <div class="contact-item-label">Email</div>
+            <div class="contact-item-value">twodot2media@gmail.com</div>
+          </div>
+          <div class="contact-item">
+            <div class="contact-item-label">Phone</div>
+            <div class="contact-item-value">070 8786 3288</div>
+          </div>
+          <div class="contact-item">
+            <div class="contact-item-label">Location</div>
+            <div class="contact-item-value">Lagos, Nigeria</div>
+          </div>
+          <div class="contact-item">
+            <div class="contact-item-label">Socials</div>
+            <div
+              style="
+                display: flex;
+                flex-wrap: wrap;
+                gap: 0.8rem;
+                margin-top: 0.8rem;
+              "
+            >
+              <a
+                href="https://www.instagram.com/twodot_media/"
+                target="_blank"
+                rel="noopener"
+                class="social-pill"
+              >
+                <svg
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="1.5"
+                  width="14"
+                  height="14"
+                >
+                  <rect x="2" y="2" width="20" height="20" rx="5" ry="5" />
+                  <circle cx="12" cy="12" r="4" />
+                  <circle cx="17.5" cy="6.5" r="0.5" fill="currentColor" />
+                </svg>
+                Instagram
+              </a>
+              <a
+                href="https://www.youtube.com/channel/UC-4qoXDvylHh6EE_dby8e0w"
+                target="_blank"
+                rel="noopener"
+                class="social-pill"
+              >
+                <svg
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="1.5"
+                  width="14"
+                  height="14"
+                >
+                  <path
+                    d="M22.54 6.42a2.78 2.78 0 00-1.95-1.96C18.88 4 12 4 12 4s-6.88 0-8.59.46A2.78 2.78 0 001.46 6.42 29 29 0 001 12a29 29 0 00.46 5.58 2.78 2.78 0 001.95 1.96C5.12 20 12 20 12 20s6.88 0 8.59-.46a2.78 2.78 0 001.95-1.96A29 29 0 0023 12a29 29 0 00-.46-5.58z"
+                  />
+                  <polygon
+                    points="9.75 15.02 15.5 12 9.75 8.98 9.75 15.02"
+                    fill="currentColor"
+                    stroke="none"
+                  />
+                </svg>
+                YouTube
+              </a>
+              <a
+                href="https://www.linkedin.com/in/twodotmedia"
+                target="_blank"
+                rel="noopener"
+                class="social-pill"
+              >
+                <svg
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="1.5"
+                  width="14"
+                  height="14"
+                >
+                  <path
+                    d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6z"
+                  />
+                  <rect x="2" y="9" width="4" height="12" />
+                  <circle cx="4" cy="4" r="2" />
+                </svg>
+                LinkedIn
+              </a>
+              <a
+                href="https://www.pinterest.com/twodotmedia/"
+                target="_blank"
+                rel="noopener"
+                class="social-pill"
+              >
+                <svg
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="1.5"
+                  width="14"
+                  height="14"
+                >
+                  <path
+                    d="M12 2C6.48 2 2 6.48 2 12c0 4.24 2.65 7.86 6.39 9.29-.09-.78-.17-1.98.03-2.83.19-.77 1.26-5.33 1.26-5.33s-.32-.64-.32-1.59c0-1.49.86-2.6 1.94-2.6.91 0 1.36.69 1.36 1.51 0 .92-.59 2.3-.89 3.58-.25 1.07.53 1.94 1.58 1.94 1.9 0 3.36-2 3.36-4.9 0-2.56-1.84-4.35-4.47-4.35-3.04 0-4.83 2.28-4.83 4.64 0 .92.35 1.9.8 2.44.09.1.1.19.07.3-.08.33-.26 1.07-.3 1.22-.05.2-.16.24-.37.14-1.39-.65-2.26-2.68-2.26-4.32 0-3.51 2.55-6.74 7.36-6.74 3.86 0 6.86 2.75 6.86 6.42 0 3.83-2.41 6.91-5.76 6.91-1.13 0-2.18-.59-2.54-1.28l-.69 2.58c-.25.96-.93 2.16-1.38 2.89.04.01.08.01.12.01z"
+                  />
+                </svg>
+                Pinterest
+              </a>
+              <a
+                href="http://facebook.com/share/19QDHnFVzA/?mibextid=LQQJ4d"
+                target="_blank"
+                rel="noopener"
+                class="social-pill"
+              >
+                <svg
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="1.5"
+                  width="14"
+                  height="14"
+                >
+                  <path
+                    d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"
+                  />
+                </svg>
+                Facebook
+              </a>
+            </div>
+          </div>
+        </div>
+        <div class="contact-form reveal reveal-delay-3">
+          <div class="form-row">
+            <div class="form-group">
+              <label>First Name</label>
+              <input type="text" placeholder="John" />
+            </div>
+            <div class="form-group">
+              <label>Last Name</label>
+              <input type="text" placeholder="Doe" />
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label>Email</label>
+              <input type="email" placeholder="john@company.com" />
+            </div>
+            <div class="form-group">
+              <label>Budget</label>
+              <select>
+                <option value="">Select range</option>
+                <option>Under ₦500k</option>
+                <option>₦500k – ₦1M</option>
+                <option>₦1M – ₦5M</option>
+                <option>₦5M+</option>
+              </select>
+            </div>
+          </div>
+          <div class="form-group full">
+            <label>Service Needed</label>
+            <select>
+              <option value="">Select a service</option>
+              <option>Video Production</option>
+              <option>Brand Identity</option>
+              <option>Digital Content</option>
+              <option>Podcast Production</option>
+              <option>Entertainment</option>
+              <option>Creative Strategy</option>
+            </select>
+          </div>
+          <div class="form-group full">
+            <label>Tell Us About Your Project</label>
+            <textarea placeholder="Describe your vision..."></textarea>
+          </div>
+          <button
+            class="form-submit"
+            id="contactBtn"
+            type="button"
+            onclick="
+              this.textContent =
+                '✓ Brief Received — We\'ll be in touch shortly';
+              this.style.background = '#2d6a4f';
+              this.style.color = 'var(--white)';
+            "
+          >
+            Send Your Brief →
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- BOOKING -->
+    <div id="booking" style="background: var(--black); padding: 8rem 4rem">
+      <div style="max-width: 1300px; margin: 0 auto">
+        <div style="text-align: center; margin-bottom: 4rem">
+          <div class="section-label reveal" style="justify-content: center">
+            Reserve Your Slot
+          </div>
+          <h2 class="section-title reveal reveal-delay-1">Book a Session</h2>
+          <p
+            class="reveal reveal-delay-2"
+            style="
+              color: var(--gray);
+              font-family: &quot;Playfair Display&quot;, serif;
+              font-style: italic;
+              font-size: 1.05rem;
+              margin-top: 1rem;
+            "
+          >
+            Choose your service, pick a date, and let's get to work.
+          </p>
+        </div>
+
+        <div
+          style="
+            display: grid;
+            grid-template-columns: 1fr 1.4fr;
+            gap: 4rem;
+            align-items: start;
+          "
+          class="booking-grid"
+        >
+          <!-- Session Types -->
+          <div class="reveal reveal-delay-1">
+            <p
+              style="
+                font-size: 0.68rem;
+                letter-spacing: 0.3em;
+                text-transform: uppercase;
+                color: var(--gold);
+                margin-bottom: 1.5rem;
+              "
+            >
+              Session Types
+            </p>
+            <div
+              style="
+                display: flex;
+                flex-direction: column;
+                gap: 1px;
+                background: rgba(201, 168, 76, 0.08);
+              "
+            >
+              <div
+                class="booking-type active-type"
+                onclick="selectType(this, 'Discovery Call')"
+                style="
+                  background: var(--dark-gray);
+                  padding: 1.4rem 1.5rem;
+                  cursor: pointer;
+                  border-left: 2px solid var(--gold);
+                  transition: all 0.3s;
+                "
+              >
+                <div
+                  style="
+                    font-family: &quot;Bebas Neue&quot;, sans-serif;
+                    font-size: 1.1rem;
+                    letter-spacing: 0.06em;
+                    color: var(--white);
+                  "
+                >
+                  Discovery Call
+                </div>
+                <div
+                  style="
+                    font-size: 0.78rem;
+                    color: var(--gray);
+                    margin-top: 0.2rem;
+                  "
+                >
+                  30 min · Free · Strategy & consultation
+                </div>
+              </div>
+              <div
+                class="booking-type"
+                onclick="selectType(this, 'Video Production Brief')"
+                style="
+                  background: var(--black);
+                  padding: 1.4rem 1.5rem;
+                  cursor: pointer;
+                  border-left: 2px solid transparent;
+                  transition: all 0.3s;
+                "
+              >
+                <div
+                  style="
+                    font-family: &quot;Bebas Neue&quot;, sans-serif;
+                    font-size: 1.1rem;
+                    letter-spacing: 0.06em;
+                    color: var(--white);
+                  "
+                >
+                  Video Production Brief
+                </div>
+                <div
+                  style="
+                    font-size: 0.78rem;
+                    color: var(--gray);
+                    margin-top: 0.2rem;
+                  "
+                >
+                  60 min · Paid · Full project walkthrough
+                </div>
+              </div>
+              <div
+                class="booking-type"
+                onclick="selectType(this, 'Brand Identity Session')"
+                style="
+                  background: var(--black);
+                  padding: 1.4rem 1.5rem;
+                  cursor: pointer;
+                  border-left: 2px solid transparent;
+                  transition: all 0.3s;
+                "
+              >
+                <div
+                  style="
+                    font-family: &quot;Bebas Neue&quot;, sans-serif;
+                    font-size: 1.1rem;
+                    letter-spacing: 0.06em;
+                    color: var(--white);
+                  "
+                >
+                  Brand Identity Session
+                </div>
+                <div
+                  style="
+                    font-size: 0.78rem;
+                    color: var(--gray);
+                    margin-top: 0.2rem;
+                  "
+                >
+                  90 min · Paid · Deep brand audit & direction
+                </div>
+              </div>
+              <div
+                class="booking-type"
+                onclick="selectType(this, 'Podcast Setup')"
+                style="
+                  background: var(--black);
+                  padding: 1.4rem 1.5rem;
+                  cursor: pointer;
+                  border-left: 2px solid transparent;
+                  transition: all 0.3s;
+                "
+              >
+                <div
+                  style="
+                    font-family: &quot;Bebas Neue&quot;, sans-serif;
+                    font-size: 1.1rem;
+                    letter-spacing: 0.06em;
+                    color: var(--white);
+                  "
+                >
+                  Podcast Setup
+                </div>
+                <div
+                  style="
+                    font-size: 0.78rem;
+                    color: var(--gray);
+                    margin-top: 0.2rem;
+                  "
+                >
+                  45 min · Paid · Launch planning & tech setup
+                </div>
+              </div>
+              <div
+                class="booking-type"
+                onclick="selectType(this, 'Creative Strategy')"
+                style="
+                  background: var(--black);
+                  padding: 1.4rem 1.5rem;
+                  cursor: pointer;
+                  border-left: 2px solid transparent;
+                  transition: all 0.3s;
+                "
+              >
+                <div
+                  style="
+                    font-family: &quot;Bebas Neue&quot;, sans-serif;
+                    font-size: 1.1rem;
+                    letter-spacing: 0.06em;
+                    color: var(--white);
+                  "
+                >
+                  Creative Strategy
+                </div>
+                <div
+                  style="
+                    font-size: 0.78rem;
+                    color: var(--gray);
+                    margin-top: 0.2rem;
+                  "
+                >
+                  60 min · Paid · Campaign & content roadmap
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Booking Form -->
+          <div class="reveal reveal-delay-2">
+            <p
+              style="
+                font-size: 0.68rem;
+                letter-spacing: 0.3em;
+                text-transform: uppercase;
+                color: var(--gold);
+                margin-bottom: 1.5rem;
+              "
+            >
+              Your Details
+            </p>
+            <div style="display: flex; flex-direction: column; gap: 1px">
+              <div
+                style="
+                  display: grid;
+                  grid-template-columns: 1fr 1fr;
+                  gap: 1px;
+                  background: rgba(201, 168, 76, 0.08);
+                "
+              >
+                <div class="form-group">
+                  <label>Full Name</label>
+                  <input type="text" id="book-name" placeholder="Your name" />
+                </div>
+                <div class="form-group">
+                  <label>Email</label>
+                  <input
+                    type="email"
+                    id="book-email"
+                    placeholder="your@email.com"
+                  />
+                </div>
+              </div>
+              <div
+                style="
+                  display: grid;
+                  grid-template-columns: 1fr 1fr;
+                  gap: 1px;
+                  background: rgba(201, 168, 76, 0.08);
+                "
+              >
+                <div class="form-group">
+                  <label>Phone</label>
+                  <input
+                    type="tel"
+                    id="book-phone"
+                    placeholder="070 8786 3288"
+                  />
+                </div>
+                <div class="form-group">
+                  <label>Session Type</label>
+                  <input
+                    type="text"
+                    id="book-session"
+                    readonly
+                    style="cursor: default; color: var(--gold)"
+                    value="Discovery Call"
+                  />
+                </div>
+              </div>
+              <div
+                style="
+                  display: grid;
+                  grid-template-columns: 1fr 1fr;
+                  gap: 1px;
+                  background: rgba(201, 168, 76, 0.08);
+                "
+              >
+                <div class="form-group">
+                  <label>Preferred Date</label>
+                  <input
+                    type="date"
+                    id="book-date"
+                    style="color-scheme: dark"
+                  />
+                </div>
+                <div class="form-group">
+                  <label>Preferred Time</label>
+                  <select id="book-time">
+                    <option value="">Select time</option>
+                    <option>9:00 AM</option>
+                    <option>10:00 AM</option>
+                    <option>11:00 AM</option>
+                    <option>12:00 PM</option>
+                    <option>2:00 PM</option>
+                    <option>3:00 PM</option>
+                    <option>4:00 PM</option>
+                    <option>5:00 PM</option>
+                  </select>
+                </div>
+              </div>
+              <div class="form-group full">
+                <label>What would you like to achieve?</label>
+                <textarea
+                  id="book-notes"
+                  placeholder="Briefly describe your goals or project..."
+                  style="height: 100px"
+                ></textarea>
+              </div>
+              <button
+                class="form-submit"
+                id="bookBtn"
+                type="button"
+                onclick="submitBooking()"
+                style="margin-top: 1px"
+              >
+                Confirm Booking →
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- FOOTER -->
+    <footer>
+      <div class="footer-logo">
+        <img
+          src="TWODOT_WHITE_PNG.png"
+          alt="TWODOT MEDIA"
+          style="
+            height: 50px;
+            width: auto;
+            object-fit: contain;
+            mix-blend-mode: screen;
+          "
+        />
+      </div>
+      <p class="footer-copy">© 2025 TWODOT MEDIA. All rights reserved.</p>
+      <div class="footer-socials">
+        <a
+          href="https://www.instagram.com/twodot_media/"
+          target="_blank"
+          rel="noopener"
+          title="Instagram"
+          >IG</a
+        >
+        <a
+          href="https://www.youtube.com/channel/UC-4qoXDvylHh6EE_dby8e0w"
+          target="_blank"
+          rel="noopener"
+          title="YouTube"
+          >YT</a
+        >
+        <a
+          href="https://www.linkedin.com/in/twodotmedia"
+          target="_blank"
+          rel="noopener"
+          title="LinkedIn"
+          >LI</a
+        >
+        <a
+          href="https://www.pinterest.com/twodotmedia/"
+          target="_blank"
+          rel="noopener"
+          title="Pinterest"
+          >PI</a
+        >
+        <a
+          href="http://facebook.com/share/19QDHnFVzA/?mibextid=LQQJ4d"
+          target="_blank"
+          rel="noopener"
+          title="Facebook"
+          >FB</a
+        >
+      </div>
+    </footer>
+
+    <script>
+      // Custom cursor
+      const cursor = document.getElementById("cursor");
+      const follower = document.getElementById("cursorFollower");
+      let mx = 0,
+        my = 0,
+        fx = 0,
+        fy = 0;
+
+      document.addEventListener("mousemove", (e) => {
+        mx = e.clientX;
+        my = e.clientY;
+        cursor.style.transform = `translate(${mx - 6}px, ${my - 6}px)`;
+      });
+
+      (function animFollower() {
+        fx += (mx - fx) * 0.12;
+        fy += (my - fy) * 0.12;
+        follower.style.transform = `translate(${fx - 18}px, ${fy - 18}px)`;
+        requestAnimationFrame(animFollower);
+      })();
+
+      // Scroll reveal
+      const reveals = document.querySelectorAll(".reveal");
+      const observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((e) => {
+            if (e.isIntersecting) {
+              e.target.classList.add("visible");
+            }
+          });
+        },
+        { threshold: 0.1, rootMargin: "0px 0px -60px 0px" },
+      );
+      reveals.forEach((el) => observer.observe(el));
+
+      // Video upload
+      document
+        .getElementById("video-input")
+        .addEventListener("change", function (e) {
+          const file = e.target.files[0];
+          if (!file) return;
+          const url = URL.createObjectURL(file);
+          const stage = document.getElementById("videoStage");
+          stage.innerHTML = `
+      <video src="${url}" loop muted playsinline id="mainVideo"></video>
+      <div class="video-overlay" id="videoOverlay">
+        <button class="play-btn" id="playBtn" onclick="togglePlay()">
+          <svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg>
+        </button>
+      </div>
+      <div class="video-caption">
+        <div>
+          <h3>TWODOT MEDIA</h3>
+          <p>Showreel · 2025</p>
+        </div>
+        <div class="video-type">Video Production</div>
+      </div>
+    `;
+        });
+
+      function togglePlay() {
+        const vid = document.getElementById("mainVideo");
+        const overlay = document.getElementById("videoOverlay");
+        const btn = document.getElementById("playBtn");
+        if (vid.paused) {
+          vid.play();
+          overlay.style.opacity = "0";
+          setTimeout(() => {
+            if (!vid.paused) overlay.style.display = "none";
+          }, 400);
+        } else {
+          vid.pause();
+          overlay.style.display = "flex";
+          setTimeout(() => (overlay.style.opacity = "1"), 10);
+          btn.innerHTML = `<svg viewBox="0 0 24 24" fill="#c9a84c"><polygon points="5,3 19,12 5,21"/></svg>`;
+        }
+      }
+
+      document
+        .getElementById("videoStage")
+        .addEventListener("mouseenter", () => {
+          const overlay = document.getElementById("videoOverlay");
+          if (overlay) {
+            overlay.style.display = "flex";
+            setTimeout(() => (overlay.style.opacity = "1"), 10);
+          }
+        });
+      document
+        .getElementById("videoStage")
+        .addEventListener("mouseleave", () => {
+          const vid = document.getElementById("mainVideo");
+          const overlay = document.getElementById("videoOverlay");
+          if (overlay && vid && !vid.paused) {
+            overlay.style.opacity = "0";
+            setTimeout(() => {
+              if (!vid.paused) overlay.style.display = "none";
+            }, 400);
+          }
+        });
+
+      // Countdown — set your target date here
+      const target = new Date("2025-12-31T23:59:59");
+      function updateCountdown() {
+        const now = new Date();
+        const diff = target - now;
+        if (diff <= 0) {
+          return;
+        }
+        const d = Math.floor(diff / 86400000);
+        const h = Math.floor((diff % 86400000) / 3600000);
+        const m = Math.floor((diff % 3600000) / 60000);
+        const s = Math.floor((diff % 60000) / 1000);
+        document.getElementById("cd-days").textContent = String(d).padStart(
+          2,
+          "0",
+        );
+        document.getElementById("cd-hours").textContent = String(h).padStart(
+          2,
+          "0",
+        );
+        document.getElementById("cd-mins").textContent = String(m).padStart(
+          2,
+          "0",
+        );
+        document.getElementById("cd-secs").textContent = String(s).padStart(
+          2,
+          "0",
+        );
+      }
+      updateCountdown();
+      setInterval(updateCountdown, 1000);
+
+      // Notify button
+      document
+        .querySelector(".notify-form button")
+        .addEventListener("click", function () {
+          const input = document.querySelector(".notify-form input");
+          if (input.value) {
+            this.textContent = "✓ You're on the list";
+            this.style.background = "#2d6a4f";
+            input.value = "";
+            input.placeholder = "Thank you!";
+          }
+        });
+
+      // ── LOGO ──
+      // Image shows by default; text fallback only if image fails
+      const logoImg = document.getElementById("nav-logo-img");
+      const logoText = document.querySelector(".nav-logo-text");
+      if (logoImg) {
+        logoImg.addEventListener("error", function () {
+          this.style.display = "none";
+          if (logoText) logoText.style.display = "block";
+        });
+      }
+
+      // ── HAMBURGER MENU ──
+      // Inject hamburger button into nav
+      const nav = document.querySelector("nav");
+      const hamburger = document.createElement("button");
+      hamburger.className = "hamburger";
+      hamburger.id = "hamburger";
+      hamburger.setAttribute("aria-label", "Toggle menu");
+      hamburger.innerHTML = "<span></span><span></span><span></span>";
+      nav.appendChild(hamburger);
+
+      const mobileMenu = document.getElementById("mobileMenu");
+      hamburger.addEventListener("click", function () {
+        this.classList.toggle("open");
+        mobileMenu.classList.toggle("open");
+        document.body.style.overflow = mobileMenu.classList.contains("open")
+          ? "hidden"
+          : "";
+      });
+
+      function closeMenu() {
+        hamburger.classList.remove("open");
+        mobileMenu.classList.remove("open");
+        document.body.style.overflow = "";
+      }
+
+      // Booking — session type selector
+      function selectType(el, name) {
+        document.querySelectorAll(".booking-type").forEach((t) => {
+          t.style.background = "var(--black)";
+          t.style.borderLeftColor = "transparent";
+        });
+        el.style.background = "var(--dark-gray)";
+        el.style.borderLeftColor = "var(--gold)";
+        const sessionField = document.getElementById("book-session");
+        if (sessionField) sessionField.value = name;
+      }
+
+      // Booking submit
+      function submitBooking() {
+        const name = document.getElementById("book-name").value;
+        const email = document.getElementById("book-email").value;
+        const date = document.getElementById("book-date").value;
+        const time = document.getElementById("book-time").value;
+        const btn = document.getElementById("bookBtn");
+        if (!name || !email || !date || !time) {
+          btn.textContent = "⚠ Please fill in all required fields";
+          btn.style.background = "#7f1d1d";
+          btn.style.color = "var(--white)";
+          setTimeout(() => {
+            btn.textContent = "Confirm Booking →";
+            btn.style.background = "var(--gold)";
+            btn.style.color = "var(--black)";
+          }, 2500);
+          return;
+        }
+        btn.textContent = "✓ Booking Confirmed — Check your email shortly";
+        btn.style.background = "#2d6a4f";
+        btn.style.color = "var(--white)";
+      }
+    </script>
+  </body>
+</html>
