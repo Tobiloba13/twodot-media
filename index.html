@@ -1090,6 +1090,8 @@
       }
 
       .contact-form {
+        display: grid;
+        gap: 1.5rem;
       }
       .form-row {
         display: grid;
@@ -1126,6 +1128,7 @@
         font-size: 0.95rem;
         resize: none;
         -webkit-appearance: none;
+        appearance: none;
       }
       .form-group select option {
         background: var(--black);
@@ -1417,16 +1420,14 @@
           class="nav-logo-img"
           id="nav-logo-img"
         />
-        <span class="nav-logo-text"
-          >TWO<span class="dot">..</span>DOT MEDIA</span
-        >
+        <span class="nav-logo-text">TWODOT<span class="dot">.</span>MEDIA</span>
       </a>
       <ul class="nav-links">
         <li><a href="#about">About</a></li>
-        <li><a href="#reel">Reel</a></li>
+        <li><a href="#Portfolio">Portfolio</a></li>
         <li><a href="#services">Services</a></li>
         <li><a href="#team">Team</a></li>
-        <li><a href="#testimonials">Clients</a></li>
+        <li><a href="#testimonials">Reviews</a></li>
         <li><a href="#booking">Booking</a></li>
         <li><a href="#contact">Contact</a></li>
       </ul>
@@ -1436,10 +1437,10 @@
     <!-- MOBILE MENU DRAWER -->
     <div class="mobile-menu" id="mobileMenu">
       <a href="#about" onclick="closeMenu()">About</a>
-      <a href="#reel" onclick="closeMenu()">Reel</a>
+      <a href="#Portfolio" onclick="closeMenu()">Portfolio</a>
       <a href="#services" onclick="closeMenu()">Services</a>
       <a href="#team" onclick="closeMenu()">Team</a>
-      <a href="#testimonials" onclick="closeMenu()">Clients</a>
+      <a href="#testimonials" onclick="closeMenu()">Reviews</a>
       <a href="#booking" onclick="closeMenu()">Booking</a>
       <a href="#contact" onclick="closeMenu()">Contact</a>
     </div>
@@ -1449,14 +1450,16 @@
       <div class="hero-bg"></div>
       <div class="hero-grid"></div>
       <div class="hero-content">
-        <div class="hero-eyebrow">We Tell Stories That Move People</div>
+        <div class="hero-eyebrow">Visual Storytelling that inspires Action</div>
         <h1 class="hero-title">TWODOT<span class="dot">.</span>MEDIA</h1>
         <p class="hero-subtitle">
-          Film &nbsp;·&nbsp; Brand &nbsp;·&nbsp; Story &nbsp;·&nbsp;
-          Entertainment
+          Photography &nbsp;·&nbsp; Brand &nbsp;·&nbsp; Storytelling &nbsp;·&nbsp;
+          Documentary
         </p>
         <div class="hero-cta">
-          <a href="#reel" class="btn-primary"><span>Watch Our Reel</span></a>
+          <a href="#Portfolio" class="btn-primary"
+            ><span>View Our Portfolio</span></a
+          >
           <a href="#contact" class="btn-outline">Start a Project</a>
         </div>
       </div>
@@ -1492,7 +1495,7 @@
             brand identity, and compelling narratives that captivate audiences.
           </p>
           <p class="reveal reveal-delay-3">
-            From concept to screen — we don't just create content. We architect
+            From concept to screen, we don't just create content. We architect
             experiences that leave marks.
           </p>
           <div class="about-stats reveal reveal-delay-4">
@@ -1514,11 +1517,11 @@
     </section>
 
     <!-- REEL / PORTFOLIO -->
-    <div id="reel">
+    <div id="Portfolio">
       <div class="reel-header">
         <div class="reel-title-block">
           <div class="section-label reveal">Work</div>
-          <h2 class="section-title reveal reveal-delay-1">Our Showreel</h2>
+          <h2 class="section-title reveal reveal-delay-1">Our Portfolio</h2>
         </div>
         <p
           class="reveal"
@@ -1663,15 +1666,24 @@
             that aligns your vision with your audience.
           </p>
         </div>
-      </div>
-    </section>
-
+        <div class="service-card reveal reveal-delay-2">
+        <div class="service-num">07</div>
+        <div class="service-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="1.5">
+      <path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z" stroke-linecap="round" stroke-linejoin="round"/>
+      <circle cx="12" cy="13" r="4" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
+  </div>
+  <div class="service-title">Photography</div>
+  <p class="service-desc">Professional photography for brands, events, portraits, and editorial — every frame crafted to tell your story.</p>
+</div>
+</section>
     <!-- TEAM -->
     <div id="team">
       <div class="team-inner">
         <div style="text-align: center; margin-bottom: 1rem">
           <div class="section-label reveal" style="justify-content: center">
-            The People
+            The Brain's
           </div>
           <h2 class="section-title reveal reveal-delay-1">Meet the Team</h2>
         </div>
@@ -1681,7 +1693,7 @@
               <div class="team-photo-placeholder">CEO</div>
             </div>
             <div class="team-info">
-              <div class="team-name">Your Name</div>
+              <div class="team-name">DOTUN PROSPER</div>
               <div class="team-role">Founder & Creative Director</div>
               <div class="team-bio">
                 Visionary behind TWODOT MEDIA. Architect of stories, builder of
@@ -1691,10 +1703,10 @@
           </div>
           <div class="team-card reveal reveal-delay-1">
             <div class="team-photo">
-              <div class="team-photo-placeholder">DP</div>
+              <div class="team-photo-placeholder">MOD</div>
             </div>
             <div class="team-info">
-              <div class="team-name">Team Member</div>
+              <div class="team-name">MOD</div>
               <div class="team-role">Director of Photography</div>
               <div class="team-bio">
                 Eyes behind the lens. Framing worlds with light and intention.
@@ -1706,8 +1718,8 @@
               <div class="team-photo-placeholder">ED</div>
             </div>
             <div class="team-info">
-              <div class="team-name">Team Member</div>
-              <div class="team-role">Lead Editor</div>
+              <div class="team-name">MORAKS</div>
+              <div class="team-role">Lead Editor and Brand Strategist</div>
               <div class="team-bio">
                 Weaving rhythm and emotion into every frame, every cut.
               </div>
@@ -1718,8 +1730,8 @@
               <div class="team-photo-placeholder">BD</div>
             </div>
             <div class="team-info">
-              <div class="team-name">Team Member</div>
-              <div class="team-role">Brand Strategist</div>
+              <div class="team-name">SOG</div>
+              <div class="team-role">Brand Developer</div>
               <div class="team-bio">
                 Translating brand identity into visual languages audiences
                 remember.
