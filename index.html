@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>TWODOT MEDIA</title>
     <link
-      href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=DM+Sans:wght@300;400;500&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800&family=Open+Sans:wght@300;400;600&family=Raleway:ital,wght@0,300;1,300&display=swap"
       rel="stylesheet"
     />
     <style>
@@ -19,13 +19,17 @@
 
       :root {
         --black: #080808;
-        --white: #f5f0e8;
-        --gold: #c9a84c;
-        --gold-light: #e8d08a;
-        --red: #b91c1c;
-        --gray: #a0998e;
-        --dark-gray: #1a1a1a;
-        --mid-gray: #2e2e2e;
+        --blue: #0b3d91;
+        --blue-dark: #072d6b;
+        --blue-light: rgba(11, 61, 145, 0.12);
+        --gold: #ffc857;
+        --gold-light: #ffd882;
+        --gray: #e0e0e0;
+        --gray-muted: #a0a0a0;
+        --white: #ffffff;
+        --dark-bg: #0a0e1a;
+        --card-bg: #0d1424;
+        --mid-gray: #1a2236;
       }
 
       html {
@@ -33,9 +37,9 @@
       }
 
       body {
-        background: var(--black);
+        background: var(--dark-bg);
         color: var(--white);
-        font-family: "DM Sans", sans-serif;
+        font-family: "Open Sans", sans-serif;
         font-weight: 300;
         overflow-x: hidden;
         cursor: none;
@@ -80,8 +84,8 @@
         align-items: center;
         justify-content: space-between;
         padding: 1.2rem 4rem;
-        background: rgba(8, 8, 8, 0.96);
-        border-bottom: 1px solid rgba(201, 168, 76, 0.08);
+        background: rgba(8, 14, 26, 0.97);
+        border-bottom: 1px solid rgba(11, 61, 145, 0.25);
         animation: fadeDown 1s ease 0.5s both;
       }
 
@@ -100,12 +104,13 @@
         mix-blend-mode: screen;
       }
       .nav-logo-text {
-        font-family: "Bebas Neue", sans-serif;
-        font-size: 1.5rem;
-        letter-spacing: 0.15em;
+        font-family: "Montserrat", sans-serif;
+        font-weight: 700;
+        font-size: 1.4rem;
+        letter-spacing: 0.1em;
         color: var(--white);
         line-height: 1;
-        display: none; /* hidden by default — only shows if logo fails to load */
+        display: none;
       }
       .nav-logo-text .dot {
         color: var(--gold);
@@ -117,10 +122,11 @@
         list-style: none;
       }
       .nav-links a {
-        font-size: 0.75rem;
+        font-family: "Open Sans", sans-serif;
+        font-size: 0.72rem;
         letter-spacing: 0.2em;
         text-transform: uppercase;
-        color: var(--gray);
+        color: var(--gray-muted);
         text-decoration: none;
         transition: color 0.3s;
         position: relative;
@@ -182,7 +188,7 @@
         left: 0;
         right: 0;
         bottom: 0;
-        background: rgba(8, 8, 8, 0.98);
+        background: rgba(8, 14, 26, 0.99);
         z-index: 99;
         flex-direction: column;
         align-items: center;
@@ -201,10 +207,11 @@
         pointer-events: all;
       }
       .mobile-menu a {
-        font-family: "Bebas Neue", sans-serif;
-        font-size: 2.2rem;
+        font-family: "Montserrat", sans-serif;
+        font-weight: 700;
+        font-size: 2rem;
         letter-spacing: 0.12em;
-        color: var(--gray);
+        color: var(--gray-muted);
         text-decoration: none;
         transition: color 0.3s;
       }
@@ -230,23 +237,23 @@
         background:
           radial-gradient(
             ellipse at 20% 50%,
-            rgba(201, 168, 76, 0.08) 0%,
+            rgba(11, 61, 145, 0.15) 0%,
             transparent 60%
           ),
           radial-gradient(
             ellipse at 80% 20%,
-            rgba(185, 28, 28, 0.06) 0%,
+            rgba(255, 200, 87, 0.06) 0%,
             transparent 50%
           ),
-          var(--black);
+          var(--dark-bg);
       }
 
       .hero-grid {
         position: absolute;
         inset: 0;
         background-image:
-          linear-gradient(rgba(201, 168, 76, 0.04) 1px, transparent 1px),
-          linear-gradient(90deg, rgba(201, 168, 76, 0.04) 1px, transparent 1px);
+          linear-gradient(rgba(11, 61, 145, 0.08) 1px, transparent 1px),
+          linear-gradient(90deg, rgba(11, 61, 145, 0.08) 1px, transparent 1px);
         background-size: 80px 80px;
         animation: gridFloat 20s linear infinite;
       }
@@ -268,9 +275,11 @@
       }
 
       .hero-eyebrow {
-        font-size: 0.72rem;
-        letter-spacing: 0.4em;
-        text-transform: uppercase;
+        font-family: "Raleway", sans-serif;
+        font-style: italic;
+        font-weight: 300;
+        font-size: 0.9rem;
+        letter-spacing: 0.3em;
         color: var(--gold);
         margin-bottom: 1.5rem;
         animation: fadeUp 0.8s ease 0.8s both;
@@ -285,12 +294,13 @@
         width: 40px;
         height: 1px;
         background: var(--gold);
-        opacity: 0.5;
+        opacity: 0.4;
       }
 
       .hero-title {
-        font-family: "Bebas Neue", sans-serif;
-        font-size: clamp(5rem, 14vw, 11rem);
+        font-family: "Montserrat", sans-serif;
+        font-weight: 800;
+        font-size: clamp(4rem, 12vw, 10rem);
         line-height: 0.9;
         letter-spacing: 0.04em;
         color: var(--white);
@@ -301,10 +311,11 @@
       }
 
       .hero-subtitle {
-        font-family: "Playfair Display", serif;
+        font-family: "Raleway", sans-serif;
         font-style: italic;
-        font-size: clamp(1rem, 2.5vw, 1.4rem);
-        color: var(--gray);
+        font-weight: 300;
+        font-size: clamp(0.9rem, 2vw, 1.2rem);
+        color: var(--gray-muted);
         margin-top: 1.5rem;
         animation: fadeUp 0.9s ease 1.2s both;
       }
@@ -320,12 +331,13 @@
 
       .btn-primary {
         background: var(--gold);
-        color: var(--black);
+        color: var(--dark-bg);
         padding: 1rem 2.5rem;
-        font-size: 0.78rem;
+        font-family: "Open Sans", sans-serif;
+        font-size: 0.75rem;
         letter-spacing: 0.2em;
         text-transform: uppercase;
-        font-weight: 500;
+        font-weight: 600;
         text-decoration: none;
         transition: all 0.3s ease;
         position: relative;
@@ -348,14 +360,15 @@
         z-index: 1;
       }
       .btn-primary:hover span {
-        color: var(--black);
+        color: var(--dark-bg);
       }
 
       .btn-outline {
-        border: 1px solid rgba(201, 168, 76, 0.4);
+        border: 1px solid rgba(255, 200, 87, 0.5);
         color: var(--white);
         padding: 1rem 2.5rem;
-        font-size: 0.78rem;
+        font-family: "Open Sans", sans-serif;
+        font-size: 0.75rem;
         letter-spacing: 0.2em;
         text-transform: uppercase;
         font-weight: 400;
@@ -379,10 +392,11 @@
         animation: fadeUp 1s ease 1.8s both;
       }
       .hero-scroll span {
-        font-size: 0.65rem;
+        font-family: "Raleway", sans-serif;
+        font-size: 0.62rem;
         letter-spacing: 0.3em;
         text-transform: uppercase;
-        color: var(--gray);
+        color: var(--gray-muted);
       }
       .scroll-line {
         width: 1px;
@@ -409,6 +423,8 @@
       }
 
       .section-label {
+        font-family: "Raleway", sans-serif;
+        font-weight: 300;
         font-size: 0.68rem;
         letter-spacing: 0.4em;
         text-transform: uppercase;
@@ -420,17 +436,19 @@
       }
       .section-label::before {
         content: "..";
-        font-family: "Bebas Neue", sans-serif;
+        font-family: "Montserrat", sans-serif;
+        font-weight: 700;
         font-size: 1.1rem;
         letter-spacing: 0;
         color: var(--gold);
       }
 
       .section-title {
-        font-family: "Bebas Neue", sans-serif;
-        font-size: clamp(2.5rem, 6vw, 5rem);
-        letter-spacing: 0.06em;
-        line-height: 1;
+        font-family: "Montserrat", sans-serif;
+        font-weight: 700;
+        font-size: clamp(2.2rem, 5vw, 4.5rem);
+        letter-spacing: 0.04em;
+        line-height: 1.05;
         color: var(--white);
       }
 
@@ -448,11 +466,10 @@
         position: relative;
         aspect-ratio: 4/5;
       }
-
       .about-frame {
         position: absolute;
         inset: 0;
-        border: 1px solid rgba(201, 168, 76, 0.2);
+        border: 1px solid rgba(11, 61, 145, 0.4);
       }
       .about-frame-offset {
         position: absolute;
@@ -460,54 +477,60 @@
         left: -16px;
         right: 16px;
         bottom: 16px;
-        border: 1px solid rgba(201, 168, 76, 0.08);
+        border: 1px solid rgba(11, 61, 145, 0.15);
       }
       .about-inner {
         position: absolute;
         inset: 0;
-        background: var(--dark-gray);
+        background: var(--card-bg);
         overflow: hidden;
         display: flex;
         align-items: center;
         justify-content: center;
       }
-
       .about-monogram {
-        font-family: "Bebas Neue", sans-serif;
+        font-family: "Montserrat", sans-serif;
+        font-weight: 800;
         font-size: 12rem;
-        color: rgba(201, 168, 76, 0.06);
+        color: rgba(11, 61, 145, 0.1);
         letter-spacing: -0.02em;
         user-select: none;
       }
-
       .about-badge {
         position: absolute;
         bottom: -1.5rem;
         right: -1.5rem;
         background: var(--gold);
-        color: var(--black);
+        color: var(--dark-bg);
         width: 100px;
         height: 100px;
         display: flex;
         flex-direction: column;
         align-items: center;
         justify-content: center;
-        font-family: "Bebas Neue", sans-serif;
+        font-family: "Montserrat", sans-serif;
+        font-weight: 700;
       }
       .about-badge .year {
         font-size: 2rem;
         line-height: 1;
       }
       .about-badge .since {
-        font-size: 0.6rem;
+        font-size: 0.55rem;
         letter-spacing: 0.15em;
+        font-weight: 400;
       }
 
       .about-text p {
-        color: var(--gray);
-        font-size: 1.05rem;
+        font-family: "Open Sans", sans-serif;
+        color: var(--gray-muted);
+        font-size: 1rem;
         line-height: 1.9;
         margin-top: 1.5rem;
+      }
+      .about-text p strong {
+        color: var(--white);
+        font-weight: 600;
       }
 
       .about-stats {
@@ -515,30 +538,32 @@
         grid-template-columns: repeat(3, 1fr);
         gap: 1px;
         margin-top: 3rem;
-        background: rgba(201, 168, 76, 0.1);
+        background: rgba(11, 61, 145, 0.2);
       }
       .stat {
-        background: var(--black);
+        background: var(--dark-bg);
         padding: 1.5rem 1rem;
         text-align: center;
       }
       .stat-num {
-        font-family: "Bebas Neue", sans-serif;
+        font-family: "Montserrat", sans-serif;
+        font-weight: 800;
         font-size: 2.8rem;
         color: var(--gold);
         line-height: 1;
       }
       .stat-label {
-        font-size: 0.68rem;
+        font-family: "Raleway", sans-serif;
+        font-size: 0.65rem;
         letter-spacing: 0.2em;
         text-transform: uppercase;
-        color: var(--gray);
+        color: var(--gray-muted);
         margin-top: 0.3rem;
       }
 
-      /* REEL / PORTFOLIO */
-      #reel {
-        background: var(--dark-gray);
+      /* PORTFOLIO */
+      #Portfolio {
+        background: var(--card-bg);
         padding: 8rem 4rem;
       }
       .reel-header {
@@ -551,8 +576,6 @@
         flex-wrap: wrap;
         gap: 2rem;
       }
-      .reel-title-block {
-      }
 
       .video-stage {
         max-width: 400px;
@@ -563,7 +586,6 @@
         overflow: hidden;
         cursor: none;
       }
-
       .video-stage video {
         width: 100%;
         height: 100%;
@@ -579,7 +601,7 @@
         inset: 0;
         background: linear-gradient(
           to top,
-          rgba(8, 8, 8, 0.7) 0%,
+          rgba(8, 14, 26, 0.7) 0%,
           transparent 50%
         );
         display: flex;
@@ -587,7 +609,6 @@
         justify-content: center;
         transition: opacity 0.4s;
       }
-
       .play-btn {
         width: 80px;
         height: 80px;
@@ -597,7 +618,7 @@
         align-items: center;
         justify-content: center;
         transition: all 0.3s ease;
-        background: rgba(8, 8, 8, 0.4);
+        background: rgba(8, 14, 26, 0.4);
         backdrop-filter: blur(4px);
       }
       .play-btn svg {
@@ -611,77 +632,7 @@
         transform: scale(1.1);
       }
       .play-btn:hover svg {
-        fill: var(--black);
-      }
-
-      .video-caption {
-        position: absolute;
-        bottom: 2rem;
-        left: 2.5rem;
-        right: 2.5rem;
-        display: flex;
-        justify-content: space-between;
-        align-items: flex-end;
-      }
-      .video-caption h3 {
-        font-family: "Bebas Neue", sans-serif;
-        font-size: 1.8rem;
-        letter-spacing: 0.06em;
-        color: var(--white);
-      }
-      .video-caption p {
-        font-size: 0.8rem;
-        color: var(--gray);
-        letter-spacing: 0.15em;
-        text-transform: uppercase;
-      }
-      .video-type {
-        font-size: 0.68rem;
-        letter-spacing: 0.2em;
-        text-transform: uppercase;
-        border: 1px solid rgba(201, 168, 76, 0.4);
-        color: var(--gold);
-        padding: 0.4rem 1rem;
-      }
-
-      .video-drop-zone {
-        position: absolute;
-        inset: 0;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        flex-direction: column;
-        gap: 1rem;
-        background: #0d0d0d;
-        border: 1px dashed rgba(201, 168, 76, 0.3);
-      }
-      .video-drop-zone svg {
-        width: 48px;
-        height: 48px;
-        stroke: rgba(201, 168, 76, 0.4);
-      }
-      .video-drop-zone p {
-        font-size: 0.8rem;
-        letter-spacing: 0.15em;
-        text-transform: uppercase;
-        color: var(--gray);
-      }
-      .video-drop-zone label {
-        font-size: 0.72rem;
-        letter-spacing: 0.2em;
-        text-transform: uppercase;
-        color: var(--gold);
-        border: 1px solid rgba(201, 168, 76, 0.4);
-        padding: 0.6rem 1.5rem;
-        cursor: pointer;
-        transition: all 0.3s;
-      }
-      .video-drop-zone label:hover {
-        background: var(--gold);
-        color: var(--black);
-      }
-      #video-input {
-        display: none;
+        fill: var(--dark-bg);
       }
 
       /* SERVICES */
@@ -690,17 +641,15 @@
         margin: 0 auto;
         padding: 8rem 4rem;
       }
-
       .services-grid {
         display: grid;
         grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
         gap: 1px;
         margin-top: 4rem;
-        background: rgba(201, 168, 76, 0.08);
+        background: rgba(11, 61, 145, 0.15);
       }
-
       .service-card {
-        background: var(--black);
+        background: var(--dark-bg);
         padding: 2.5rem 2rem;
         position: relative;
         overflow: hidden;
@@ -717,28 +666,29 @@
         transition: width 0.5s ease;
       }
       .service-card:hover {
-        background: var(--dark-gray);
+        background: var(--card-bg);
       }
       .service-card:hover::before {
         width: 100%;
       }
 
       .service-num {
-        font-family: "Bebas Neue", sans-serif;
+        font-family: "Montserrat", sans-serif;
+        font-weight: 800;
         font-size: 3.5rem;
-        color: rgba(201, 168, 76, 0.1);
+        color: rgba(11, 61, 145, 0.2);
         line-height: 1;
         margin-bottom: 1rem;
         transition: color 0.4s;
       }
       .service-card:hover .service-num {
-        color: rgba(201, 168, 76, 0.25);
+        color: rgba(255, 200, 87, 0.2);
       }
 
       .service-icon {
         width: 40px;
         height: 40px;
-        border: 1px solid rgba(201, 168, 76, 0.3);
+        border: 1px solid rgba(255, 200, 87, 0.3);
         display: flex;
         align-items: center;
         justify-content: center;
@@ -751,21 +701,23 @@
       }
 
       .service-title {
-        font-family: "Bebas Neue", sans-serif;
-        font-size: 1.5rem;
-        letter-spacing: 0.06em;
+        font-family: "Montserrat", sans-serif;
+        font-weight: 700;
+        font-size: 1.2rem;
+        letter-spacing: 0.04em;
         color: var(--white);
         margin-bottom: 0.8rem;
       }
       .service-desc {
-        font-size: 0.9rem;
-        color: var(--gray);
+        font-family: "Open Sans", sans-serif;
+        font-size: 0.88rem;
+        color: var(--gray-muted);
         line-height: 1.7;
       }
 
       /* TEAM */
       #team {
-        background: var(--dark-gray);
+        background: var(--card-bg);
         padding: 8rem 4rem;
       }
       .team-inner {
@@ -777,10 +729,10 @@
         grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
         gap: 2px;
         margin-top: 4rem;
-        background: rgba(201, 168, 76, 0.05);
+        background: rgba(11, 61, 145, 0.1);
       }
       .team-card {
-        background: var(--dark-gray);
+        background: var(--card-bg);
         position: relative;
         overflow: hidden;
         aspect-ratio: 3/4;
@@ -789,16 +741,17 @@
       .team-photo {
         position: absolute;
         inset: 0;
-        background: #111;
+        background: #0a0e1a;
         display: flex;
         align-items: center;
         justify-content: center;
         overflow: hidden;
       }
       .team-photo-placeholder {
-        font-family: "Bebas Neue", sans-serif;
-        font-size: 5rem;
-        color: rgba(201, 168, 76, 0.12);
+        font-family: "Montserrat", sans-serif;
+        font-weight: 700;
+        font-size: 4rem;
+        color: rgba(11, 61, 145, 0.2);
       }
       .team-info {
         position: absolute;
@@ -806,7 +759,7 @@
         left: 0;
         right: 0;
         padding: 1.5rem;
-        background: linear-gradient(to top, rgba(8, 8, 8, 0.95), transparent);
+        background: linear-gradient(to top, rgba(8, 14, 26, 0.97), transparent);
         transform: translateY(40%);
         transition: transform 0.4s cubic-bezier(0.19, 1, 0.22, 1);
       }
@@ -814,21 +767,24 @@
         transform: translateY(0);
       }
       .team-name {
-        font-family: "Bebas Neue", sans-serif;
-        font-size: 1.4rem;
-        letter-spacing: 0.06em;
+        font-family: "Montserrat", sans-serif;
+        font-weight: 700;
+        font-size: 1.2rem;
+        letter-spacing: 0.04em;
         color: var(--white);
       }
       .team-role {
-        font-size: 0.72rem;
+        font-family: "Raleway", sans-serif;
+        font-size: 0.68rem;
         letter-spacing: 0.2em;
         text-transform: uppercase;
         color: var(--gold);
         margin-top: 0.2rem;
       }
       .team-bio {
-        font-size: 0.82rem;
-        color: var(--gray);
+        font-family: "Open Sans", sans-serif;
+        font-size: 0.8rem;
+        color: var(--gray-muted);
         line-height: 1.6;
         margin-top: 0.8rem;
         opacity: 0;
@@ -846,47 +802,44 @@
         margin: 0 auto;
         padding: 8rem 4rem;
       }
-
       .testimonials-track {
         margin-top: 4rem;
         display: grid;
         grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
         gap: 1px;
-        background: rgba(201, 168, 76, 0.08);
+        background: rgba(11, 61, 145, 0.15);
       }
-
       .testimonial-card {
-        background: var(--black);
+        background: var(--dark-bg);
         padding: 2.5rem;
         position: relative;
         transition: background 0.3s;
       }
       .testimonial-card:hover {
-        background: var(--dark-gray);
+        background: var(--card-bg);
       }
-
       .quote-mark {
-        font-family: "Playfair Display", serif;
+        font-family: "Raleway", sans-serif;
+        font-style: italic;
         font-size: 5rem;
         line-height: 1;
-        color: rgba(201, 168, 76, 0.15);
+        color: rgba(255, 200, 87, 0.15);
         margin-bottom: -1rem;
       }
-
       .testimonial-text {
-        font-family: "Playfair Display", serif;
+        font-family: "Raleway", sans-serif;
         font-style: italic;
+        font-weight: 300;
         font-size: 1rem;
-        color: var(--gray);
+        color: var(--gray-muted);
         line-height: 1.8;
         margin-bottom: 1.5rem;
       }
-
       .testimonial-author {
         display: flex;
         align-items: center;
         gap: 1rem;
-        border-top: 1px solid rgba(201, 168, 76, 0.1);
+        border-top: 1px solid rgba(11, 61, 145, 0.3);
         padding-top: 1.2rem;
       }
       .author-avatar {
@@ -896,52 +849,53 @@
         display: flex;
         align-items: center;
         justify-content: center;
-        font-family: "Bebas Neue", sans-serif;
+        font-family: "Montserrat", sans-serif;
+        font-weight: 700;
         color: var(--gold);
-        font-size: 1.1rem;
+        font-size: 1rem;
         flex-shrink: 0;
       }
       .author-name {
+        font-family: "Open Sans", sans-serif;
         font-size: 0.85rem;
-        font-weight: 500;
+        font-weight: 600;
         color: var(--white);
       }
       .author-title {
-        font-size: 0.72rem;
+        font-family: "Raleway", sans-serif;
+        font-size: 0.7rem;
         letter-spacing: 0.1em;
-        color: var(--gray);
+        color: var(--gray-muted);
         margin-top: 0.1rem;
       }
 
       /* COMING SOON */
       #coming-soon {
-        background: var(--dark-gray);
+        background: var(--card-bg);
         padding: 8rem 4rem;
         text-align: center;
         position: relative;
         overflow: hidden;
       }
-
       .coming-soon-bg {
         position: absolute;
         inset: 0;
         background: radial-gradient(
           ellipse at 50% 50%,
-          rgba(201, 168, 76, 0.06) 0%,
+          rgba(11, 61, 145, 0.12) 0%,
           transparent 70%
         );
       }
-
       #coming-soon .inner {
         position: relative;
         max-width: 700px;
         margin: 0 auto;
       }
-
       .coming-tag {
         display: inline-block;
-        border: 1px solid rgba(185, 28, 28, 0.5);
-        color: #ef4444;
+        border: 1px solid rgba(255, 200, 87, 0.4);
+        color: var(--gold);
+        font-family: "Raleway", sans-serif;
         font-size: 0.68rem;
         letter-spacing: 0.3em;
         text-transform: uppercase;
@@ -949,22 +903,21 @@
         margin-bottom: 2rem;
         animation: tagPulse 2s ease infinite;
       }
-
       @keyframes tagPulse {
         0%,
         100% {
-          border-color: rgba(185, 28, 28, 0.5);
+          border-color: rgba(255, 200, 87, 0.4);
         }
         50% {
-          border-color: rgba(185, 28, 28, 1);
-          box-shadow: 0 0 20px rgba(185, 28, 28, 0.2);
+          border-color: rgba(255, 200, 87, 0.9);
+          box-shadow: 0 0 20px rgba(255, 200, 87, 0.15);
         }
       }
-
       .coming-title {
-        font-family: "Bebas Neue", sans-serif;
-        font-size: clamp(3rem, 8vw, 7rem);
-        letter-spacing: 0.06em;
+        font-family: "Montserrat", sans-serif;
+        font-weight: 800;
+        font-size: clamp(3rem, 8vw, 6.5rem);
+        letter-spacing: 0.04em;
         line-height: 0.95;
         color: var(--white);
         margin-bottom: 1.5rem;
@@ -974,52 +927,52 @@
         color: var(--gold);
         display: block;
       }
-
       .coming-desc {
-        font-family: "Playfair Display", serif;
+        font-family: "Raleway", sans-serif;
         font-style: italic;
+        font-weight: 300;
         font-size: 1.1rem;
-        color: var(--gray);
+        color: var(--gray-muted);
         line-height: 1.8;
         margin-bottom: 3rem;
       }
-
       .countdown {
         display: flex;
         justify-content: center;
         gap: 1px;
         margin-bottom: 3rem;
-        background: rgba(201, 168, 76, 0.08);
+        background: rgba(11, 61, 145, 0.15);
         max-width: 500px;
         margin: 0 auto 3rem;
       }
       .countdown-block {
         flex: 1;
-        background: #0d0d0d;
+        background: var(--dark-bg);
         padding: 1.5rem 1rem;
         text-align: center;
       }
       .countdown-num {
-        font-family: "Bebas Neue", sans-serif;
+        font-family: "Montserrat", sans-serif;
+        font-weight: 700;
         font-size: 3rem;
         color: var(--gold);
         line-height: 1;
         display: block;
       }
       .countdown-lbl {
+        font-family: "Raleway", sans-serif;
         font-size: 0.62rem;
         letter-spacing: 0.2em;
         text-transform: uppercase;
-        color: var(--gray);
+        color: var(--gray-muted);
         margin-top: 0.3rem;
         display: block;
       }
-
       .notify-form {
         display: flex;
         max-width: 440px;
         margin: 2.5rem auto 0;
-        border: 1px solid rgba(201, 168, 76, 0.2);
+        border: 1px solid rgba(255, 200, 87, 0.2);
       }
       .notify-form input {
         flex: 1;
@@ -1027,25 +980,25 @@
         border: none;
         padding: 1rem 1.2rem;
         color: var(--white);
-        font-family: "DM Sans", sans-serif;
+        font-family: "Open Sans", sans-serif;
         font-size: 0.9rem;
         outline: none;
       }
       .notify-form input::placeholder {
-        color: var(--gray);
+        color: var(--gray-muted);
       }
       .notify-form button {
         background: var(--gold);
-        color: var(--black);
+        color: var(--dark-bg);
         border: none;
         padding: 1rem 1.5rem;
         font-size: 0.72rem;
         letter-spacing: 0.2em;
         text-transform: uppercase;
-        font-weight: 500;
+        font-weight: 600;
         cursor: pointer;
         transition: background 0.3s;
-        font-family: "DM Sans", sans-serif;
+        font-family: "Open Sans", sans-serif;
       }
       .notify-form button:hover {
         background: var(--gold-light);
@@ -1057,7 +1010,6 @@
         max-width: 1300px;
         margin: 0 auto;
       }
-
       .contact-grid {
         display: grid;
         grid-template-columns: 1fr 1.2fr;
@@ -1065,19 +1017,16 @@
         margin-top: 4rem;
         align-items: start;
       }
-
-      .contact-info {
-      }
-
       .contact-item {
         margin-bottom: 2rem;
         padding-bottom: 2rem;
-        border-bottom: 1px solid rgba(201, 168, 76, 0.1);
+        border-bottom: 1px solid rgba(11, 61, 145, 0.2);
       }
       .contact-item:last-child {
         border-bottom: none;
       }
       .contact-item-label {
+        font-family: "Raleway", sans-serif;
         font-size: 0.68rem;
         letter-spacing: 0.3em;
         text-transform: uppercase;
@@ -1085,6 +1034,7 @@
         margin-bottom: 0.4rem;
       }
       .contact-item-value {
+        font-family: "Open Sans", sans-serif;
         font-size: 1rem;
         color: var(--white);
       }
@@ -1097,17 +1047,18 @@
         display: grid;
         grid-template-columns: 1fr 1fr;
         gap: 1px;
-        background: rgba(201, 168, 76, 0.08);
+        background: rgba(11, 61, 145, 0.15);
         margin-bottom: 1px;
       }
       .form-group {
-        background: var(--black);
+        background: var(--dark-bg);
       }
       .form-group.full {
-        background: var(--black);
+        background: var(--dark-bg);
         margin-bottom: 1px;
       }
       .form-group label {
+        font-family: "Raleway", sans-serif;
         font-size: 0.65rem;
         letter-spacing: 0.25em;
         text-transform: uppercase;
@@ -1124,46 +1075,49 @@
         border: none;
         outline: none;
         color: var(--white);
-        font-family: "DM Sans", sans-serif;
-        font-size: 0.95rem;
+        font-family: "Open Sans", sans-serif;
+        font-size: 0.92rem;
         resize: none;
         -webkit-appearance: none;
         appearance: none;
       }
       .form-group select option {
-        background: var(--black);
+        background: var(--dark-bg);
       }
       .form-group textarea {
         height: 120px;
       }
       .form-group:focus-within {
-        background: var(--dark-gray);
+        background: var(--card-bg);
       }
-
       .form-submit {
         margin-top: 1px;
         width: 100%;
         background: var(--gold);
-        color: var(--black);
+        color: var(--dark-bg);
         border: none;
         padding: 1.2rem;
         font-size: 0.78rem;
         letter-spacing: 0.3em;
         text-transform: uppercase;
-        font-weight: 500;
+        font-weight: 600;
         cursor: pointer;
-        font-family: "DM Sans", sans-serif;
+        font-family: "Open Sans", sans-serif;
         transition: all 0.3s;
-        position: relative;
-        overflow: hidden;
       }
       .form-submit:hover {
         background: var(--gold-light);
       }
 
+      /* BOOKING */
+      #booking {
+        background: var(--card-bg);
+        padding: 8rem 4rem;
+      }
+
       /* FOOTER */
       footer {
-        border-top: 1px solid rgba(201, 168, 76, 0.1);
+        border-top: 1px solid rgba(11, 61, 145, 0.25);
         padding: 3rem 4rem;
         display: flex;
         align-items: center;
@@ -1171,23 +1125,12 @@
         flex-wrap: wrap;
         gap: 1.5rem;
       }
-
-      .footer-logo {
-        font-family: "Bebas Neue", sans-serif;
-        font-size: 1.4rem;
-        letter-spacing: 0.1em;
-        color: var(--white);
-      }
-      .footer-logo span {
-        color: var(--gold);
-      }
-
       .footer-copy {
-        font-size: 0.75rem;
-        color: var(--gray);
+        font-family: "Open Sans", sans-serif;
+        font-size: 0.72rem;
+        color: var(--gray-muted);
         letter-spacing: 0.1em;
       }
-
       .footer-socials {
         display: flex;
         gap: 1.5rem;
@@ -1195,13 +1138,13 @@
       .footer-socials a {
         width: 36px;
         height: 36px;
-        border: 1px solid rgba(201, 168, 76, 0.2);
+        border: 1px solid rgba(11, 61, 145, 0.35);
         display: flex;
         align-items: center;
         justify-content: center;
-        color: var(--gray);
+        color: var(--gray-muted);
         text-decoration: none;
-        font-size: 0.7rem;
+        font-size: 0.68rem;
         letter-spacing: 0.1em;
         transition: all 0.3s;
       }
@@ -1256,7 +1199,27 @@
         transition-delay: 0.4s;
       }
 
-      /* ── RESPONSIVE ── */
+      /* SOCIAL PILLS */
+      .social-pill {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.4rem;
+        border: 1px solid rgba(11, 61, 145, 0.35);
+        color: var(--gray-muted);
+        font-family: "Open Sans", sans-serif;
+        font-size: 0.7rem;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        text-decoration: none;
+        padding: 0.45rem 0.9rem;
+        transition: all 0.3s ease;
+      }
+      .social-pill:hover {
+        border-color: var(--gold);
+        color: var(--gold);
+      }
+
+      /* RESPONSIVE */
       @media (max-width: 900px) {
         nav {
           padding: 1rem 1.5rem;
@@ -1274,17 +1237,11 @@
         section {
           padding: 4rem 1.5rem;
         }
-        #reel {
-          padding: 4rem 1.5rem;
-        }
-        #team {
-          padding: 4rem 1.5rem;
-        }
-        #coming-soon {
-          padding: 4rem 1.5rem;
-        }
+        #Portfolio,
+        #team,
+        #coming-soon,
         #booking {
-          padding: 4rem 1.5rem !important;
+          padding: 4rem 1.5rem;
         }
         #contact {
           padding: 4rem 1.5rem;
@@ -1304,7 +1261,6 @@
           max-width: 300px;
           margin: 0 auto;
         }
-
         .services-grid {
           grid-template-columns: 1fr;
         }
@@ -1314,7 +1270,6 @@
         .testimonials-track {
           grid-template-columns: 1fr;
         }
-
         .contact-grid {
           grid-template-columns: 1fr;
           gap: 2rem;
@@ -1327,9 +1282,8 @@
           grid-template-columns: 1fr !important;
           gap: 2rem !important;
         }
-
         .hero-title {
-          font-size: clamp(3.5rem, 16vw, 5.5rem);
+          font-size: clamp(3rem, 15vw, 5rem);
         }
         .hero-cta {
           flex-direction: column;
@@ -1341,7 +1295,6 @@
           max-width: 260px;
           text-align: center;
         }
-
         .reel-header {
           flex-direction: column;
           align-items: flex-start;
@@ -1353,7 +1306,6 @@
           max-width: 100%;
         }
       }
-
       @media (max-width: 480px) {
         .team-grid {
           grid-template-columns: 1fr;
@@ -1362,7 +1314,7 @@
           font-size: 2rem;
         }
         .section-title {
-          font-size: clamp(2rem, 10vw, 3rem);
+          font-size: clamp(1.8rem, 9vw, 2.8rem);
         }
       }
       @media (hover: none) {
@@ -1380,25 +1332,6 @@
           cursor: pointer;
         }
       }
-
-      /* SOCIAL PILLS */
-      .social-pill {
-        display: inline-flex;
-        align-items: center;
-        gap: 0.4rem;
-        border: 1px solid rgba(201, 168, 76, 0.25);
-        color: var(--gray);
-        font-size: 0.72rem;
-        letter-spacing: 0.12em;
-        text-transform: uppercase;
-        text-decoration: none;
-        padding: 0.45rem 0.9rem;
-        transition: all 0.3s ease;
-      }
-      .social-pill:hover {
-        border-color: var(--gold);
-        color: var(--gold);
-      }
     </style>
   </head>
   <body>
@@ -1408,12 +1341,6 @@
     <!-- NAV -->
     <nav>
       <a href="#hero" class="nav-logo" id="navLogo">
-        <!--
-      TO USE YOUR LOGO:
-      1. Place your logo file (PNG/SVG) in the same folder as this HTML file
-      2. Change the src below from "" to your filename, e.g. src="twodot-logo.png"
-      3. Save — the image will show and the text will hide automatically
-    -->
         <img
           src="TWODOT_WHITE_PNG.png"
           alt="TWODOT MEDIA"
@@ -1433,8 +1360,6 @@
       </ul>
     </nav>
 
-    <!-- HAMBURGER BUTTON (injected into nav via JS) -->
-    <!-- MOBILE MENU DRAWER -->
     <div class="mobile-menu" id="mobileMenu">
       <a href="#about" onclick="closeMenu()">About</a>
       <a href="#Portfolio" onclick="closeMenu()">Portfolio</a>
@@ -1453,8 +1378,8 @@
         <div class="hero-eyebrow">Visual Storytelling that inspires Action</div>
         <h1 class="hero-title">TWODOT<span class="dot">.</span>MEDIA</h1>
         <p class="hero-subtitle">
-          Photography &nbsp;·&nbsp; Brand &nbsp;·&nbsp; Storytelling &nbsp;·&nbsp;
-          Documentary
+          Photography &nbsp;·&nbsp; Brand &nbsp;·&nbsp; Storytelling
+          &nbsp;·&nbsp; Documentary
         </p>
         <div class="hero-cta">
           <a href="#Portfolio" class="btn-primary"
@@ -1489,14 +1414,29 @@
             Crafting Worlds.<br />Defining Brands.
           </h2>
           <p class="reveal reveal-delay-2">
-            TWODOT MEDIA is a full-service creative media house built for
-            entrepreneurs, brands, and storytellers who refuse to be invisible.
-            We bring ideas to life through cinematic video production, bold
-            brand identity, and compelling narratives that captivate audiences.
+            TWODOT MEDIA is a <strong>creative media house</strong> dedicated to
+            building powerful visual identities for brands, entrepreneurs, and
+            modern storytellers. Through cinematic production, creative
+            direction, photography, and storytelling, we transform ideas into
+            experiences people remember.
           </p>
           <p class="reveal reveal-delay-3">
-            From concept to screen, we don't just create content. We architect
-            experiences that leave marks.
+            We believe great media should do more than look good — it should
+            <strong>communicate identity, emotion, and culture</strong>. We help
+            brands and visionaries stand out through cinematic storytelling,
+            creative media production, and identity-driven visuals that connect
+            deeply, inspire audiences, and leave lasting impressions.
+          </p>
+          <p
+            class="reveal reveal-delay-3"
+            style="
+              margin-top: 1rem;
+              font-style: italic;
+              color: var(--gold);
+              font-family: &quot;Raleway&quot;, sans-serif;
+            "
+          >
+            Because visibility is not enough — perception matters.
           </p>
           <div class="about-stats reveal reveal-delay-4">
             <div class="stat">
@@ -1516,33 +1456,19 @@
       </div>
     </section>
 
-    <!-- REEL / PORTFOLIO -->
+    <!-- PORTFOLIO -->
     <div id="Portfolio">
       <div class="reel-header">
         <div class="reel-title-block">
           <div class="section-label reveal">Work</div>
           <h2 class="section-title reveal reveal-delay-1">Our Portfolio</h2>
         </div>
-        <p
-          class="reveal"
-          style="
-            color: var(--gray);
-            font-size: 0.85rem;
-            letter-spacing: 0.1em;
-            max-width: 300px;
-            line-height: 1.7;
-          "
-        >
-
-        </p>
       </div>
-
       <div class="video-stage reveal" id="videoStage">
         <video
           src="Introduction.mp4"
           autoplay
           loop
-          muted
           playsinline
           id="mainVideo"
         ></video>
@@ -1551,6 +1477,57 @@
             <svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21" /></svg>
           </button>
         </div>
+        <button
+          id="soundBtn"
+          onclick="toggleSound()"
+          title="Toggle sound"
+          style="
+            position: absolute;
+            bottom: 1rem;
+            right: 1rem;
+            background: rgba(8, 14, 26, 0.7);
+            border: 1px solid rgba(255, 200, 87, 0.5);
+            color: var(--gold);
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            z-index: 10;
+            backdrop-filter: blur(4px);
+            transition: all 0.3s;
+          "
+        >
+          <svg
+            id="muteIcon"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="1.5"
+            width="18"
+            height="18"
+          >
+            <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5" />
+            <line x1="23" y1="9" x2="17" y2="15" />
+            <line x1="17" y1="9" x2="23" y2="15" />
+          </svg>
+          <svg
+            id="unmuteIcon"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="1.5"
+            width="18"
+            height="18"
+            style="display: none"
+          >
+            <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5" />
+            <path
+              d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"
+            />
+          </svg>
+        </button>
       </div>
     </div>
 
@@ -1666,23 +1643,38 @@
           </p>
         </div>
         <div class="service-card reveal reveal-delay-2">
-        <div class="service-num">07</div>
-        <div class="service-icon">
-          <svg viewBox="0 0 24 24" fill="none" stroke-width="1.5">
-      <path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z" stroke-linecap="round" stroke-linejoin="round"/>
-      <circle cx="12" cy="13" r="4" stroke-linecap="round" stroke-linejoin="round"/>
-    </svg>
-  </div>
-  <div class="service-title">Photography</div>
-  <p class="service-desc">Professional photography for brands, events, portraits, and editorial — every frame crafted to tell your story.</p>
-</div>
-</section>
+          <div class="service-num">07</div>
+          <div class="service-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="1.5">
+              <path
+                d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              />
+              <circle
+                cx="12"
+                cy="13"
+                r="4"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              />
+            </svg>
+          </div>
+          <div class="service-title">Photography</div>
+          <p class="service-desc">
+            Professional photography for brands, events, portraits, and
+            editorial — every frame crafted to tell your story.
+          </p>
+        </div>
+      </div>
+    </section>
+
     <!-- TEAM -->
     <div id="team">
       <div class="team-inner">
         <div style="text-align: center; margin-bottom: 1rem">
           <div class="section-label reveal" style="justify-content: center">
-            The Brain's
+            The Brains
           </div>
           <h2 class="section-title reveal reveal-delay-1">Meet the Team</h2>
         </div>
@@ -1718,7 +1710,7 @@
             </div>
             <div class="team-info">
               <div class="team-name">MORAKS</div>
-              <div class="team-role">Lead Editor and Brand Strategist</div>
+              <div class="team-role">Lead Editor & Brand Strategist</div>
               <div class="team-bio">
                 Weaving rhythm and emotion into every frame, every cut.
               </div>
@@ -1812,20 +1804,20 @@
         </p>
         <div class="countdown reveal reveal-delay-3" id="countdown">
           <div class="countdown-block">
-            <span class="countdown-num" id="cd-days">00</span>
-            <span class="countdown-lbl">Days</span>
+            <span class="countdown-num" id="cd-days">00</span
+            ><span class="countdown-lbl">Days</span>
           </div>
           <div class="countdown-block">
-            <span class="countdown-num" id="cd-hours">00</span>
-            <span class="countdown-lbl">Hours</span>
+            <span class="countdown-num" id="cd-hours">00</span
+            ><span class="countdown-lbl">Hours</span>
           </div>
           <div class="countdown-block">
-            <span class="countdown-num" id="cd-mins">00</span>
-            <span class="countdown-lbl">Minutes</span>
+            <span class="countdown-num" id="cd-mins">00</span
+            ><span class="countdown-lbl">Minutes</span>
           </div>
           <div class="countdown-block">
-            <span class="countdown-num" id="cd-secs">00</span>
-            <span class="countdown-lbl">Seconds</span>
+            <span class="countdown-num" id="cd-secs">00</span
+            ><span class="countdown-lbl">Seconds</span>
           </div>
         </div>
         <div class="notify-form reveal reveal-delay-4">
@@ -1978,18 +1970,16 @@
         <div class="contact-form reveal reveal-delay-3">
           <div class="form-row">
             <div class="form-group">
-              <label>First Name</label>
-              <input type="text" placeholder="John" />
+              <label>First Name</label><input type="text" placeholder="John" />
             </div>
             <div class="form-group">
-              <label>Last Name</label>
-              <input type="text" placeholder="Doe" />
+              <label>Last Name</label><input type="text" placeholder="Doe" />
             </div>
           </div>
           <div class="form-row">
             <div class="form-group">
-              <label>Email</label>
-              <input type="email" placeholder="john@company.com" />
+              <label>Email</label
+              ><input type="email" placeholder="john@company.com" />
             </div>
             <div class="form-group">
               <label>Budget</label>
@@ -2012,6 +2002,7 @@
               <option>Podcast Production</option>
               <option>Entertainment</option>
               <option>Creative Strategy</option>
+              <option>Photography</option>
             </select>
           </div>
           <div class="form-group full">
@@ -2036,7 +2027,7 @@
     </section>
 
     <!-- BOOKING -->
-    <div id="booking" style="background: var(--black); padding: 8rem 4rem">
+    <div id="booking">
       <div style="max-width: 1300px; margin: 0 auto">
         <div style="text-align: center; margin-bottom: 4rem">
           <div class="section-label reveal" style="justify-content: center">
@@ -2046,8 +2037,8 @@
           <p
             class="reveal reveal-delay-2"
             style="
-              color: var(--gray);
-              font-family: &quot;Playfair Display&quot;, serif;
+              color: var(--gray-muted);
+              font-family: &quot;Raleway&quot;, sans-serif;
               font-style: italic;
               font-size: 1.05rem;
               margin-top: 1rem;
@@ -2056,7 +2047,6 @@
             Choose your service, pick a date, and let's get to work.
           </p>
         </div>
-
         <div
           style="
             display: grid;
@@ -2066,10 +2056,10 @@
           "
           class="booking-grid"
         >
-          <!-- Session Types -->
           <div class="reveal reveal-delay-1">
             <p
               style="
+                font-family: &quot;Raleway&quot;, sans-serif;
                 font-size: 0.68rem;
                 letter-spacing: 0.3em;
                 text-transform: uppercase;
@@ -2084,14 +2074,14 @@
                 display: flex;
                 flex-direction: column;
                 gap: 1px;
-                background: rgba(201, 168, 76, 0.08);
+                background: rgba(11, 61, 145, 0.15);
               "
             >
               <div
                 class="booking-type active-type"
                 onclick="selectType(this, 'Discovery Call')"
                 style="
-                  background: var(--dark-gray);
+                  background: var(--mid-gray);
                   padding: 1.4rem 1.5rem;
                   cursor: pointer;
                   border-left: 2px solid var(--gold);
@@ -2100,9 +2090,10 @@
               >
                 <div
                   style="
-                    font-family: &quot;Bebas Neue&quot;, sans-serif;
-                    font-size: 1.1rem;
-                    letter-spacing: 0.06em;
+                    font-family: &quot;Montserrat&quot;, sans-serif;
+                    font-weight: 700;
+                    font-size: 1rem;
+                    letter-spacing: 0.04em;
                     color: var(--white);
                   "
                 >
@@ -2111,7 +2102,7 @@
                 <div
                   style="
                     font-size: 0.78rem;
-                    color: var(--gray);
+                    color: var(--gray-muted);
                     margin-top: 0.2rem;
                   "
                 >
@@ -2122,7 +2113,7 @@
                 class="booking-type"
                 onclick="selectType(this, 'Video Production Brief')"
                 style="
-                  background: var(--black);
+                  background: var(--dark-bg);
                   padding: 1.4rem 1.5rem;
                   cursor: pointer;
                   border-left: 2px solid transparent;
@@ -2131,9 +2122,9 @@
               >
                 <div
                   style="
-                    font-family: &quot;Bebas Neue&quot;, sans-serif;
-                    font-size: 1.1rem;
-                    letter-spacing: 0.06em;
+                    font-family: &quot;Montserrat&quot;, sans-serif;
+                    font-weight: 700;
+                    font-size: 1rem;
                     color: var(--white);
                   "
                 >
@@ -2142,7 +2133,7 @@
                 <div
                   style="
                     font-size: 0.78rem;
-                    color: var(--gray);
+                    color: var(--gray-muted);
                     margin-top: 0.2rem;
                   "
                 >
@@ -2153,7 +2144,7 @@
                 class="booking-type"
                 onclick="selectType(this, 'Brand Identity Session')"
                 style="
-                  background: var(--black);
+                  background: var(--dark-bg);
                   padding: 1.4rem 1.5rem;
                   cursor: pointer;
                   border-left: 2px solid transparent;
@@ -2162,9 +2153,9 @@
               >
                 <div
                   style="
-                    font-family: &quot;Bebas Neue&quot;, sans-serif;
-                    font-size: 1.1rem;
-                    letter-spacing: 0.06em;
+                    font-family: &quot;Montserrat&quot;, sans-serif;
+                    font-weight: 700;
+                    font-size: 1rem;
                     color: var(--white);
                   "
                 >
@@ -2173,7 +2164,7 @@
                 <div
                   style="
                     font-size: 0.78rem;
-                    color: var(--gray);
+                    color: var(--gray-muted);
                     margin-top: 0.2rem;
                   "
                 >
@@ -2182,9 +2173,9 @@
               </div>
               <div
                 class="booking-type"
-                onclick="selectType(this, 'Podcast Setup')"
+                onclick="selectType(this, 'Photography Session')"
                 style="
-                  background: var(--black);
+                  background: var(--dark-bg);
                   padding: 1.4rem 1.5rem;
                   cursor: pointer;
                   border-left: 2px solid transparent;
@@ -2193,29 +2184,29 @@
               >
                 <div
                   style="
-                    font-family: &quot;Bebas Neue&quot;, sans-serif;
-                    font-size: 1.1rem;
-                    letter-spacing: 0.06em;
+                    font-family: &quot;Montserrat&quot;, sans-serif;
+                    font-weight: 700;
+                    font-size: 1rem;
                     color: var(--white);
                   "
                 >
-                  Podcast Setup
+                  Photography Session
                 </div>
                 <div
                   style="
                     font-size: 0.78rem;
-                    color: var(--gray);
+                    color: var(--gray-muted);
                     margin-top: 0.2rem;
                   "
                 >
-                  45 min · Paid · Launch planning & tech setup
+                  60 min · Paid · Brand, portrait or event shoot
                 </div>
               </div>
               <div
                 class="booking-type"
                 onclick="selectType(this, 'Creative Strategy')"
                 style="
-                  background: var(--black);
+                  background: var(--dark-bg);
                   padding: 1.4rem 1.5rem;
                   cursor: pointer;
                   border-left: 2px solid transparent;
@@ -2224,9 +2215,9 @@
               >
                 <div
                   style="
-                    font-family: &quot;Bebas Neue&quot;, sans-serif;
-                    font-size: 1.1rem;
-                    letter-spacing: 0.06em;
+                    font-family: &quot;Montserrat&quot;, sans-serif;
+                    font-weight: 700;
+                    font-size: 1rem;
                     color: var(--white);
                   "
                 >
@@ -2235,7 +2226,7 @@
                 <div
                   style="
                     font-size: 0.78rem;
-                    color: var(--gray);
+                    color: var(--gray-muted);
                     margin-top: 0.2rem;
                   "
                 >
@@ -2244,11 +2235,10 @@
               </div>
             </div>
           </div>
-
-          <!-- Booking Form -->
           <div class="reveal reveal-delay-2">
             <p
               style="
+                font-family: &quot;Raleway&quot;, sans-serif;
                 font-size: 0.68rem;
                 letter-spacing: 0.3em;
                 text-transform: uppercase;
@@ -2264,16 +2254,16 @@
                   display: grid;
                   grid-template-columns: 1fr 1fr;
                   gap: 1px;
-                  background: rgba(201, 168, 76, 0.08);
+                  background: rgba(11, 61, 145, 0.15);
                 "
               >
                 <div class="form-group">
-                  <label>Full Name</label>
-                  <input type="text" id="book-name" placeholder="Your name" />
+                  <label>Full Name</label
+                  ><input type="text" id="book-name" placeholder="Your name" />
                 </div>
                 <div class="form-group">
-                  <label>Email</label>
-                  <input
+                  <label>Email</label
+                  ><input
                     type="email"
                     id="book-email"
                     placeholder="your@email.com"
@@ -2285,20 +2275,20 @@
                   display: grid;
                   grid-template-columns: 1fr 1fr;
                   gap: 1px;
-                  background: rgba(201, 168, 76, 0.08);
+                  background: rgba(11, 61, 145, 0.15);
                 "
               >
                 <div class="form-group">
-                  <label>Phone</label>
-                  <input
+                  <label>Phone</label
+                  ><input
                     type="tel"
                     id="book-phone"
                     placeholder="070 8786 3288"
                   />
                 </div>
                 <div class="form-group">
-                  <label>Session Type</label>
-                  <input
+                  <label>Session Type</label
+                  ><input
                     type="text"
                     id="book-session"
                     readonly
@@ -2312,12 +2302,12 @@
                   display: grid;
                   grid-template-columns: 1fr 1fr;
                   gap: 1px;
-                  background: rgba(201, 168, 76, 0.08);
+                  background: rgba(11, 61, 145, 0.15);
                 "
               >
                 <div class="form-group">
-                  <label>Preferred Date</label>
-                  <input
+                  <label>Preferred Date</label
+                  ><input
                     type="date"
                     id="book-date"
                     style="color-scheme: dark"
@@ -2339,8 +2329,8 @@
                 </div>
               </div>
               <div class="form-group full">
-                <label>What would you like to achieve?</label>
-                <textarea
+                <label>What would you like to achieve?</label
+                ><textarea
                   id="book-notes"
                   placeholder="Briefly describe your goals or project..."
                   style="height: 100px"
@@ -2423,17 +2413,15 @@
         my = 0,
         fx = 0,
         fy = 0;
-
       document.addEventListener("mousemove", (e) => {
         mx = e.clientX;
         my = e.clientY;
-        cursor.style.transform = `translate(${mx - 6}px, ${my - 6}px)`;
+        cursor.style.transform = `translate(${mx - 6}px,${my - 6}px)`;
       });
-
       (function animFollower() {
         fx += (mx - fx) * 0.12;
         fy += (my - fy) * 0.12;
-        follower.style.transform = `translate(${fx - 18}px, ${fy - 18}px)`;
+        follower.style.transform = `translate(${fx - 18}px,${fy - 18}px)`;
         requestAnimationFrame(animFollower);
       })();
 
@@ -2442,18 +2430,14 @@
       const observer = new IntersectionObserver(
         (entries) => {
           entries.forEach((e) => {
-            if (e.isIntersecting) {
-              e.target.classList.add("visible");
-            }
+            if (e.isIntersecting) e.target.classList.add("visible");
           });
         },
         { threshold: 0.1, rootMargin: "0px 0px -60px 0px" },
       );
       reveals.forEach((el) => observer.observe(el));
 
-      // Video upload
-      // Video is embedded directly as Introduction.mp4
-
+      // Video
       function togglePlay() {
         const vid = document.getElementById("mainVideo");
         const overlay = document.getElementById("videoOverlay");
@@ -2473,7 +2457,30 @@
         }
       }
 
-      // Auto-hide overlay after video starts playing
+      function toggleSound() {
+        const vid = document.getElementById("mainVideo");
+        const muteIcon = document.getElementById("muteIcon");
+        const unmuteIcon = document.getElementById("unmuteIcon");
+        if (!vid) return;
+        if (vid.muted) {
+          vid.muted = false;
+          muteIcon.style.display = "none";
+          unmuteIcon.style.display = "block";
+        } else {
+          vid.muted = true;
+          muteIcon.style.display = "block";
+          unmuteIcon.style.display = "none";
+        }
+      }
+
+      window.addEventListener("DOMContentLoaded", () => {
+        const vid = document.getElementById("mainVideo");
+        if (vid) {
+          vid.muted = true;
+          vid.play().catch(() => {});
+        }
+      });
+
       const mainVid = document.getElementById("mainVideo");
       const mainOverlay = document.getElementById("videoOverlay");
       if (mainVid && mainOverlay) {
@@ -2491,14 +2498,11 @@
         });
       }
 
-      // Countdown — set your target date here
+      // Countdown
       const target = new Date("2025-12-31T23:59:59");
       function updateCountdown() {
-        const now = new Date();
-        const diff = target - now;
-        if (diff <= 0) {
-          return;
-        }
+        const diff = target - new Date();
+        if (diff <= 0) return;
         const d = Math.floor(diff / 86400000);
         const h = Math.floor((diff % 86400000) / 3600000);
         const m = Math.floor((diff % 3600000) / 60000);
@@ -2523,7 +2527,7 @@
       updateCountdown();
       setInterval(updateCountdown, 1000);
 
-      // Notify button
+      // Notify
       document
         .querySelector(".notify-form button")
         .addEventListener("click", function () {
@@ -2536,8 +2540,7 @@
           }
         });
 
-      // ── LOGO ──
-      // Image shows by default; text fallback only if image fails
+      // Logo
       const logoImg = document.getElementById("nav-logo-img");
       const logoText = document.querySelector(".nav-logo-text");
       if (logoImg) {
@@ -2547,8 +2550,7 @@
         });
       }
 
-      // ── HAMBURGER MENU ──
-      // Inject hamburger button into nav
+      // Hamburger
       const nav = document.querySelector("nav");
       const hamburger = document.createElement("button");
       hamburger.className = "hamburger";
@@ -2556,7 +2558,6 @@
       hamburger.setAttribute("aria-label", "Toggle menu");
       hamburger.innerHTML = "<span></span><span></span><span></span>";
       nav.appendChild(hamburger);
-
       const mobileMenu = document.getElementById("mobileMenu");
       hamburger.addEventListener("click", function () {
         this.classList.toggle("open");
@@ -2565,26 +2566,23 @@
           ? "hidden"
           : "";
       });
-
       function closeMenu() {
         hamburger.classList.remove("open");
         mobileMenu.classList.remove("open");
         document.body.style.overflow = "";
       }
 
-      // Booking — session type selector
+      // Booking
       function selectType(el, name) {
         document.querySelectorAll(".booking-type").forEach((t) => {
-          t.style.background = "var(--black)";
+          t.style.background = "var(--dark-bg)";
           t.style.borderLeftColor = "transparent";
         });
-        el.style.background = "var(--dark-gray)";
+        el.style.background = "var(--mid-gray)";
         el.style.borderLeftColor = "var(--gold)";
-        const sessionField = document.getElementById("book-session");
-        if (sessionField) sessionField.value = name;
+        const f = document.getElementById("book-session");
+        if (f) f.value = name;
       }
-
-      // Booking submit
       function submitBooking() {
         const name = document.getElementById("book-name").value;
         const email = document.getElementById("book-email").value;
@@ -2598,7 +2596,7 @@
           setTimeout(() => {
             btn.textContent = "Confirm Booking →";
             btn.style.background = "var(--gold)";
-            btn.style.color = "var(--black)";
+            btn.style.color = "var(--dark-bg)";
           }, 2500);
           return;
         }
