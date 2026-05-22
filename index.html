@@ -300,11 +300,12 @@
       .hero-title {
         font-family: "Montserrat", sans-serif;
         font-weight: 800;
-        font-size: clamp(4rem, 12vw, 10rem);
-        line-height: 0.9;
-        letter-spacing: 0.04em;
+        font-size: clamp(2.8rem, 7.5vw, 7rem);
+        line-height: 0.95;
+        letter-spacing: 0.03em;
         color: var(--white);
         animation: fadeUp 0.9s ease 1s both;
+        white-space: nowrap;
       }
       .hero-title .dot {
         color: var(--gold);
@@ -1332,6 +1333,206 @@
           cursor: pointer;
         }
       }
+
+      /* GALLERY */
+      #gallery {
+        background: var(--dark-bg);
+        padding: 8rem 4rem;
+      }
+      .gallery-inner {
+        max-width: 1300px;
+        margin: 0 auto;
+      }
+
+      .gallery-tabs {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 1px;
+        margin: 3rem 0 2.5rem;
+        background: rgba(11, 61, 145, 0.15);
+      }
+      .gallery-tab {
+        background: var(--dark-bg);
+        padding: 0.9rem 1.8rem;
+        font-family: "Raleway", sans-serif;
+        font-size: 0.7rem;
+        letter-spacing: 0.25em;
+        text-transform: uppercase;
+        color: var(--gray-muted);
+        cursor: pointer;
+        border: none;
+        border-bottom: 2px solid transparent;
+        transition: all 0.3s ease;
+      }
+      .gallery-tab:hover {
+        color: var(--white);
+        background: var(--card-bg);
+      }
+      .gallery-tab.active {
+        color: var(--gold);
+        border-bottom-color: var(--gold);
+        background: var(--card-bg);
+      }
+
+      .gallery-panel {
+        display: none;
+      }
+      .gallery-panel.active {
+        display: block;
+      }
+
+      .gallery-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+        gap: 2px;
+        background: rgba(11, 61, 145, 0.1);
+      }
+
+      .gallery-item {
+        position: relative;
+        aspect-ratio: 4/3;
+        background: var(--card-bg);
+        overflow: hidden;
+        cursor: pointer;
+      }
+      .gallery-item img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: transform 0.5s ease;
+      }
+      .gallery-item:hover img {
+        transform: scale(1.06);
+      }
+
+      .gallery-item-overlay {
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(
+          to top,
+          rgba(8, 14, 26, 0.85) 0%,
+          transparent 60%
+        );
+        opacity: 0;
+        transition: opacity 0.3s ease;
+        display: flex;
+        align-items: flex-end;
+        padding: 1.2rem;
+      }
+      .gallery-item:hover .gallery-item-overlay {
+        opacity: 1;
+      }
+      .gallery-item-label {
+        font-family: "Montserrat", sans-serif;
+        font-weight: 700;
+        font-size: 0.85rem;
+        letter-spacing: 0.06em;
+        color: var(--white);
+      }
+
+      /* Upload placeholder slot */
+      .gallery-upload-slot {
+        position: relative;
+        aspect-ratio: 4/3;
+        background: var(--dark-bg);
+        border: 1px dashed rgba(11, 61, 145, 0.4);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 0.6rem;
+        cursor: pointer;
+        transition: all 0.3s;
+      }
+      .gallery-upload-slot:hover {
+        border-color: var(--gold);
+        background: var(--card-bg);
+      }
+      .gallery-upload-slot svg {
+        stroke: rgba(255, 200, 87, 0.3);
+        width: 36px;
+        height: 36px;
+        transition: stroke 0.3s;
+      }
+      .gallery-upload-slot:hover svg {
+        stroke: var(--gold);
+      }
+      .gallery-upload-slot p {
+        font-family: "Raleway", sans-serif;
+        font-size: 0.65rem;
+        letter-spacing: 0.2em;
+        text-transform: uppercase;
+        color: var(--gray-muted);
+      }
+      .gallery-upload-slot input {
+        display: none;
+      }
+
+      /* Lightbox */
+      .lightbox {
+        position: fixed;
+        inset: 0;
+        z-index: 999;
+        background: rgba(8, 14, 26, 0.97);
+        display: none;
+        align-items: center;
+        justify-content: center;
+      }
+      .lightbox.open {
+        display: flex;
+      }
+      .lightbox img {
+        max-width: 90vw;
+        max-height: 90vh;
+        object-fit: contain;
+        animation: fadeUp 0.3s ease;
+      }
+      .lightbox-close {
+        position: absolute;
+        top: 2rem;
+        right: 2rem;
+        background: none;
+        border: 1px solid rgba(255, 200, 87, 0.3);
+        color: var(--gold);
+        width: 44px;
+        height: 44px;
+        font-size: 1.2rem;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: all 0.3s;
+      }
+      .lightbox-close:hover {
+        background: var(--gold);
+        color: var(--dark-bg);
+        border-color: var(--gold);
+      }
+
+      @media (max-width: 900px) {
+        #gallery {
+          padding: 4rem 1.5rem;
+        }
+        .gallery-grid {
+          grid-template-columns: repeat(2, 1fr);
+        }
+        .gallery-tab {
+          padding: 0.8rem 1rem;
+          font-size: 0.62rem;
+        }
+        .hero-title {
+          white-space: normal;
+          font-size: clamp(2.5rem, 10vw, 5rem);
+        }
+      }
+      @media (max-width: 480px) {
+        .gallery-grid {
+          grid-template-columns: 1fr;
+        }
+        .hero-title {
+          font-size: clamp(2.2rem, 12vw, 4rem);
+        }
+      }
     </style>
   </head>
   <body>
@@ -1354,6 +1555,7 @@
         <li><a href="#Portfolio">Portfolio</a></li>
         <li><a href="#services">Services</a></li>
         <li><a href="#team">Team</a></li>
+        <li><a href="#gallery">Gallery</a></li>
         <li><a href="#testimonials">Reviews</a></li>
         <li><a href="#booking">Booking</a></li>
         <li><a href="#contact">Contact</a></li>
@@ -1365,6 +1567,7 @@
       <a href="#Portfolio" onclick="closeMenu()">Portfolio</a>
       <a href="#services" onclick="closeMenu()">Services</a>
       <a href="#team" onclick="closeMenu()">Team</a>
+      <a href="#gallery" onclick="closeMenu()">Gallery</a>
       <a href="#testimonials" onclick="closeMenu()">Reviews</a>
       <a href="#booking" onclick="closeMenu()">Booking</a>
       <a href="#contact" onclick="closeMenu()">Contact</a>
@@ -1731,6 +1934,274 @@
           </div>
         </div>
       </div>
+    </div>
+
+    <!-- GALLERY -->
+    <div id="gallery">
+      <div class="gallery-inner">
+        <div class="section-label reveal">Our Work</div>
+        <h2 class="section-title reveal reveal-delay-1">Gallery</h2>
+
+        <!-- TABS -->
+        <div class="gallery-tabs reveal reveal-delay-2">
+          <button class="gallery-tab active" onclick="switchTab('brands')">
+            Brands
+          </button>
+          <button class="gallery-tab" onclick="switchTab('bts')">BTS</button>
+          <button class="gallery-tab" onclick="switchTab('documentary')">
+            Documentary
+          </button>
+          <button class="gallery-tab" onclick="switchTab('portraits')">
+            Portraits
+          </button>
+          <button class="gallery-tab" onclick="switchTab('events')">
+            Events
+          </button>
+          <button class="gallery-tab" onclick="switchTab('editorial')">
+            Editorial
+          </button>
+        </div>
+
+        <!-- BRANDS -->
+        <div class="gallery-panel active" id="panel-brands">
+          <div class="gallery-grid">
+            <label class="gallery-upload-slot" title="Add image">
+              <svg viewBox="0 0 24 24" fill="none" stroke-width="1.2">
+                <path d="M12 5v14M5 12h14" stroke-linecap="round" />
+              </svg>
+              <p>Add Brand Photo</p>
+              <input
+                type="file"
+                accept="image/*"
+                onchange="addImage(this, 'brands')"
+              />
+            </label>
+            <label class="gallery-upload-slot" title="Add image">
+              <svg viewBox="0 0 24 24" fill="none" stroke-width="1.2">
+                <path d="M12 5v14M5 12h14" stroke-linecap="round" />
+              </svg>
+              <p>Add Brand Photo</p>
+              <input
+                type="file"
+                accept="image/*"
+                onchange="addImage(this, 'brands')"
+              />
+            </label>
+            <label class="gallery-upload-slot" title="Add image">
+              <svg viewBox="0 0 24 24" fill="none" stroke-width="1.2">
+                <path d="M12 5v14M5 12h14" stroke-linecap="round" />
+              </svg>
+              <p>Add Brand Photo</p>
+              <input
+                type="file"
+                accept="image/*"
+                onchange="addImage(this, 'brands')"
+              />
+            </label>
+          </div>
+        </div>
+
+        <!-- BTS -->
+        <div class="gallery-panel" id="panel-bts">
+          <div class="gallery-grid">
+            <label class="gallery-upload-slot" title="Add image">
+              <svg viewBox="0 0 24 24" fill="none" stroke-width="1.2">
+                <path d="M12 5v14M5 12h14" stroke-linecap="round" />
+              </svg>
+              <p>Add BTS Photo</p>
+              <input
+                type="file"
+                accept="image/*"
+                onchange="addImage(this, 'bts')"
+              />
+            </label>
+            <label class="gallery-upload-slot" title="Add image">
+              <svg viewBox="0 0 24 24" fill="none" stroke-width="1.2">
+                <path d="M12 5v14M5 12h14" stroke-linecap="round" />
+              </svg>
+              <p>Add BTS Photo</p>
+              <input
+                type="file"
+                accept="image/*"
+                onchange="addImage(this, 'bts')"
+              />
+            </label>
+            <label class="gallery-upload-slot" title="Add image">
+              <svg viewBox="0 0 24 24" fill="none" stroke-width="1.2">
+                <path d="M12 5v14M5 12h14" stroke-linecap="round" />
+              </svg>
+              <p>Add BTS Photo</p>
+              <input
+                type="file"
+                accept="image/*"
+                onchange="addImage(this, 'bts')"
+              />
+            </label>
+          </div>
+        </div>
+
+        <!-- DOCUMENTARY -->
+        <div class="gallery-panel" id="panel-documentary">
+          <div class="gallery-grid">
+            <label class="gallery-upload-slot" title="Add image">
+              <svg viewBox="0 0 24 24" fill="none" stroke-width="1.2">
+                <path d="M12 5v14M5 12h14" stroke-linecap="round" />
+              </svg>
+              <p>Add Documentary Photo</p>
+              <input
+                type="file"
+                accept="image/*"
+                onchange="addImage(this, 'documentary')"
+              />
+            </label>
+            <label class="gallery-upload-slot" title="Add image">
+              <svg viewBox="0 0 24 24" fill="none" stroke-width="1.2">
+                <path d="M12 5v14M5 12h14" stroke-linecap="round" />
+              </svg>
+              <p>Add Documentary Photo</p>
+              <input
+                type="file"
+                accept="image/*"
+                onchange="addImage(this, 'documentary')"
+              />
+            </label>
+            <label class="gallery-upload-slot" title="Add image">
+              <svg viewBox="0 0 24 24" fill="none" stroke-width="1.2">
+                <path d="M12 5v14M5 12h14" stroke-linecap="round" />
+              </svg>
+              <p>Add Documentary Photo</p>
+              <input
+                type="file"
+                accept="image/*"
+                onchange="addImage(this, 'documentary')"
+              />
+            </label>
+          </div>
+        </div>
+
+        <!-- PORTRAITS -->
+        <div class="gallery-panel" id="panel-portraits">
+          <div class="gallery-grid">
+            <label class="gallery-upload-slot" title="Add image">
+              <svg viewBox="0 0 24 24" fill="none" stroke-width="1.2">
+                <path d="M12 5v14M5 12h14" stroke-linecap="round" />
+              </svg>
+              <p>Add Portrait Photo</p>
+              <input
+                type="file"
+                accept="image/*"
+                onchange="addImage(this, 'portraits')"
+              />
+            </label>
+            <label class="gallery-upload-slot" title="Add image">
+              <svg viewBox="0 0 24 24" fill="none" stroke-width="1.2">
+                <path d="M12 5v14M5 12h14" stroke-linecap="round" />
+              </svg>
+              <p>Add Portrait Photo</p>
+              <input
+                type="file"
+                accept="image/*"
+                onchange="addImage(this, 'portraits')"
+              />
+            </label>
+            <label class="gallery-upload-slot" title="Add image">
+              <svg viewBox="0 0 24 24" fill="none" stroke-width="1.2">
+                <path d="M12 5v14M5 12h14" stroke-linecap="round" />
+              </svg>
+              <p>Add Portrait Photo</p>
+              <input
+                type="file"
+                accept="image/*"
+                onchange="addImage(this, 'portraits')"
+              />
+            </label>
+          </div>
+        </div>
+
+        <!-- EVENTS -->
+        <div class="gallery-panel" id="panel-events">
+          <div class="gallery-grid">
+            <label class="gallery-upload-slot" title="Add image">
+              <svg viewBox="0 0 24 24" fill="none" stroke-width="1.2">
+                <path d="M12 5v14M5 12h14" stroke-linecap="round" />
+              </svg>
+              <p>Add Event Photo</p>
+              <input
+                type="file"
+                accept="image/*"
+                onchange="addImage(this, 'events')"
+              />
+            </label>
+            <label class="gallery-upload-slot" title="Add image">
+              <svg viewBox="0 0 24 24" fill="none" stroke-width="1.2">
+                <path d="M12 5v14M5 12h14" stroke-linecap="round" />
+              </svg>
+              <p>Add Event Photo</p>
+              <input
+                type="file"
+                accept="image/*"
+                onchange="addImage(this, 'events')"
+              />
+            </label>
+            <label class="gallery-upload-slot" title="Add image">
+              <svg viewBox="0 0 24 24" fill="none" stroke-width="1.2">
+                <path d="M12 5v14M5 12h14" stroke-linecap="round" />
+              </svg>
+              <p>Add Event Photo</p>
+              <input
+                type="file"
+                accept="image/*"
+                onchange="addImage(this, 'events')"
+              />
+            </label>
+          </div>
+        </div>
+
+        <!-- EDITORIAL -->
+        <div class="gallery-panel" id="panel-editorial">
+          <div class="gallery-grid">
+            <label class="gallery-upload-slot" title="Add image">
+              <svg viewBox="0 0 24 24" fill="none" stroke-width="1.2">
+                <path d="M12 5v14M5 12h14" stroke-linecap="round" />
+              </svg>
+              <p>Add Editorial Photo</p>
+              <input
+                type="file"
+                accept="image/*"
+                onchange="addImage(this, 'editorial')"
+              />
+            </label>
+            <label class="gallery-upload-slot" title="Add image">
+              <svg viewBox="0 0 24 24" fill="none" stroke-width="1.2">
+                <path d="M12 5v14M5 12h14" stroke-linecap="round" />
+              </svg>
+              <p>Add Editorial Photo</p>
+              <input
+                type="file"
+                accept="image/*"
+                onchange="addImage(this, 'editorial')"
+              />
+            </label>
+            <label class="gallery-upload-slot" title="Add image">
+              <svg viewBox="0 0 24 24" fill="none" stroke-width="1.2">
+                <path d="M12 5v14M5 12h14" stroke-linecap="round" />
+              </svg>
+              <p>Add Editorial Photo</p>
+              <input
+                type="file"
+                accept="image/*"
+                onchange="addImage(this, 'editorial')"
+              />
+            </label>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- LIGHTBOX -->
+    <div class="lightbox" id="lightbox" onclick="closeLightbox()">
+      <button class="lightbox-close" onclick="closeLightbox()">✕</button>
+      <img id="lightbox-img" src="" alt="" />
     </div>
 
     <!-- TESTIMONIALS -->
@@ -2571,6 +3042,73 @@
         mobileMenu.classList.remove("open");
         document.body.style.overflow = "";
       }
+
+      // ── GALLERY ──
+      function switchTab(category) {
+        // Update tabs
+        document
+          .querySelectorAll(".gallery-tab")
+          .forEach((t) => t.classList.remove("active"));
+        event.target.classList.add("active");
+        // Show correct panel
+        document
+          .querySelectorAll(".gallery-panel")
+          .forEach((p) => p.classList.remove("active"));
+        document.getElementById("panel-" + category).classList.add("active");
+      }
+
+      function addImage(input, category) {
+        const file = input.files[0];
+        if (!file) return;
+        const url = URL.createObjectURL(file);
+        const panel = document.getElementById("panel-" + category);
+        const grid = panel.querySelector(".gallery-grid");
+
+        // Create new gallery item
+        const item = document.createElement("div");
+        item.className = "gallery-item";
+        item.innerHTML = `
+          <img src="${url}" alt="${category}">
+          <div class="gallery-item-overlay">
+            <div class="gallery-item-label">${file.name.replace(/\.[^/.]+$/, "")}</div>
+          </div>
+        `;
+        item.addEventListener("click", () => openLightbox(url));
+
+        // Insert before the upload slot that was used
+        const slot = input.closest(".gallery-upload-slot");
+        grid.insertBefore(item, slot);
+
+        // Add a fresh upload slot after inserting
+        const newSlot = document.createElement("label");
+        newSlot.className = "gallery-upload-slot";
+        newSlot.title = "Add image";
+        newSlot.innerHTML = `
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="1.2"><path d="M12 5v14M5 12h14" stroke-linecap="round"/></svg>
+          <p>Add Photo</p>
+          <input type="file" accept="image/*" onchange="addImage(this,'${category}')">
+        `;
+        grid.appendChild(newSlot);
+
+        // Reset input
+        input.value = "";
+      }
+
+      function openLightbox(src) {
+        document.getElementById("lightbox-img").src = src;
+        document.getElementById("lightbox").classList.add("open");
+        document.body.style.overflow = "hidden";
+      }
+
+      function closeLightbox() {
+        document.getElementById("lightbox").classList.remove("open");
+        document.body.style.overflow = "";
+      }
+
+      // Close lightbox with Escape key
+      document.addEventListener("keydown", (e) => {
+        if (e.key === "Escape") closeLightbox();
+      });
 
       // Booking
       function selectType(el, name) {
