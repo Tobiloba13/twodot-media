@@ -1433,16 +1433,18 @@
       /* Upload placeholder slot */
       .gallery-upload-slot {
         position: relative;
-        aspect-ratio: 4/3;
+        grid-column: 1 / -1;
+        min-height: 180px;
         background: var(--dark-bg);
         border: 1px dashed rgba(11, 61, 145, 0.4);
         display: flex;
         flex-direction: column;
         align-items: center;
         justify-content: center;
-        gap: 0.6rem;
+        gap: 0.5rem;
         cursor: pointer;
         transition: all 0.3s;
+        padding: 2rem;
       }
       .gallery-upload-slot:hover {
         border-color: var(--gold);
@@ -1748,6 +1750,30 @@
           <div class="service-icon">
             <svg viewBox="0 0 24 24" fill="none" stroke-width="1.5">
               <path
+                d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              />
+              <circle
+                cx="12"
+                cy="13"
+                r="4"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              />
+            </svg>
+          </div>
+          <div class="service-title">Photography</div>
+          <p class="service-desc">
+            Professional photography for brands, events, portraits, and
+            editorial — every frame crafted to tell your story.
+          </p>
+        </div>
+        <div class="service-card reveal reveal-delay-1">
+          <div class="service-num">02</div>
+          <div class="service-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="1.5">
+              <path
                 d="M15 10l4.553-2.276A1 1 0 0121 8.723v6.554a1 1 0 01-1.447.894L15 14M3 8a2 2 0 012-2h10a2 2 0 012 2v8a2 2 0 01-2 2H5a2 2 0 01-2-2V8z"
                 stroke-linecap="round"
                 stroke-linejoin="round"
@@ -1760,8 +1786,8 @@
             that stop scrolls and start conversations.
           </p>
         </div>
-        <div class="service-card reveal reveal-delay-1">
-          <div class="service-num">02</div>
+        <div class="service-card reveal reveal-delay-2">
+          <div class="service-num">03</div>
           <div class="service-icon">
             <svg viewBox="0 0 24 24" fill="none" stroke-width="1.5">
               <path
@@ -1777,8 +1803,8 @@
             recognition, recall, and resonance.
           </p>
         </div>
-        <div class="service-card reveal reveal-delay-2">
-          <div class="service-num">03</div>
+        <div class="service-card reveal reveal-delay-3">
+          <div class="service-num">04</div>
           <div class="service-icon">
             <svg viewBox="0 0 24 24" fill="none" stroke-width="1.5">
               <path
@@ -1792,23 +1818,6 @@
           <p class="service-desc">
             Social media campaigns, reels, shorts, and platform-native content
             optimised for impact and growth.
-          </p>
-        </div>
-        <div class="service-card reveal reveal-delay-3">
-          <div class="service-num">04</div>
-          <div class="service-icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke-width="1.5">
-              <path
-                d="M19 11a7 7 0 01-7 7m0 0a7 7 0 01-7-7m7 7v4m0 0H8m4 0h4m-4-8a3 3 0 01-3-3V5a3 3 0 116 0v6a3 3 0 01-3 3z"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-              />
-            </svg>
-          </div>
-          <div class="service-title">Podcasts & Audio</div>
-          <p class="service-desc">
-            Full production, editing, and distribution strategy for shows that
-            build authority and loyal audiences.
           </p>
         </div>
         <div class="service-card reveal reveal-delay-4">
@@ -1845,28 +1854,21 @@
             that aligns your vision with your audience.
           </p>
         </div>
-        <div class="service-card reveal reveal-delay-2">
+        <div class="service-card reveal reveal-delay-3">
           <div class="service-num">07</div>
           <div class="service-icon">
             <svg viewBox="0 0 24 24" fill="none" stroke-width="1.5">
               <path
-                d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-              />
-              <circle
-                cx="12"
-                cy="13"
-                r="4"
+                d="M19 11a7 7 0 01-7 7m0 0a7 7 0 01-7-7m7 7v4m0 0H8m4 0h4m-4-8a3 3 0 01-3-3V5a3 3 0 116 0v6a3 3 0 01-3 3z"
                 stroke-linecap="round"
                 stroke-linejoin="round"
               />
             </svg>
           </div>
-          <div class="service-title">Photography</div>
+          <div class="service-title">Podcasts & Audio</div>
           <p class="service-desc">
-            Professional photography for brands, events, portraits, and
-            editorial — every frame crafted to tell your story.
+            Full production, editing, and distribution strategy for shows that
+            build authority and loyal audiences.
           </p>
         </div>
       </div>
@@ -1965,37 +1967,31 @@
         <!-- BRANDS -->
         <div class="gallery-panel active" id="panel-brands">
           <div class="gallery-grid">
-            <label class="gallery-upload-slot" title="Add image">
+            <label
+              class="gallery-upload-slot"
+              id="slot-brands"
+              title="Click to upload — hold Ctrl/Cmd to select multiple at once"
+            >
               <svg viewBox="0 0 24 24" fill="none" stroke-width="1.2">
                 <path d="M12 5v14M5 12h14" stroke-linecap="round" />
               </svg>
-              <p>Add Brand Photo</p>
+              <p id="slot-label-brands">Click to upload photos</p>
+              <span
+                style="
+                  font-family: &quot;Raleway&quot;, sans-serif;
+                  font-size: 0.58rem;
+                  letter-spacing: 0.15em;
+                  color: rgba(255, 200, 87, 0.4);
+                  text-transform: uppercase;
+                  margin-top: 0.2rem;
+                "
+                >Select multiple at once</span
+              >
               <input
                 type="file"
                 accept="image/*"
-                onchange="addImage(this, 'brands')"
-              />
-            </label>
-            <label class="gallery-upload-slot" title="Add image">
-              <svg viewBox="0 0 24 24" fill="none" stroke-width="1.2">
-                <path d="M12 5v14M5 12h14" stroke-linecap="round" />
-              </svg>
-              <p>Add Brand Photo</p>
-              <input
-                type="file"
-                accept="image/*"
-                onchange="addImage(this, 'brands')"
-              />
-            </label>
-            <label class="gallery-upload-slot" title="Add image">
-              <svg viewBox="0 0 24 24" fill="none" stroke-width="1.2">
-                <path d="M12 5v14M5 12h14" stroke-linecap="round" />
-              </svg>
-              <p>Add Brand Photo</p>
-              <input
-                type="file"
-                accept="image/*"
-                onchange="addImage(this, 'brands')"
+                multiple
+                onchange="addImages(this, 'brands')"
               />
             </label>
           </div>
@@ -2004,37 +2000,31 @@
         <!-- BTS -->
         <div class="gallery-panel" id="panel-bts">
           <div class="gallery-grid">
-            <label class="gallery-upload-slot" title="Add image">
+            <label
+              class="gallery-upload-slot"
+              id="slot-bts"
+              title="Click to upload — hold Ctrl/Cmd to select multiple at once"
+            >
               <svg viewBox="0 0 24 24" fill="none" stroke-width="1.2">
                 <path d="M12 5v14M5 12h14" stroke-linecap="round" />
               </svg>
-              <p>Add BTS Photo</p>
+              <p id="slot-label-bts">Click to upload photos</p>
+              <span
+                style="
+                  font-family: &quot;Raleway&quot;, sans-serif;
+                  font-size: 0.58rem;
+                  letter-spacing: 0.15em;
+                  color: rgba(255, 200, 87, 0.4);
+                  text-transform: uppercase;
+                  margin-top: 0.2rem;
+                "
+                >Select multiple at once</span
+              >
               <input
                 type="file"
                 accept="image/*"
-                onchange="addImage(this, 'bts')"
-              />
-            </label>
-            <label class="gallery-upload-slot" title="Add image">
-              <svg viewBox="0 0 24 24" fill="none" stroke-width="1.2">
-                <path d="M12 5v14M5 12h14" stroke-linecap="round" />
-              </svg>
-              <p>Add BTS Photo</p>
-              <input
-                type="file"
-                accept="image/*"
-                onchange="addImage(this, 'bts')"
-              />
-            </label>
-            <label class="gallery-upload-slot" title="Add image">
-              <svg viewBox="0 0 24 24" fill="none" stroke-width="1.2">
-                <path d="M12 5v14M5 12h14" stroke-linecap="round" />
-              </svg>
-              <p>Add BTS Photo</p>
-              <input
-                type="file"
-                accept="image/*"
-                onchange="addImage(this, 'bts')"
+                multiple
+                onchange="addImages(this, 'bts')"
               />
             </label>
           </div>
@@ -2043,37 +2033,31 @@
         <!-- DOCUMENTARY -->
         <div class="gallery-panel" id="panel-documentary">
           <div class="gallery-grid">
-            <label class="gallery-upload-slot" title="Add image">
+            <label
+              class="gallery-upload-slot"
+              id="slot-documentary"
+              title="Click to upload — hold Ctrl/Cmd to select multiple at once"
+            >
               <svg viewBox="0 0 24 24" fill="none" stroke-width="1.2">
                 <path d="M12 5v14M5 12h14" stroke-linecap="round" />
               </svg>
-              <p>Add Documentary Photo</p>
+              <p id="slot-label-documentary">Click to upload photos</p>
+              <span
+                style="
+                  font-family: &quot;Raleway&quot;, sans-serif;
+                  font-size: 0.58rem;
+                  letter-spacing: 0.15em;
+                  color: rgba(255, 200, 87, 0.4);
+                  text-transform: uppercase;
+                  margin-top: 0.2rem;
+                "
+                >Select multiple at once</span
+              >
               <input
                 type="file"
                 accept="image/*"
-                onchange="addImage(this, 'documentary')"
-              />
-            </label>
-            <label class="gallery-upload-slot" title="Add image">
-              <svg viewBox="0 0 24 24" fill="none" stroke-width="1.2">
-                <path d="M12 5v14M5 12h14" stroke-linecap="round" />
-              </svg>
-              <p>Add Documentary Photo</p>
-              <input
-                type="file"
-                accept="image/*"
-                onchange="addImage(this, 'documentary')"
-              />
-            </label>
-            <label class="gallery-upload-slot" title="Add image">
-              <svg viewBox="0 0 24 24" fill="none" stroke-width="1.2">
-                <path d="M12 5v14M5 12h14" stroke-linecap="round" />
-              </svg>
-              <p>Add Documentary Photo</p>
-              <input
-                type="file"
-                accept="image/*"
-                onchange="addImage(this, 'documentary')"
+                multiple
+                onchange="addImages(this, 'documentary')"
               />
             </label>
           </div>
@@ -2082,37 +2066,31 @@
         <!-- PORTRAITS -->
         <div class="gallery-panel" id="panel-portraits">
           <div class="gallery-grid">
-            <label class="gallery-upload-slot" title="Add image">
+            <label
+              class="gallery-upload-slot"
+              id="slot-portraits"
+              title="Click to upload — hold Ctrl/Cmd to select multiple at once"
+            >
               <svg viewBox="0 0 24 24" fill="none" stroke-width="1.2">
                 <path d="M12 5v14M5 12h14" stroke-linecap="round" />
               </svg>
-              <p>Add Portrait Photo</p>
+              <p id="slot-label-portraits">Click to upload photos</p>
+              <span
+                style="
+                  font-family: &quot;Raleway&quot;, sans-serif;
+                  font-size: 0.58rem;
+                  letter-spacing: 0.15em;
+                  color: rgba(255, 200, 87, 0.4);
+                  text-transform: uppercase;
+                  margin-top: 0.2rem;
+                "
+                >Select multiple at once</span
+              >
               <input
                 type="file"
                 accept="image/*"
-                onchange="addImage(this, 'portraits')"
-              />
-            </label>
-            <label class="gallery-upload-slot" title="Add image">
-              <svg viewBox="0 0 24 24" fill="none" stroke-width="1.2">
-                <path d="M12 5v14M5 12h14" stroke-linecap="round" />
-              </svg>
-              <p>Add Portrait Photo</p>
-              <input
-                type="file"
-                accept="image/*"
-                onchange="addImage(this, 'portraits')"
-              />
-            </label>
-            <label class="gallery-upload-slot" title="Add image">
-              <svg viewBox="0 0 24 24" fill="none" stroke-width="1.2">
-                <path d="M12 5v14M5 12h14" stroke-linecap="round" />
-              </svg>
-              <p>Add Portrait Photo</p>
-              <input
-                type="file"
-                accept="image/*"
-                onchange="addImage(this, 'portraits')"
+                multiple
+                onchange="addImages(this, 'portraits')"
               />
             </label>
           </div>
@@ -2121,37 +2099,31 @@
         <!-- EVENTS -->
         <div class="gallery-panel" id="panel-events">
           <div class="gallery-grid">
-            <label class="gallery-upload-slot" title="Add image">
+            <label
+              class="gallery-upload-slot"
+              id="slot-events"
+              title="Click to upload — hold Ctrl/Cmd to select multiple at once"
+            >
               <svg viewBox="0 0 24 24" fill="none" stroke-width="1.2">
                 <path d="M12 5v14M5 12h14" stroke-linecap="round" />
               </svg>
-              <p>Add Event Photo</p>
+              <p id="slot-label-events">Click to upload photos</p>
+              <span
+                style="
+                  font-family: &quot;Raleway&quot;, sans-serif;
+                  font-size: 0.58rem;
+                  letter-spacing: 0.15em;
+                  color: rgba(255, 200, 87, 0.4);
+                  text-transform: uppercase;
+                  margin-top: 0.2rem;
+                "
+                >Select multiple at once</span
+              >
               <input
                 type="file"
                 accept="image/*"
-                onchange="addImage(this, 'events')"
-              />
-            </label>
-            <label class="gallery-upload-slot" title="Add image">
-              <svg viewBox="0 0 24 24" fill="none" stroke-width="1.2">
-                <path d="M12 5v14M5 12h14" stroke-linecap="round" />
-              </svg>
-              <p>Add Event Photo</p>
-              <input
-                type="file"
-                accept="image/*"
-                onchange="addImage(this, 'events')"
-              />
-            </label>
-            <label class="gallery-upload-slot" title="Add image">
-              <svg viewBox="0 0 24 24" fill="none" stroke-width="1.2">
-                <path d="M12 5v14M5 12h14" stroke-linecap="round" />
-              </svg>
-              <p>Add Event Photo</p>
-              <input
-                type="file"
-                accept="image/*"
-                onchange="addImage(this, 'events')"
+                multiple
+                onchange="addImages(this, 'events')"
               />
             </label>
           </div>
@@ -2160,37 +2132,31 @@
         <!-- EDITORIAL -->
         <div class="gallery-panel" id="panel-editorial">
           <div class="gallery-grid">
-            <label class="gallery-upload-slot" title="Add image">
+            <label
+              class="gallery-upload-slot"
+              id="slot-editorial"
+              title="Click to upload — hold Ctrl/Cmd to select multiple at once"
+            >
               <svg viewBox="0 0 24 24" fill="none" stroke-width="1.2">
                 <path d="M12 5v14M5 12h14" stroke-linecap="round" />
               </svg>
-              <p>Add Editorial Photo</p>
+              <p id="slot-label-editorial">Click to upload photos</p>
+              <span
+                style="
+                  font-family: &quot;Raleway&quot;, sans-serif;
+                  font-size: 0.58rem;
+                  letter-spacing: 0.15em;
+                  color: rgba(255, 200, 87, 0.4);
+                  text-transform: uppercase;
+                  margin-top: 0.2rem;
+                "
+                >Select multiple at once</span
+              >
               <input
                 type="file"
                 accept="image/*"
-                onchange="addImage(this, 'editorial')"
-              />
-            </label>
-            <label class="gallery-upload-slot" title="Add image">
-              <svg viewBox="0 0 24 24" fill="none" stroke-width="1.2">
-                <path d="M12 5v14M5 12h14" stroke-linecap="round" />
-              </svg>
-              <p>Add Editorial Photo</p>
-              <input
-                type="file"
-                accept="image/*"
-                onchange="addImage(this, 'editorial')"
-              />
-            </label>
-            <label class="gallery-upload-slot" title="Add image">
-              <svg viewBox="0 0 24 24" fill="none" stroke-width="1.2">
-                <path d="M12 5v14M5 12h14" stroke-linecap="round" />
-              </svg>
-              <p>Add Editorial Photo</p>
-              <input
-                type="file"
-                accept="image/*"
-                onchange="addImage(this, 'editorial')"
+                multiple
+                onchange="addImages(this, 'editorial')"
               />
             </label>
           </div>
@@ -3057,41 +3023,43 @@
         document.getElementById("panel-" + category).classList.add("active");
       }
 
-      function addImage(input, category) {
-        const file = input.files[0];
-        if (!file) return;
-        const url = URL.createObjectURL(file);
+      // Supports selecting multiple files at once per upload slot
+      function addImages(input, category) {
+        const files = Array.from(input.files);
+        if (!files.length) return;
         const panel = document.getElementById("panel-" + category);
         const grid = panel.querySelector(".gallery-grid");
-
-        // Create new gallery item
-        const item = document.createElement("div");
-        item.className = "gallery-item";
-        item.innerHTML = `
-          <img src="${url}" alt="${category}">
-          <div class="gallery-item-overlay">
-            <div class="gallery-item-label">${file.name.replace(/\.[^/.]+$/, "")}</div>
-          </div>
-        `;
-        item.addEventListener("click", () => openLightbox(url));
-
-        // Insert before the upload slot that was used
         const slot = input.closest(".gallery-upload-slot");
-        grid.insertBefore(item, slot);
 
-        // Add a fresh upload slot after inserting
-        const newSlot = document.createElement("label");
-        newSlot.className = "gallery-upload-slot";
-        newSlot.title = "Add image";
-        newSlot.innerHTML = `
-          <svg viewBox="0 0 24 24" fill="none" stroke-width="1.2"><path d="M12 5v14M5 12h14" stroke-linecap="round"/></svg>
-          <p>Add Photo</p>
-          <input type="file" accept="image/*" onchange="addImage(this,'${category}')">
-        `;
-        grid.appendChild(newSlot);
+        files.forEach((file) => {
+          const url = URL.createObjectURL(file);
+          const label = file.name.replace(/\.[^/.]+$/, "");
+          const item = document.createElement("div");
+          item.className = "gallery-item reveal visible";
+          item.innerHTML =
+            '<img src="' +
+            url +
+            '" alt="' +
+            label +
+            '">' +
+            '<div class="gallery-item-overlay"><div class="gallery-item-label">' +
+            label +
+            "</div></div>";
+          item.addEventListener("click", () => openLightbox(url));
+          grid.insertBefore(item, slot);
+        });
 
-        // Reset input
+        // Update slot counter text
+        const count = grid.querySelectorAll(".gallery-item").length;
+        const slotP = slot.querySelector("p");
+        if (slotP)
+          slotP.textContent =
+            count + " photo" + (count !== 1 ? "s" : "") + " — add more";
         input.value = "";
+      }
+
+      function addImage(input, category) {
+        addImages(input, category);
       }
 
       function openLightbox(src) {
