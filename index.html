@@ -88,15 +88,17 @@
         display: flex;
         align-items: center;
         justify-content: space-between;
-        padding: 1rem 3rem;
-        background: rgba(6, 8, 15, 0.92);
+        padding: 0.9rem 2rem;
+        background: rgba(6, 8, 15, 0.96);
         backdrop-filter: blur(20px);
         border-bottom: 1px solid rgba(255, 200, 87, 0.08);
         transition: all 0.3s;
+        gap: 1rem;
+        min-width: 0;
       }
       nav.scrolled {
-        padding: 0.7rem 3rem;
-        background: rgba(6, 8, 15, 0.98);
+        padding: 0.65rem 2rem;
+        background: rgba(6, 8, 15, 0.99);
       }
       .nav-logo {
         display: flex;
@@ -105,10 +107,12 @@
         text-decoration: none;
       }
       .nav-logo img {
-        height: 44px;
+        height: 38px;
         width: auto;
+        max-width: 130px;
         object-fit: contain;
         mix-blend-mode: screen;
+        flex-shrink: 0;
       }
       .nav-logo-txt {
         font-family: "Montserrat", sans-serif;
@@ -123,17 +127,19 @@
       }
       .nav-links {
         display: flex;
-        gap: 2rem;
+        gap: 1.4rem;
         list-style: none;
+        flex-shrink: 0;
       }
       .nav-links a {
-        font-size: 0.7rem;
-        letter-spacing: 0.2em;
+        font-size: 0.65rem;
+        letter-spacing: 0.14em;
         text-transform: uppercase;
         color: var(--gray);
         text-decoration: none;
         transition: color 0.3s;
         position: relative;
+        white-space: nowrap;
       }
       .nav-links a::after {
         content: "";
@@ -154,14 +160,16 @@
       .nav-cta {
         background: var(--gold);
         color: var(--ink);
-        padding: 0.5rem 1.4rem;
-        font-size: 0.7rem;
-        letter-spacing: 0.15em;
+        padding: 0.5rem 1.2rem;
+        font-size: 0.65rem;
+        letter-spacing: 0.12em;
         text-transform: uppercase;
         font-weight: 700;
         text-decoration: none;
         transition: all 0.3s;
         font-family: "DM Sans", sans-serif;
+        white-space: nowrap;
+        flex-shrink: 0;
       }
       .nav-cta:hover {
         background: var(--white);
@@ -201,7 +209,7 @@
         right: 0;
         bottom: 0;
         background: rgba(6, 8, 15, 0.99);
-        z-index: 190;
+        z-index: 180;
         flex-direction: column;
         align-items: center;
         justify-content: center;
@@ -692,12 +700,13 @@
         gap: 1.5rem;
       }
       .port-meta {
-        font-family: "Cormorant Garamond", serif;
-        font-style: italic;
-        font-size: 1rem;
-        color: var(--gray);
-        max-width: 320px;
-        line-height: 1.7;
+        font-family: "DM Sans", sans-serif;
+        font-weight: 400;
+        font-size: 0.82rem;
+        color: var(--gray2);
+        max-width: 340px;
+        line-height: 1.75;
+        letter-spacing: 0.02em;
       }
       .video-wrap {
         position: relative;
@@ -754,32 +763,7 @@
       .play-ring:hover svg {
         fill: var(--ink);
       }
-      .vid-caption {
-        position: absolute;
-        bottom: 1.5rem;
-        left: 1.5rem;
-        right: 1.5rem;
-      }
-      .vid-caption h3 {
-        font-family: "Montserrat", sans-serif;
-        font-weight: 700;
-        font-size: 1.1rem;
-        color: var(--white);
-      }
-      .vid-caption p {
-        font-family: "Cormorant Garamond", serif;
-        font-style: italic;
-        font-size: 0.9rem;
-        color: var(--gray2);
-        margin-top: 0.2rem;
-      }
-      .vid-caption .vid-role {
-        font-size: 0.62rem;
-        letter-spacing: 0.15em;
-        text-transform: uppercase;
-        color: var(--gold);
-        margin-top: 0.3rem;
-      }
+
       .sound-btn {
         position: absolute;
         bottom: 1.5rem;
@@ -1287,10 +1271,23 @@
         background: var(--ink);
       }
       .testi-grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        display: flex;
         gap: 1.5rem;
-        margin-top: 3.5rem;
+        margin-top: 3rem;
+        overflow-x: auto;
+        scroll-snap-type: x mandatory;
+        -webkit-overflow-scrolling: touch;
+        padding-bottom: 1rem;
+        scrollbar-width: none;
+      }
+      .testi-grid::-webkit-scrollbar {
+        display: none;
+      }
+      .testi-grid .tcard2 {
+        min-width: 320px;
+        max-width: 360px;
+        flex-shrink: 0;
+        scroll-snap-align: start;
       }
       .tcard2 {
         background: var(--card);
@@ -1683,7 +1680,7 @@
       footer {
         background: var(--ink);
         border-top: 1px solid rgba(11, 61, 145, 0.2);
-        padding: 2.5rem 4rem;
+        padding: 1.2rem 2.5rem;
       }
       .footer-inner {
         max-width: 1280px;
@@ -1691,18 +1688,24 @@
         display: grid;
         grid-template-columns: auto 1fr auto;
         align-items: center;
-        gap: 2rem;
+        gap: 1.5rem;
+      }
+      .footer-logo {
+        display: flex;
+        align-items: center;
       }
       .footer-logo img {
-        height: 44px;
+        height: 36px;
         width: auto;
+        max-width: 120px;
         object-fit: contain;
         mix-blend-mode: screen;
+        margin-left: auto;
       }
       .footer-logo-txt {
         font-family: "Montserrat", sans-serif;
         font-weight: 800;
-        font-size: 1.1rem;
+        font-size: 1rem;
         color: var(--white);
         letter-spacing: 0.08em;
         display: none;
@@ -1712,25 +1715,25 @@
       }
       .footer-copy {
         text-align: center;
-        font-size: 0.7rem;
+        font-size: 0.68rem;
         color: var(--gray);
-        letter-spacing: 0.08em;
+        letter-spacing: 0.06em;
       }
       .footer-socials {
         display: flex;
-        gap: 1rem;
+        gap: 0.8rem;
         justify-content: flex-end;
       }
       .footer-socials a {
-        width: 34px;
-        height: 34px;
+        width: 30px;
+        height: 30px;
         border: 1px solid rgba(11, 61, 145, 0.3);
         display: flex;
         align-items: center;
         justify-content: center;
         color: var(--gray);
         text-decoration: none;
-        font-size: 0.62rem;
+        font-size: 0.6rem;
         transition: all 0.3s;
       }
       .footer-socials a:hover {
@@ -1787,17 +1790,63 @@
       @media (max-width: 1024px) {
         #hero {
           grid-template-columns: 1fr;
-          min-height: auto;
+          min-height: 100vh;
+          position: relative;
         }
         .hero-right {
+          position: absolute;
+          inset: 0;
+          z-index: 0;
+          display: block;
+        }
+        .hero-right::after {
+          content: "";
+          position: absolute;
+          inset: 0;
+          background: rgba(6, 8, 15, 0.7);
+          z-index: 1;
+        }
+        .hero-img-frame {
+          top: 0;
+          left: 0;
+          right: 0;
+          bottom: 0;
+          position: absolute;
+        }
+        .hero-img-frame img {
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+          object-position: center;
+        }
+        .hero-img-frame::after {
           display: none;
         }
         .hero-left {
-          padding: 6rem 2rem 4rem;
+          position: relative;
+          z-index: 2;
+          padding: 7rem 1.8rem 4rem;
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          min-height: 100vh;
+        }
+        .hero-badge {
+          display: none;
+        }
+        .hero-scroll-hint {
+          z-index: 2;
         }
         .footer-inner {
           grid-template-columns: 1fr;
           text-align: center;
+          gap: 1rem;
+        }
+        .footer-logo {
+          justify-content: center;
+        }
+        .footer-logo img {
+          margin-left: 0;
         }
         .footer-socials {
           justify-content: center;
@@ -1814,7 +1863,8 @@
       }
       @media (max-width: 768px) {
         nav {
-          padding: 0.8rem 1.5rem;
+          padding: 0.8rem 1.2rem;
+          gap: 0.6rem;
         }
         .nav-links,
         .nav-cta {
@@ -1832,9 +1882,6 @@
         .services-grid {
           grid-template-columns: 1fr;
         }
-        .testi-grid {
-          grid-template-columns: 1fr;
-        }
         .team-grid {
           grid-template-columns: repeat(2, 1fr);
         }
@@ -1846,7 +1893,23 @@
           background: none;
         }
         footer {
-          padding: 2rem 1.5rem;
+          padding: 1rem 1.5rem;
+        }
+        .footer-inner {
+          padding: 0.5rem 0;
+        }
+        .hero-title {
+          font-size: clamp(2.6rem, 10vw, 4rem);
+        }
+        .hero-sub {
+          font-size: 1rem;
+        }
+        .hero-stats {
+          flex-wrap: wrap;
+          gap: 1.5rem;
+        }
+        .testi-grid .tcard2 {
+          min-width: 280px;
         }
       }
       @media (max-width: 480px) {
@@ -1854,11 +1917,19 @@
           grid-template-columns: 1fr;
         }
         .hero-title {
-          font-size: clamp(2.4rem, 11vw, 3.5rem);
+          font-size: clamp(2.2rem, 12vw, 3.2rem);
         }
-        .hero-stats {
-          flex-wrap: wrap;
-          gap: 1.5rem;
+        .hero-btns {
+          flex-direction: column;
+          align-items: flex-start;
+        }
+        .btn-gold,
+        .btn-ghost {
+          text-align: center;
+          padding: 0.8rem 1.6rem;
+        }
+        .testi-grid .tcard2 {
+          min-width: 260px;
         }
       }
     </style>
@@ -1878,9 +1949,9 @@
         <li><a href="#portfolio">Portfolio</a></li>
         <li><a href="#services">Services</a></li>
         <li><a href="#gallery">Gallery</a></li>
+        <li><a href="#team">Team</a></li>
         <li><a href="#testimonials">Reviews</a></li>
         <li><a href="#booking">Booking</a></li>
-        <li><a href="#team">Team</a></li>
         <li><a href="#contact">Contact</a></li>
       </ul>
       <a href="#booking" class="nav-cta">Book Now</a>
@@ -1895,9 +1966,9 @@
       <a href="#portfolio" onclick="closeMob()">Portfolio</a>
       <a href="#services" onclick="closeMob()">Services</a>
       <a href="#gallery" onclick="closeMob()">Gallery</a>
+      <a href="#team" onclick="closeMob()">Team</a>
       <a href="#testimonials" onclick="closeMob()">Reviews</a>
       <a href="#booking" onclick="closeMob()">Booking</a>
-      <a href="#team" onclick="closeMob()">Team</a>
       <a href="#contact" onclick="closeMob()">Contact</a>
     </div>
 
@@ -1939,11 +2010,11 @@
             alt="TWODOT MEDIA — Cameras"
           />
         </div>
-        <!--div class="hero-badge">
+        <div class="hero-badge">
           <span class="big">5+</span>
           Years of Visual Excellence
         </div>
-      </div -->
+      </div>
       <div class="hero-scroll-hint">
         <span>Scroll</span>
         <div class="scroll-bar"></div>
@@ -2084,13 +2155,7 @@
               <svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21" /></svg>
             </div>
           </div>
-          <div class="vid-caption">
-            <h3>TWODOT MEDIA</h3>
-            <p>Showreel · 2025</p>
-            <div class="vid-role">
-              Dotun Prosper — CEO & Founder, Creative Director
-            </div>
-          </div>
+
           <button class="sound-btn" onclick="toggleSound()" id="soundBtn">
             <svg
               id="muteIco"
@@ -2352,62 +2417,6 @@
       <img id="lbImg" src="" alt="" />
     </div>
 
-    <!-- TEAM -->
-    <div class="sec" id="team" style="background: var(--ink2)">
-      <div class="sec-inner">
-        <div style="text-align: center; margin-bottom: 0.5rem">
-          <div class="sec-label reveal" style="justify-content: center">
-            The Brains
-          </div>
-          <h2 class="sec-title reveal rd1">Meet the Team</h2>
-        </div>
-        <div class="team-grid">
-          <div class="tcard reveal">
-            <div class="tcard-img"><div class="tcard-ph">CEO</div></div>
-            <div class="tcard-info">
-              <div class="tcard-name">DOTUN PROSPER</div>
-              <div class="tcard-role">Founder & Creative Director</div>
-              <div class="tcard-bio">
-                Visionary behind TWODOT MEDIA. Architect of stories, builder of
-                brands.
-              </div>
-            </div>
-          </div>
-          <div class="tcard reveal rd1">
-            <div class="tcard-img"><div class="tcard-ph">MOD</div></div>
-            <div class="tcard-info">
-              <div class="tcard-name">MOD</div>
-              <div class="tcard-role">Director of Photography</div>
-              <div class="tcard-bio">
-                Eyes behind the lens. Framing worlds with light and intention.
-              </div>
-            </div>
-          </div>
-          <div class="tcard reveal rd2">
-            <div class="tcard-img"><div class="tcard-ph">ED</div></div>
-            <div class="tcard-info">
-              <div class="tcard-name">MORAKS</div>
-              <div class="tcard-role">Lead Editor & Brand Strategist</div>
-              <div class="tcard-bio">
-                Weaving rhythm and emotion into every frame, every cut.
-              </div>
-            </div>
-          </div>
-          <div class="tcard reveal rd3">
-            <div class="tcard-img"><div class="tcard-ph">BD</div></div>
-            <div class="tcard-info">
-              <div class="tcard-name">SOG</div>
-              <div class="tcard-role">Brand Developer</div>
-              <div class="tcard-bio">
-                Translating brand identity into visual languages audiences
-                remember.
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-
     <!-- TESTIMONIALS -->
     <div class="sec" id="testimonials">
       <div class="sec-inner">
@@ -2417,7 +2426,81 @@
           </div>
           <h2 class="sec-title reveal rd1">What Clients Say</h2>
         </div>
-        <div class="testi-grid">
+        <div
+          style="
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-top: 3rem;
+            margin-bottom: 0;
+          "
+        >
+          <div style="display: flex; gap: 0.6rem" id="testiNav">
+            <button
+              onclick="scrollTesti(-1)"
+              style="
+                width: 40px;
+                height: 40px;
+                border: 1px solid rgba(255, 200, 87, 0.3);
+                background: none;
+                color: var(--gold);
+                font-size: 1.1rem;
+                cursor: pointer;
+                transition: all 0.3s;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+              "
+              onmouseover="
+                this.style.background = 'var(--gold)';
+                this.style.color = 'var(--ink)';
+              "
+              onmouseout="
+                this.style.background = 'none';
+                this.style.color = 'var(--gold)';
+              "
+            >
+              ‹
+            </button>
+            <button
+              onclick="scrollTesti(1)"
+              style="
+                width: 40px;
+                height: 40px;
+                border: 1px solid rgba(255, 200, 87, 0.3);
+                background: none;
+                color: var(--gold);
+                font-size: 1.1rem;
+                cursor: pointer;
+                transition: all 0.3s;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+              "
+              onmouseover="
+                this.style.background = 'var(--gold)';
+                this.style.color = 'var(--ink)';
+              "
+              onmouseout="
+                this.style.background = 'none';
+                this.style.color = 'var(--gold)';
+              "
+            >
+              ›
+            </button>
+          </div>
+          <p
+            style="
+              font-size: 0.65rem;
+              letter-spacing: 0.2em;
+              text-transform: uppercase;
+              color: var(--gray);
+            "
+          >
+            Swipe or use arrows
+          </p>
+        </div>
+        <div class="testi-grid" id="testiGrid">
           <div class="tcard2 reveal">
             <div class="tcard2-stars">★★★★★</div>
             <p class="tcard2-text">
@@ -2884,6 +2967,62 @@
       </div>
     </div>
 
+    <!-- TEAM -->
+    <div class="sec" id="team" style="background: var(--ink2)">
+      <div class="sec-inner">
+        <div style="text-align: center; margin-bottom: 0.5rem">
+          <div class="sec-label reveal" style="justify-content: center">
+            The Brains
+          </div>
+          <h2 class="sec-title reveal rd1">Meet the Team</h2>
+        </div>
+        <div class="team-grid">
+          <div class="tcard reveal">
+            <div class="tcard-img"><div class="tcard-ph">CEO</div></div>
+            <div class="tcard-info">
+              <div class="tcard-name">DOTUN PROSPER</div>
+              <div class="tcard-role">Founder & Creative Director</div>
+              <div class="tcard-bio">
+                Visionary behind TWODOT MEDIA. Architect of stories, builder of
+                brands.
+              </div>
+            </div>
+          </div>
+          <div class="tcard reveal rd1">
+            <div class="tcard-img"><div class="tcard-ph">MOD</div></div>
+            <div class="tcard-info">
+              <div class="tcard-name">MOD</div>
+              <div class="tcard-role">Director of Photography</div>
+              <div class="tcard-bio">
+                Eyes behind the lens. Framing worlds with light and intention.
+              </div>
+            </div>
+          </div>
+          <div class="tcard reveal rd2">
+            <div class="tcard-img"><div class="tcard-ph">ED</div></div>
+            <div class="tcard-info">
+              <div class="tcard-name">MORAKS</div>
+              <div class="tcard-role">Lead Editor & Brand Strategist</div>
+              <div class="tcard-bio">
+                Weaving rhythm and emotion into every frame, every cut.
+              </div>
+            </div>
+          </div>
+          <div class="tcard reveal rd3">
+            <div class="tcard-img"><div class="tcard-ph">BD</div></div>
+            <div class="tcard-info">
+              <div class="tcard-name">SOG</div>
+              <div class="tcard-role">Brand Developer</div>
+              <div class="tcard-bio">
+                Translating brand identity into visual languages audiences
+                remember.
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
     <!-- FOOTER -->
     <footer>
       <div class="footer-inner">
@@ -3086,6 +3225,15 @@
       }
       updCD();
       setInterval(updCD, 1000);
+
+      // ── TESTIMONIAL SLIDER ──
+      function scrollTesti(dir) {
+        const grid = document.getElementById("testiGrid");
+        if (!grid) return;
+        const card = grid.querySelector(".tcard2");
+        const w = card ? card.offsetWidth + 24 : 360;
+        grid.scrollBy({ left: dir * w, behavior: "smooth" });
+      }
 
       // ── NOTIFY ──
       function submitNotify() {
