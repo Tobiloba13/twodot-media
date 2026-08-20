@@ -1,0 +1,9 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(git config *)",
+      "Bash(echo \"user.name=[$\\(git config user.name\\)]\")",
+      "Bash(echo \"user.email=[$\\(git config user.email\\)]\")"
+    ]
+  }
+}
