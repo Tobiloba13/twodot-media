@@ -64,11 +64,47 @@ function submitBook(){
 }
 
 // GALLERY
-const galleryData={brands:[],bts:[],documentary:[],portraits:[],events:[],editorial:[]};
+// Real project photos live under Photos/. Paths are percent-encoded so
+// spaces (%20) and & (%26) resolve correctly. Admin can still add more at
+// runtime via the modal or addAdminFolder()/addAdminImages() in the console.
+const galleryData={
+  brands:[
+    {name:'Ade Ade',images:[
+      {url:'Photos/Brands/Ade%20Ade/1.png'},
+      {url:'Photos/Brands/Ade%20Ade/2.jpg'},
+      {url:'Photos/Brands/Ade%20Ade/3.jpg'}
+    ]},
+    {name:'Fila & Co',images:[
+      {url:'Photos/Brands/Fila%26Co/PNG-1.png'},
+      {url:'Photos/Brands/Fila%26Co/PNG-2.png'},
+      {url:'Photos/Brands/Fila%26Co/PNG-3.png'},
+      {url:'Photos/Brands/Fila%26Co/PNG-4.png'},
+      {url:'Photos/Brands/Fila%26Co/PNG-5.png'},
+      {url:'Photos/Brands/Fila%26Co/PNG-6.png'},
+      {url:'Photos/Brands/Fila%26Co/PNG-7.png'}
+    ]}
+  ],
+  bts:[],
+  documentary:[
+    {name:'Documentary',images:Array.from({length:40},(_,i)=>({url:'Photos/Documentary/'+(i+1)+'.jpg'}))}
+  ],
+  portraits:[],
+  events:[],
+  editorial:[
+    {name:'Lifestyle',images:[
+      {url:'Photos/Lifestyle/PNG%201.png'},
+      {url:'Photos/Lifestyle/PNG-2.png'},
+      {url:'Photos/Lifestyle/PNG-3.png'},
+      {url:'Photos/Lifestyle/PNG-4.png'}
+    ]}
+  ]
+};
 let activeCategory='brands',activeFolderIndex=null;
 function renderGallery(cat){
   const container=document.getElementById('galleryPanels');container.innerHTML='';
-  const data=galleryData[cat]||[];const grid=document.createElement('div');grid.className='gfolders';
+  const data=galleryData[cat]||[];
+  if(!data.length){container.innerHTML='<div class="gempty">New projects coming soon.</div>';return;}
+  const grid=document.createElement('div');grid.className='gfolders';
   data.forEach((folder,i)=>{
     const fd=document.createElement('div');fd.className='gfolder';
     const thumbs=folder.images.slice(0,3);
