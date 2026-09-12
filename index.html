@@ -887,39 +887,29 @@
                 onclick="selType(this, 'Discovery Call')"
               >
                 <div class="stype-name">Discovery Call</div>
-                <div class="stype-meta">
-               Strategy &amp; consultation
-                </div>
+                <div class="stype-meta">Strategy &amp; consultation</div>
               </div>
               <div
                 class="stype"
                 onclick="selType(this, 'Video Production Brief')"
               >
                 <div class="stype-name">Video Production Brief</div>
-                <div class="stype-meta">
-                  Full project walkthrough
-                </div>
+                <div class="stype-meta">Full project walkthrough</div>
               </div>
               <div
                 class="stype"
                 onclick="selType(this, 'Brand Identity Session')"
               >
                 <div class="stype-name">Brand Identity Session</div>
-                <div class="stype-meta">
-                  Deep brand audit &amp; direction
-                </div>
+                <div class="stype-meta">Deep brand audit &amp; direction</div>
               </div>
               <div class="stype" onclick="selType(this, 'Photography Session')">
                 <div class="stype-name">Photography Session</div>
-                <div class="stype-meta">
-                  Brand, Portrait or Event shoot
-                </div>
+                <div class="stype-meta">Brand, Portrait or Event shoot</div>
               </div>
               <div class="stype" onclick="selType(this, 'Creative Strategy')">
                 <div class="stype-name">Creative Strategy</div>
-                <div class="stype-meta">
-                  Campaign &amp; content roadmap
-                </div>
+                <div class="stype-meta">Campaign &amp; content roadmap</div>
               </div>
             </div>
           </div>
@@ -935,7 +925,13 @@
             >
               Your Details
             </p>
-            <div class="booking-form">
+            <form
+              class="booking-form"
+              name="booking"
+              method="POST"
+              data-netlify="true"
+            >
+              <input type="hidden" name="form-name" value="booking" />
               <div class="frow">
                 <div class="fg">
                   <label>Full Name</label
@@ -993,10 +989,10 @@
                   placeholder="Briefly describe your goals or project..."
                 ></textarea>
               </div>
-              <button class="f-submit" id="bookBtn" onclick="submitBook()">
+              <button class="f-submit" type="submit">
                 Confirm Booking &rarr;
               </button>
-            </div>
+            </form>
           </div>
         </div>
       </div>
@@ -1225,7 +1221,7 @@
       </div>
     </div>
 
-    <div class="sec" id="team" style="background: var(--ink2)">
+    <!--div class="sec" id="team" style="background: var(--ink2)">
       <div class="sec-inner">
         <div style="text-align: center; margin-bottom: 0.5rem">
           <div class="sec-label reveal" style="justify-content: center">
@@ -1279,7 +1275,7 @@
         </div>
       </div>
     </div>
-
+  -->
     <footer>
       <div
         class="footer-inner"
@@ -1296,189 +1292,188 @@
             gap: 2rem 3rem;
           "
         >
-            <div>
-              <p
+          <div>
+            <p
+              style="
+                font-family: &quot;Montserrat&quot;, sans-serif;
+                font-weight: 700;
+                font-size: 0.65rem;
+                letter-spacing: 0.2em;
+                text-transform: uppercase;
+                color: var(--gold);
+                margin-bottom: 1rem;
+              "
+            >
+              Company
+            </p>
+            <div style="display: flex; flex-direction: column; gap: 0.6rem">
+              <a
+                href="#about"
                 style="
-                  font-family: &quot;Montserrat&quot;, sans-serif;
-                  font-weight: 700;
-                  font-size: 0.65rem;
-                  letter-spacing: 0.2em;
-                  text-transform: uppercase;
-                  color: var(--gold);
-                  margin-bottom: 1rem;
+                  font-size: 0.78rem;
+                  color: var(--gray);
+                  text-decoration: none;
+                  transition: color 0.3s;
                 "
+                onmouseover="this.style.color = 'var(--gold)'"
+                onmouseout="this.style.color = 'var(--gray)'"
+                >About</a
               >
-                Company
-              </p>
-              <div style="display: flex; flex-direction: column; gap: 0.6rem">
-                <a
-                  href="#about"
-                  style="
-                    font-size: 0.78rem;
-                    color: var(--gray);
-                    text-decoration: none;
-                    transition: color 0.3s;
-                  "
-                  onmouseover="this.style.color = 'var(--gold)'"
-                  onmouseout="this.style.color = 'var(--gray)'"
-                  >About</a
-                >
-                <a
-                  href="#services"
-                  style="
-                    font-size: 0.78rem;
-                    color: var(--gray);
-                    text-decoration: none;
-                    transition: color 0.3s;
-                  "
-                  onmouseover="this.style.color = 'var(--gold)'"
-                  onmouseout="this.style.color = 'var(--gray)'"
-                  >Services</a
-                >
-                <a
-                  href="#portfolio"
-                  style="
-                    font-size: 0.78rem;
-                    color: var(--gray);
-                    text-decoration: none;
-                    transition: color 0.3s;
-                  "
-                  onmouseover="this.style.color = 'var(--gold)'"
-                  onmouseout="this.style.color = 'var(--gray)'"
-                  >Featured Projects</a
-                >
-                <a
-                  href="#team"
-                  style="
-                    font-size: 0.78rem;
-                    color: var(--gray);
-                    text-decoration: none;
-                    transition: color 0.3s;
-                  "
-                  onmouseover="this.style.color = 'var(--gold)'"
-                  onmouseout="this.style.color = 'var(--gray)'"
-                  >Team</a
-                >
-                <a
-                  href="#"
-                  style="
-                    font-size: 0.78rem;
-                    color: var(--gray);
-                    text-decoration: none;
-                    transition: color 0.3s;
-                  "
-                  onmouseover="this.style.color = 'var(--gold)'"
-                  onmouseout="this.style.color = 'var(--gray)'"
-                  >Careers
-                  <span
-                    style="
-                      font-size: 0.6rem;
-                      color: var(--gold);
-                      border: 1px solid rgba(255, 200, 87, 0.3);
-                      padding: 0.1rem 0.4rem;
-                      margin-left: 0.3rem;
-                    "
-                    >Soon</span
-                  ></a
-                >
-              </div>
-            </div>
-            <div>
-              <p
+              <a
+                href="#services"
                 style="
-                  font-family: &quot;Montserrat&quot;, sans-serif;
-                  font-weight: 700;
-                  font-size: 0.65rem;
-                  letter-spacing: 0.2em;
-                  text-transform: uppercase;
-                  color: var(--gold);
-                  margin-bottom: 1rem;
+                  font-size: 0.78rem;
+                  color: var(--gray);
+                  text-decoration: none;
+                  transition: color 0.3s;
                 "
+                onmouseover="this.style.color = 'var(--gold)'"
+                onmouseout="this.style.color = 'var(--gray)'"
+                >Services</a
               >
-                Legal
-              </p>
-              <div style="display: flex; flex-direction: column; gap: 0.6rem">
-                <a
-                  href="#"
-                  style="
-                    font-size: 0.78rem;
-                    color: var(--gray);
-                    text-decoration: none;
-                    transition: color 0.3s;
-                  "
-                  onmouseover="this.style.color = 'var(--gold)'"
-                  onmouseout="this.style.color = 'var(--gray)'"
-                  >Privacy Policy</a
-                >
-                <a
-                  href="#"
-                  style="
-                    font-size: 0.78rem;
-                    color: var(--gray);
-                    text-decoration: none;
-                    transition: color 0.3s;
-                  "
-                  onmouseover="this.style.color = 'var(--gold)'"
-                  onmouseout="this.style.color = 'var(--gray)'"
-                  >Terms of Service</a
-                >
-                <a
-                  href="#"
-                  style="
-                    font-size: 0.78rem;
-                    color: var(--gray);
-                    text-decoration: none;
-                    transition: color 0.3s;
-                  "
-                  onmouseover="this.style.color = 'var(--gold)'"
-                  onmouseout="this.style.color = 'var(--gray)'"
-                  >FAQ</a
-                >
-              </div>
-            </div>
-            <div>
-              <p
+              <a
+                href="#portfolio"
                 style="
-                  font-family: &quot;Montserrat&quot;, sans-serif;
-                  font-weight: 700;
-                  font-size: 0.65rem;
-                  letter-spacing: 0.2em;
-                  text-transform: uppercase;
-                  color: var(--gold);
-                  margin-bottom: 1rem;
+                  font-size: 0.78rem;
+                  color: var(--gray);
+                  text-decoration: none;
+                  transition: color 0.3s;
                 "
+                onmouseover="this.style.color = 'var(--gold)'"
+                onmouseout="this.style.color = 'var(--gray)'"
+                >Featured Projects</a
               >
-                Resources
-              </p>
-              <div style="display: flex; flex-direction: column; gap: 0.6rem">
-                <a
-                  href="#"
+              <a
+                href="#team"
+                style="
+                  font-size: 0.78rem;
+                  color: var(--gray);
+                  text-decoration: none;
+                  transition: color 0.3s;
+                "
+                onmouseover="this.style.color = 'var(--gold)'"
+                onmouseout="this.style.color = 'var(--gray)'"
+                >Team</a
+              >
+              <a
+                href="#"
+                style="
+                  font-size: 0.78rem;
+                  color: var(--gray);
+                  text-decoration: none;
+                  transition: color 0.3s;
+                "
+                onmouseover="this.style.color = 'var(--gold)'"
+                onmouseout="this.style.color = 'var(--gray)'"
+                >Careers
+                <span
                   style="
-                    font-size: 0.78rem;
-                    color: var(--gray);
-                    text-decoration: none;
-                    transition: color 0.3s;
+                    font-size: 0.6rem;
+                    color: var(--gold);
+                    border: 1px solid rgba(255, 200, 87, 0.3);
+                    padding: 0.1rem 0.4rem;
+                    margin-left: 0.3rem;
                   "
-                  onmouseover="this.style.color = 'var(--gold)'"
-                  onmouseout="this.style.color = 'var(--gray)'"
-                  >Media Kit</a
-                >
-                <a
-                  href="#"
-                  style="
-                    font-size: 0.78rem;
-                    color: var(--gray);
-                    text-decoration: none;
-                    transition: color 0.3s;
-                  "
-                  onmouseover="this.style.color = 'var(--gold)'"
-                  onmouseout="this.style.color = 'var(--gray)'"
-                  >Brand Guidelines</a
-                >
-                
-              </div>
+                  >Soon</span
+                ></a
+              >
             </div>
           </div>
+          <div>
+            <p
+              style="
+                font-family: &quot;Montserrat&quot;, sans-serif;
+                font-weight: 700;
+                font-size: 0.65rem;
+                letter-spacing: 0.2em;
+                text-transform: uppercase;
+                color: var(--gold);
+                margin-bottom: 1rem;
+              "
+            >
+              Legal
+            </p>
+            <div style="display: flex; flex-direction: column; gap: 0.6rem">
+              <a
+                href="#"
+                style="
+                  font-size: 0.78rem;
+                  color: var(--gray);
+                  text-decoration: none;
+                  transition: color 0.3s;
+                "
+                onmouseover="this.style.color = 'var(--gold)'"
+                onmouseout="this.style.color = 'var(--gray)'"
+                >Privacy Policy</a
+              >
+              <a
+                href="#"
+                style="
+                  font-size: 0.78rem;
+                  color: var(--gray);
+                  text-decoration: none;
+                  transition: color 0.3s;
+                "
+                onmouseover="this.style.color = 'var(--gold)'"
+                onmouseout="this.style.color = 'var(--gray)'"
+                >Terms of Service</a
+              >
+              <a
+                href="#"
+                style="
+                  font-size: 0.78rem;
+                  color: var(--gray);
+                  text-decoration: none;
+                  transition: color 0.3s;
+                "
+                onmouseover="this.style.color = 'var(--gold)'"
+                onmouseout="this.style.color = 'var(--gray)'"
+                >FAQ</a
+              >
+            </div>
+          </div>
+          <div>
+            <p
+              style="
+                font-family: &quot;Montserrat&quot;, sans-serif;
+                font-weight: 700;
+                font-size: 0.65rem;
+                letter-spacing: 0.2em;
+                text-transform: uppercase;
+                color: var(--gold);
+                margin-bottom: 1rem;
+              "
+            >
+              Resources
+            </p>
+            <div style="display: flex; flex-direction: column; gap: 0.6rem">
+              <a
+                href="#"
+                style="
+                  font-size: 0.78rem;
+                  color: var(--gray);
+                  text-decoration: none;
+                  transition: color 0.3s;
+                "
+                onmouseover="this.style.color = 'var(--gold)'"
+                onmouseout="this.style.color = 'var(--gray)'"
+                >Media Kit</a
+              >
+              <a
+                href="#"
+                style="
+                  font-size: 0.78rem;
+                  color: var(--gray);
+                  text-decoration: none;
+                  transition: color 0.3s;
+                "
+                onmouseover="this.style.color = 'var(--gold)'"
+                onmouseout="this.style.color = 'var(--gray)'"
+                >Brand Guidelines</a
+              >
+            </div>
+          </div>
+        </div>
         <!-- Copyright -->
         <p
           class="footer-copy"
