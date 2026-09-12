@@ -1134,14 +1134,21 @@
             ><span class="cd-lbl">Seconds</span>
           </div>
         </div>
-        <div class="notify-form reveal rd4">
+        <form
+          class="notify-form reveal rd4"
+          name="notify"
+          method="POST"
+          data-netlify="true"
+        >
+          <input type="hidden" name="form-name" value="notify" />
           <input
             type="email"
             id="notifyEmail"
+            name="email"
             placeholder="Enter your email address"
           />
-          <button onclick="submitNotify()">Notify Me</button>
-        </div>
+          <button type="submit">Notify Me</button>
+        </form>
       </div>
     </div>
 
@@ -1263,64 +1270,55 @@
               </div>
             </div>
           </div>
-          <div class="reveal rd3">
-            <div class="booking-form">
-              <div class="frow">
-                <div class="fg">
-                  <label>First Name</label
-                  ><input type="text" placeholder="John" />
-                </div>
-                <div class="fg">
-                  <label>Last Name</label
-                  ><input type="text" placeholder="Doe" />
-                </div>
-              </div>
-              <div class="frow">
-                <div class="fg">
-                  <label>Email</label
-                  ><input type="email" placeholder="john@company.com" />
-                </div>
-                <div class="fg">
-                  <label>Budget</label
-                  ><select>
-                    <option value="">Select range</option>
-                    <option>Under &#8358;500k</option>
-                    <option>&#8358;500k &ndash; &#8358;1M</option>
-                    <option>&#8358;1M &ndash; &#8358;5M</option>
-                    <option>&#8358;5M+</option>
-                  </select>
-                </div>
-              </div>
-              <div class="fg full">
-                <label>Service Needed</label
-                ><select>
-                  <option value="">Select a service</option>
-                  <option>Photography</option>
-                  <option>Video Production</option>
-                  <option>Brand Identity</option>
-                  <option>Creative Strategy</option>
-                  <option>Digital Content</option>
-                  <option>Entertainment</option>
-                  <option>Podcasts &amp; Audio</option>
-                </select>
-              </div>
-              <div class="fg full">
-                <label>Tell Us About Your Project</label
-                ><textarea placeholder="Describe your vision..."></textarea>
-              </div>
-              <button
-                class="f-submit"
-                id="contactBtn"
-                onclick="
-                  this.textContent =
-                    '&#10003; Brief Received — We\'ll be in touch';
-                  this.style.background = '#2d6a4f';
-                  this.style.color = 'var(--white)';
-                "
-              >
-                Send Your Brief &rarr;
-              </button>
-            </div>
+   <form class="booking-form" name="brief" method="POST" data-netlify="true">
+  <input type="hidden" name="form-name" value="brief"/>
+  <div class="frow">
+    <div class="fg">
+      <label>First Name</label>
+      <input type="text" name="first-name" placeholder="John"/>
+    </div>
+    <div class="fg">
+      <label>Last Name</label>
+      <input type="text" name="last-name" placeholder="Doe"/>
+    </div>
+  </div>
+  <div class="frow">
+    <div class="fg">
+      <label>Email</label>
+      <input type="email" name="email" placeholder="john@company.com"/>
+    </div>
+    <div class="fg">
+      <label>Budget</label>
+      <select name="budget">
+        <option value="">Select range</option>
+        <option>Under &#8358;500k</option>
+        <option>&#8358;500k &ndash; &#8358;1M</option>
+        <option>&#8358;1M &ndash; &#8358;5M</option>
+        <option>&#8358;5M+</option>
+      </select>
+    </div>
+  </div>
+  <div class="fg full">
+    <label>Service Needed</label>
+    <select name="service">
+      <option value="">Select a service</option>
+      <option>Photography</option>
+      <option>Video Production</option>
+      <option>Brand Identity</option>
+      <option>Creative Strategy</option>
+      <option>Digital Content</option>
+      <option>Entertainment</option>
+      <option>Podcasts &amp; Audio</option>
+    </select>
+  </div>
+  <div class="fg full">
+    <label>Tell Us About Your Project</label>
+    <textarea name="message" placeholder="Describe your vision..."></textarea>
+  </div>
+  <button class="f-submit" id="contactBtn" type="submit">
+    Send Your Brief &rarr;
+  </button>
+</form>
           </div>
         </div>
       </div>
