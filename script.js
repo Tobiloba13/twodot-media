@@ -47,18 +47,26 @@ function submitNotify(){const inp=document.getElementById('notifyEmail'),btn=inp
 
 // BOOKING
 function selType(el,name){document.querySelectorAll('.stype').forEach(t=>t.classList.remove('active'));el.classList.add('active');const f=document.getElementById('bsession');if(f)f.value=name;}
-function submitBook(){
+function submitBook(e){
   const n=document.getElementById('bname').value,
-        e=document.getElementById('bemail').value,
+        em=document.getElementById('bemail').value,
         d=document.getElementById('bdate').value,
         t=document.getElementById('btime').value,
         btn=document.getElementById('bookBtn');
-  if(!n||!e||!d||!t){
+  if(!n||!em||!d||!t){
+    e.preventDefault();
     btn.textContent='Please fill in all required fields';
-    btn.style.background='#7f1d1d';btn.style.color='var(--white)';
-    setTimeout(()=>{btn.textContent='Confirm Booking';btn.style.background='var(--gold)';btn.style.color='var(--ink)';},2500);
+    btn.style.background='#7f1d1d';
+    btn.style.color='var(--white)';
+    setTimeout(()=>{
+      btn.textContent='Confirm Booking';
+      btn.style.background='var(--gold)';
+      btn.style.color='var(--ink)';
+    },2500);
     return;
   }
+  // Let the form submit naturally to Netlify
+}
   btn.textContent='&#10003; Booking Confirmed — We\'ll be in touch shortly';
   btn.style.background='#2d6a4f';btn.style.color='var(--white)';
 }
