@@ -935,27 +935,42 @@
               <div class="frow">
                 <div class="fg">
                   <label>Full Name</label
-                  ><input type="text" id="bname" placeholder="Your name" />
+                  ><input
+                    type="text"
+                    id="bname"
+                    name="full-name"
+                    placeholder="Your name"
+                  />
                 </div>
+
                 <div class="fg">
                   <label>Email</label
                   ><input
                     type="email"
                     id="bemail"
+                    name="email"
                     placeholder="your@email.com"
                   />
                 </div>
               </div>
+
               <div class="frow">
                 <div class="fg">
                   <label>Phone</label
-                  ><input type="tel" id="bphone" placeholder="070 8786 3288" />
+                  ><input
+                    type="tel"
+                    id="bphone"
+                    name="phone"
+                    placeholder="070 8786 3288"
+                  />
                 </div>
+
                 <div class="fg">
                   <label>Session Type</label
                   ><input
                     type="text"
                     id="bsession"
+                    name="session-type"
                     readonly
                     style="cursor: default; color: var(--gold)"
                     value="Discovery Call"
@@ -965,11 +980,16 @@
               <div class="frow">
                 <div class="fg">
                   <label>Preferred Date</label
-                  ><input type="date" id="bdate" style="color-scheme: dark" />
+                  ><input
+                    type="date"
+                    id="bdate"
+                    name="preferred-date"
+                    style="color-scheme: dark"
+                  />
                 </div>
                 <div class="fg">
                   <label>Preferred Time</label
-                  ><select id="btime">
+                  ><select id="btime" name="preferred-time">
                     <option value="">Select time</option>
                     <option>9:00 AM</option>
                     <option>10:00 AM</option>
@@ -986,6 +1006,7 @@
                 <label>What would you like to achieve?</label
                 ><textarea
                   id="bnotes"
+                  name="message"
                   placeholder="Briefly describe your goals or project..."
                 ></textarea>
               </div>
