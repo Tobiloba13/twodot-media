@@ -998,6 +998,50 @@
       </div>
     </div>
 
+    <div class="fg">
+      <input type="text" id="bname" name="full-name" placeholder="Your name" />
+      <input
+        type="email"
+        id="bemail"
+        name="email"
+        placeholder="your@email.com"
+      />
+      <input type="tel" id="bphone" name="phone" placeholder="070 8786 3288" />
+      <input
+        type="text"
+        id="bsession"
+        name="session-type"
+        readonly
+        style="cursor: default; color: var(--gold)"
+        value="Discovery Call"
+      />
+      <input
+        type="date"
+        id="bdate"
+        name="preferred-date"
+        style="color-scheme: dark"
+      />
+
+      <select id="btime" name="preferred-time">
+        <option value="">Select time</option>
+        <option>9:00 AM</option>
+        <option>10:00 AM</option>
+        <option>11:00 AM</option>
+        <option>12:00 PM</option>
+        <option>2:00 PM</option>
+        <option>3:00 PM</option>
+        <option>4:00 PM</option>
+        <option>5:00 PM</option>
+      </select>
+
+      <!-- Notes textarea -->
+      <textarea
+        id="bnotes"
+        name="message"
+        placeholder="Briefly describe your goals or project..."
+      ></textarea>
+    </div>
+
     <div class="sec" id="coming">
       <div class="coming-bg"></div>
       <div class="coming-grid-bg"></div>
