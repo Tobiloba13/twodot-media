@@ -66,7 +66,6 @@ function submitBook(e){
     return;
   }
   // Let the form submit naturally to Netlify
-}
   btn.textContent='&#10003; Booking Confirmed — We\'ll be in touch shortly';
   btn.style.background='#2d6a4f';btn.style.color='var(--white)';
 }
